@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonthlyCalendar : MonoBehaviour
+public class MonthlyCalendar
 {
     public ArrayList events;
 
-    public void Start() {
+    public MonthlyCalendar() {
         events = SaveManager.events;
     }
 
