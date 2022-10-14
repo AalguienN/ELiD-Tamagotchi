@@ -11,8 +11,10 @@ public class MonthlyCalendar : MonoBehaviour
     }
 
     public CalendarEvent getCalendarEvent(string id) {
-        return SaveManager.getEvent(id);
+        foreach (CalendarEvent e in events) {
+            if(e.id == id) return e;
+        }
     }
 
-    
+
 }
