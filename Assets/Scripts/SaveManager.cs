@@ -9,27 +9,18 @@ public class SaveManager : MonoBehaviour {
     [HideInInspector] private static int fireState, stickNum, currentDay;
     DateTime lastConexion;
     public static int timeSinceLastConexion;
+
+    private static ArrayList events = new ArrayList();
     #endregion
 
-    #region Singleton
-    public static SaveManager instance; //Singleton
-    private void Awake()
-    {
-        if(instance != null)
-        {
-            return;
-        } 
-        instance = this;
-    }
-    #endregion
-
-    void Start()
+    void Awake()
     {
         //Here load
         fireState = ES3.Load("lastFireState", fireState);
         stickNum = ES3.Load("stickNum", stickNum);
         currentDay = ES3.Load("currentDay", currentDay);
         lastConexion = ES3.Load("lastConexion", DateTime.Now);
+        events = ES3.Load("eventHandler", events);
 
 
         //Here calculate seconds since last conexion.
@@ -60,8 +51,10 @@ public class SaveManager : MonoBehaviour {
         ES3.Save("currentDay", currentDay);
         ES3.Save("lastFireState", fireState);
         ES3.Save("lastConexion", DateTime.Now);
+        ES3.Save("eventHandler", events);
     }
 
+    //Properties handler
     public static int getFireState()
     {
         return ES3.Load("lastFireState", fireState);
@@ -93,4 +86,56 @@ public class SaveManager : MonoBehaviour {
     {
         return timeSinceLastConexion;
     }
+
+    //Event handler
+    public static void addEvent(CalendarEvent id)
+    {
+        events.Add(id);
+        ES3.Save("eventHandler", events);
+    }
+    public static void removeEvent(string id)
+    {
+        events.Remove(id);
+        ES3.Save("eventHandler", events);
+    }
+
+    public static CalendarEvent getEvent(string id)
+    {
+        foreach (x in events)
+        {
+            if(x.id == id)
+            {
+                return x;
+            }
+        }
+        return null;
+    }
+
+    //public static void saveInt(string id, int x)
+    //{
+    //    ES3.Save(id, x);
+    //}
+
+    //public static void saveString(string id, string x)
+    //{
+    //    ES3.Save(id, x);
+    //}
+    //public static void saveFloat(string id, int x)
+    //{
+    //    ES3.Save(id, x);
+    //}
+
+    //public static void saveArrayList(string id, ArrayList x)
+    //{
+    //    ES3.Save(id, x);
+    //}
+
+    //public static void Load(string id)
+    //{
+    //    if (ES3.KeyExists(id))
+    //    {
+    //        print("Id " + id + " doesn't exist");
+    //    }
+    //    ES3.Load(id);
+    //}
 }
