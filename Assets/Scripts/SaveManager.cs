@@ -13,6 +13,7 @@ public class SaveManager : MonoBehaviour {
     private static ArrayList events = new ArrayList();
     #endregion
 
+    #region Save and Load
     void Awake()
     {
         //Here load
@@ -53,7 +54,9 @@ public class SaveManager : MonoBehaviour {
         ES3.Save("lastConexion", DateTime.Now);
         ES3.Save("eventHandler", events);
     }
+    #endregion
 
+    #region Properties Handler
     //Properties handler
     public static int getFireState()
     {
@@ -86,7 +89,9 @@ public class SaveManager : MonoBehaviour {
     {
         return timeSinceLastConexion;
     }
+    #endregion
 
+    #region Event Handler
     //Event handler
     public static void addEvent(CalendarEvent id)
     {
@@ -110,32 +115,5 @@ public class SaveManager : MonoBehaviour {
         }
         return null;
     }
-
-    //public static void saveInt(string id, int x)
-    //{
-    //    ES3.Save(id, x);
-    //}
-
-    //public static void saveString(string id, string x)
-    //{
-    //    ES3.Save(id, x);
-    //}
-    //public static void saveFloat(string id, int x)
-    //{
-    //    ES3.Save(id, x);
-    //}
-
-    //public static void saveArrayList(string id, ArrayList x)
-    //{
-    //    ES3.Save(id, x);
-    //}
-
-    //public static void Load(string id)
-    //{
-    //    if (ES3.KeyExists(id))
-    //    {
-    //        print("Id " + id + " doesn't exist");
-    //    }
-    //    ES3.Load(id);
-    //}
+    #endregion 
 }

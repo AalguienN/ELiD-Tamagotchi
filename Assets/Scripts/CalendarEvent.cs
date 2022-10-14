@@ -1,5 +1,6 @@
 public class CalendarEvent {
-        private string eventName;
-        private int month;
-        private int day;
-    }
+    public string id;
+    public string eventName;
+    public int month;
+    public int day;
+}
