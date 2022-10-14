@@ -15,6 +15,4 @@ public class MonthlyCalendar : MonoBehaviour
             if(e.id == id) return e;
         }
     }
-
-
 }
