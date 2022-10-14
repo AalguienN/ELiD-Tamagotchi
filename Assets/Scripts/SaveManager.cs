@@ -10,7 +10,7 @@ public class SaveManager : MonoBehaviour {
     DateTime lastConexion;
     public static int timeSinceLastConexion;
 
-    private static ArrayList events = new ArrayList();
+    public static ArrayList events = new ArrayList();
     #endregion
 
     #region Save and Load
