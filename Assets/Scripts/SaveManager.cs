@@ -101,7 +101,7 @@ public class SaveManager : MonoBehaviour {
 
     public static CalendarEvent getEvent(string id)
     {
-        foreach (x in events)
+        foreach (CalendarEvent x in events)
         {
             if(x.id == id)
             {
