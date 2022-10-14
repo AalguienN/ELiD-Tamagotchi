@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Time;
 
 public class MonthlyCalendarManager : MonoBehaviour
 {
@@ -11,7 +11,6 @@ public class MonthlyCalendarManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enum[7]
     }
 
     // Update is called once per frame
