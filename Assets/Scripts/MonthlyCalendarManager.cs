@@ -24,6 +24,7 @@ public class MonthlyCalendarManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Get the actual time (might be improved in order to avoid cheating)
         DateTime date = DateTime.Now;
         currentDay = date.Day;
         currentMonth = date.Month;
@@ -33,26 +34,26 @@ public class MonthlyCalendarManager : MonoBehaviour
         }
     }
 
-    public CalendarEvent getCalendarEvent(string id) {
+    public CalendarEvent GetCalendarEvent(string id) {
         foreach (CalendarEvent e in events) {
             if(e.id == id) return e;
         }
         return null;
     }
 
-    // public void addCalendarEvent(CalendarEvent event) {
-    //     SaveManager.addEvent(event);
-    //     UpdateCalendarDisplay();
-    // }
+    public void AddCalendarEvent(CalendarEvent e) {
+        SaveManager.addEvent(e);
+        UpdateCalendarDisplay();
+    }
 
-    // public void removeCalendarEvent(CalendarEvent event) {
-    //     SaveManager.removeEvent(event);
-    //     UpdateCalendarDisplay();
-    // }
+    public void RemoveCalendarEvent(CalendarEvent e) {
+        SaveManager.removeEvent(e);
+        UpdateCalendarDisplay();
+    }
 
     public void StartupCalendarDisplay() {
         foreach(GameObject dayGameObject in daysInCalendarDisplay) {
-            
+
         }
     }
 
