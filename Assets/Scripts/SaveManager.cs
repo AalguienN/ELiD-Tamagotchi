@@ -100,7 +100,13 @@ public class SaveManager : MonoBehaviour {
     }
     public static void removeEvent(string id)
     {
-        events.Remove(id);
+        foreach (CalendarEvent x in events)
+        {
+            if (x.id == id)
+            {
+                events.Remove(x);
+            }
+        }
         ES3.Save("eventHandler", events);
     }
 
