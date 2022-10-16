@@ -31,6 +31,8 @@ public class WeeklyCalendar : MonoBehaviour
         }    //Por defecto esta vacio todo.
     }
 
+    //Funciones para randomizar
+
     public int getDay() //Obtiene el dia de la semana de Domingo a Lunes de la proxima semana (0-6) 
     {
         return (int)DateTime.Now.DayOfWeek;
@@ -42,9 +44,11 @@ public class WeeklyCalendar : MonoBehaviour
         return (float)UnityEngine.Random.Range(0.1f, 1.5f);  //Si es estrictamente mayor al climateChangeProbability se machaca el clima de ese día
     }
 
+
+    //Función para establecer el clima de la semana.
     public void RandomWeather(Day[] w){
         for(int day = 0; day < 7; day++){    //Obtienes el día de hoy (0..6) como punto de inicio
-            if(w[day].weather == Day.Tiempo.Vacio) {
+            if(w[day].weather == Day.Tiempo.vacio) {
                 int r = UnityEngine.Random.Range(1,2);
                 w[day].weather = (Day.Tiempo)r; //Rellena con sol o lluvia los dias de la semana restantes
             }
