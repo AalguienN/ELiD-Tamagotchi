@@ -9,6 +9,7 @@ public class MonthlyCalendarManager : MonoBehaviour
     int savedMonth;
     int currentDay;
     int currentMonth;
+    Month actualMonth;
 
     ArrayList events;
 
@@ -31,6 +32,7 @@ public class MonthlyCalendarManager : MonoBehaviour
         if(currentDay != savedDay || currentMonth != savedMonth) {
             savedDay = currentDay;
             savedMonth = currentMonth;
+            MonthConstants.GetMonth(currentMonth, date.Year);
         }
     }
 
@@ -46,8 +48,8 @@ public class MonthlyCalendarManager : MonoBehaviour
         UpdateCalendarDisplay();
     }
 
-    public void RemoveCalendarEvent(CalendarEvent e) {
-        SaveManager.removeEvent(e);
+    public void RemoveCalendarEvent(string eId) {
+        SaveManager.removeEvent(eId);
         UpdateCalendarDisplay();
     }
 
