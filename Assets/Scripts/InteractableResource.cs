@@ -16,7 +16,9 @@ public class InteractableResource : MonoBehaviour
     Vector3 pixelPointer;
 
     Vector3 adjustZ;
+
     Vector2 rectangle;
+    Vector3 rectangleCenter;
 
     public bool hold = false;
     public bool busy = false;
@@ -41,7 +43,8 @@ public class InteractableResource : MonoBehaviour
         Input.multiTouchEnabled = false;
 
         //Defining campfire rectangle hitbox
-        rectangle = new Vector2(pixelW*.5f,pixelH*.5f);
+        rectangle = new Vector2(pixelW*.2f,pixelH*.3f);
+        rectangleCenter = new Vector3(pixelW* .5f, pixelH * .5f);
         adjustZ = new Vector3(0, 0, 10);
 
 
@@ -54,11 +57,24 @@ public class InteractableResource : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            //check if rectangle
-
             hold = false;
             busy = true;
-            StartCoroutine("ReturnStick");
+            //check if rectangle
+            mousePos = Input.mousePosition;
+            if (mousePos.x > (rectangleCenter.x - rectangle.x) && mousePos.x < (rectangleCenter.x + rectangle.x))
+            {
+                if (mousePos.y > (rectangleCenter.y - rectangle.y) && mousePos.y < (rectangleCenter.y + rectangle.y))
+                {
+                    Debug.Log("bailecito");
+                    Consume();
+                    StartCoroutine("Recall");
+                }
+            }
+            else
+            {
+                
+                StartCoroutine("ReturnStick");
+            }
         }
 
         if (hold)
@@ -93,6 +109,24 @@ public class InteractableResource : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         busy = false;
+    }
+
+    public IEnumerator Recall()
+    {
+        sticky.transform.position = gameCamera.ScreenToWorldPoint(pointer);
+        int x = 120;
+        Vector3 scaleChange = new Vector3(0.5f/((float)x), 1f/((float)x), 0.5f/((float)x));
+        sticky.transform.localScale = new Vector3(0, 0, 0);
+        for(int i = 0; i<x; i++)
+        {
+            yield return new WaitForEndOfFrame();
+            sticky.transform.localScale += scaleChange;
+        }
+        busy = false;
+    }
+    public void Consume()
+    {
+
     }
     
 }
