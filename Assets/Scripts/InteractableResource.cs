@@ -15,6 +15,9 @@ public class InteractableResource : MonoBehaviour
     Vector3 mousePos;
     Vector3 pixelPointer;
 
+    Vector3 adjustZ;
+    Vector2 rectangle;
+
     public bool hold = false;
     public bool busy = false;
     public bool tried = false;
@@ -37,6 +40,10 @@ public class InteractableResource : MonoBehaviour
         //NO MULTITOUCH
         Input.multiTouchEnabled = false;
 
+        //Defining campfire rectangle hitbox
+        rectangle = new Vector2(pixelW*.5f,pixelH*.5f);
+        adjustZ = new Vector3(0, 0, 10);
+
 
     }
     //hola, Mi plan para quien lea esto es hacer una version que vaya con mouse y luego ampliarlo a tocar
@@ -44,6 +51,22 @@ public class InteractableResource : MonoBehaviour
     void Update()
     {
         if (busy) { return; }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            //check if rectangle
+
+            hold = false;
+            busy = true;
+            StartCoroutine("ReturnStick");
+        }
+
+        if (hold)
+        {
+            mousePos = Input.mousePosition + adjustZ;
+            sticky.transform.position = gameCamera.ScreenToWorldPoint(mousePos);
+            return;
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -58,9 +81,18 @@ public class InteractableResource : MonoBehaviour
             }
         }
     }
-    /*
+    
     public IEnumerator ReturnStick() {
-        return 0;
+
+        Vector3 currPos, moveDis;
+        Vector3 pointerWorld = gameCamera.ScreenToWorldPoint(pointer);
+        for (int i = 0; i < 45; i++) {
+            currPos = sticky.transform.position;
+            moveDis = pointerWorld-currPos;
+            sticky.transform.Translate(moveDis* .1f);
+            yield return new WaitForEndOfFrame();
+        }
+        busy = false;
     }
-    */
+    
 }
