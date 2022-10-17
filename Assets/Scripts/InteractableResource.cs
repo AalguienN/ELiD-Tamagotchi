@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InteractableResource : MonoBehaviour
 {
+    #region Variables
     public Camera gameCamera;
     public GameObject sticky;
     public float grabR;
@@ -16,6 +17,7 @@ public class InteractableResource : MonoBehaviour
     Vector3 pixelPointer;
 
     Vector3 adjustZ;
+    public int stickNum;
 
     Vector2 rectangle;
     Vector3 rectangleCenter;
@@ -23,6 +25,10 @@ public class InteractableResource : MonoBehaviour
     public bool hold = false;
     public bool busy = false;
     public bool tried = false;
+
+
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +53,8 @@ public class InteractableResource : MonoBehaviour
         rectangleCenter = new Vector3(pixelW* .5f, pixelH * .5f);
         adjustZ = new Vector3(0, 0, 10);
 
+        
+        stickNum = SaveManager.getStickNum();
 
     }
     //hola, Mi plan para quien lea esto es hacer una version que vaya con mouse y luego ampliarlo a tocar
@@ -126,7 +134,8 @@ public class InteractableResource : MonoBehaviour
     }
     public void Consume()
     {
-
+       SaveManager.setStickNum(--stickNum);
+        Debug.Log(stickNum + " palos restantes");
     }
     
 }
