@@ -21,7 +21,14 @@ public class MonthlyCalendarManager : MonoBehaviour
     public TMP_Text monthText;
     public Transform dayContainer;
     public GameObject calendarDayPrefab;
+    public Sprite[] weatherIcons = new Sprite[3];
     private List<GameObject> daysInCalendarDisplay = new List<GameObject>();
+    
+    [Header("Camera behaviour")]
+    public Vector3 cameraDefaultPosition;
+    public Vector3 selectedTileOffset;
+    private Vector3 cameraDesiredPosition;
+    private GameObject selectedObject;
     #endregion
 
     #region Methods
@@ -29,6 +36,7 @@ public class MonthlyCalendarManager : MonoBehaviour
     void Start()
     {
         events = SaveManager.events; //Copy the data from the Save Manager
+        cameraDesiredPosition = cameraDefaultPosition;
 
         //Setup calendar
         for(int i = 0; i < 42; i++) {
@@ -55,6 +63,25 @@ public class MonthlyCalendarManager : MonoBehaviour
             actualMonth = MonthConstants.GetMonth(currentMonth, currentYear);
             UpdateCalendarDisplay();
         }
+
+        //Click on one day to see its events
+        if ( Input.GetMouseButtonDown (0)){ 
+            if(selectedObject) { selectedObject = null; cameraDesiredPosition = cameraDefaultPosition; return; }
+            RaycastHit hit; 
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
+            if ( Physics.Raycast (ray,out hit,100.0f)) {
+                if(hit.collider.gameObject.CompareTag("CalendarTag")) {
+                    cameraDesiredPosition = hit.collider.gameObject.transform.position + selectedTileOffset;
+                    selectedObject = hit.collider.gameObject;
+                }
+                else if(hit.collider.gameObject.GetComponent<InteractableResource>()) {
+                    
+                }
+            }
+        }
+
+        //TO BE CHANGED
+        Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraDesiredPosition, Time.deltaTime*2);
     }
 
     public CalendarEvent GetCalendarEvent(string id) {
@@ -74,12 +101,12 @@ public class MonthlyCalendarManager : MonoBehaviour
         UpdateCalendarDisplay();
     }
 
-
+    //Behaviour for setting the UI correctly in order to display the days and other info
     public void UpdateCalendarDisplay() {
         monthText.text = actualMonth.Name + " - " + currentYear;
         DateTime firstMonthDay = new DateTime(currentYear, currentMonth, 1,0,0,0,0);
         int firstDayInWeek = (int)(firstMonthDay.DayOfWeek - 1) % 7; //Lunes = 0, Martes = 1 ....
-        print(firstDayInWeek);
+        //print(firstDayInWeek);
         int weekOffset = 0;
         if(firstDayInWeek < 4) weekOffset = -7;
         for(int i = weekOffset; i < 42+weekOffset; i++) {
@@ -90,16 +117,22 @@ public class MonthlyCalendarManager : MonoBehaviour
                 if(previousMonthInt==0) previousMonthInt = 12;
                 int previousMonthDay = MonthConstants.GetMonth(previousMonthInt, previousYearInt).Days - (firstDayInWeek-1) + i;
 
-                gO.GetComponentInChildren<TMP_Text>().text = gO.name = previousMonthDay.ToString();
+                ChangeTileVisuals(gO, Color.grey, gO.name = previousMonthDay.ToString(), Color.white);
             }
             else if(i>actualMonth.Days+firstDayInWeek-1) {
-                gO.GetComponentInChildren<TMP_Text>().text = gO.name = (i-actualMonth.Days-(firstDayInWeek-1)).ToString();
+                ChangeTileVisuals(gO, Color.grey, gO.name = (i-actualMonth.Days-(firstDayInWeek-1)).ToString(), Color.white);
             }
             else {
-                gO.GetComponentInChildren<TMP_Text>().text = gO.name = (i-firstDayInWeek+1).ToString();
+                ChangeTileVisuals(gO, Color.white, (i-firstDayInWeek+1).ToString(), (currentDay == (i-firstDayInWeek+1)) ? Color.red : Color.black);
+                //WeeklyCalendar.GetWeather(currentDay);
             }
-            gO.GetComponentInChildren<TMP_Text>().color = (currentDay == (i-firstDayInWeek+1)) ? Color.red : Color.black;
         }
+    }
+
+    void ChangeTileVisuals(GameObject gO, Color tileColor, string textString, Color textColor) {
+        gO.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = tileColor;
+        gO.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<TMP_Text>().text = gO.name = textString;
+        gO.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponentInChildren<TMP_Text>().color = textColor;
     }
     #endregion
 }

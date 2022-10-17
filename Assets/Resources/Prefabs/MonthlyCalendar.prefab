@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monthText: {fileID: 4360047512929578331}
   dayContainer: {fileID: 4360047513643822483}
-  calendarDayPrefab: {fileID: 2832328690929208122, guid: a7c70554c534d6f449839c12e80a7b0c, type: 3}
+  calendarDayPrefab: {fileID: 8466661407417072979, guid: 67c36aa62e0ad444ba88b429fd0251f2, type: 3}
 --- !u!1 &4360047512526506877
 GameObject:
   m_ObjectHideFlags: 0
