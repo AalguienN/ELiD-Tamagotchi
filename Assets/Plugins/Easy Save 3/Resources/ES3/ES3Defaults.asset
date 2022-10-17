@@ -32,6 +32,7 @@ MonoBehaviour:
     - Assembly-CSharp-firstpass
     - Cinemachine
     - Assembly-CSharp
+    - PsdPlugin
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

@@ -23,39 +23,66 @@ public class WeeklyCalendar : MonoBehaviour
 {
     public Day[] week = new Day[7]; //Array fijo que representa la semana
     private const float climateChangeProbability = 0.2f; //Porcentaje de probabilidad de que el clima cambie de un dia para otro 
-    private float random;
 
     public void Start()
     {
-        for (int i = 0; i < 7; i++)
+        InitWeek(); //Se inicializa la semana;
+    }
+
+    public void InitWeek()
+    {
+        int day = getDayOfWeek();
+        if (day != 0)
         {
-            week[i].weather = Day.Tiempo.vacio;//Por defecto est� vacio todo.
+            for (int i = 0; i < day; i++)
+            {
+                week[i].weather = Day.Tiempo.vacio;
+            }
+
+        } else{
+
+            for (int i = 0; i < 7; i++)
+            {
+                week[i].weather = Day.Tiempo.vacio;
+            }
+
         }
 
     }
 
      //Funciones para randomizar
-    public int getDay() //Obtiene el dia de la semana de Domingo a Lunes de la proxima semana (0-6) 
+    public int getDayOfWeek() //Obtiene el dia de la semana de Domingo a Lunes de la proxima semana (0-6) 
      {
         return (int)DateTime.Now.DayOfWeek;
      }
 
-    public float random_climate()
+    public float RandomClimate()
      {
-        return (float)UnityEngine.Random.Range(0.1f, 1.5f);  //Si es estrictamente mayor al climateChangeProbability se machaca el clima de ese d�a
+        return (float)UnityEngine.Random.Range(0.5f, 1.5f);  //Si es estrictamente mayor al climateChangeProbability se machaca el clima de ese d�a
      }
 
     //Funcion para establecer el clima
     public void RandomWeather(Day[] w)
      {
          for (int day = 0; day < 7; day++) {
+            int r = UnityEngine.Random.Range(1, 2);
             if (week[day].weather == Day.Tiempo.vacio)
             {
-                int r = UnityEngine.Random.Range(1, 2);
                 w[day].weather = (Day.Tiempo)r; //Rellena con sol o lluvia los dias de la semana restantes
+
+            } else { 
+                float rand = RandomClimate();
+                if (rand * climateChangeProbability > climateChangeProbability) {
+                    w[day].weather = (Day.Tiempo)r; 
+                }
             }
           }
      }
+
+
+
+
+
     }
 
 
