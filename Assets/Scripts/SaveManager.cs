@@ -11,6 +11,7 @@ public class SaveManager : MonoBehaviour {
     public static int timeSinceLastConexion;
 
     public static ArrayList events = new ArrayList();
+    public static ArrayList days = new ArrayList();
     #endregion
 
     #region Save and Load
@@ -22,6 +23,7 @@ public class SaveManager : MonoBehaviour {
         currentDay = ES3.Load("currentDay", currentDay);
         lastConexion = ES3.Load("lastConexion", DateTime.Now);
         events = ES3.Load("eventHandler", events);
+        days = ES3.Load("dayHandler", days);
 
 
         //Here calculate seconds since last conexion.
@@ -115,6 +117,38 @@ public class SaveManager : MonoBehaviour {
         foreach (CalendarEvent x in events)
         {
             if(x.id == id)
+            {
+                return x;
+            }
+        }
+        return null;
+    }
+    #endregion 
+
+    #region Day Handler
+    //Event handler
+    public static void addDay(Day id)
+    {
+        days.Add(id);
+        ES3.Save("dayHandler", days);
+    }
+    public static void removeDay(string id)
+    {
+        foreach (Day x in days)
+        {
+            if (x.id == id)
+            {
+                days.Remove(x);
+            }
+        }
+        ES3.Save("dayHandler", days);
+    }
+
+    public static Day getDay(string id)
+    {
+        foreach (Day x in days)
+        {
+            if (x.id == id)
             {
                 return x;
             }
