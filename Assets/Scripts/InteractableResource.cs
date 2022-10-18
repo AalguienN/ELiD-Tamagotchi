@@ -25,6 +25,7 @@ public class InteractableResource : MonoBehaviour
     public bool hold = false;
     public bool busy = false;
     public bool tried = false;
+    public bool visible = true;
 
 
     #endregion
@@ -55,16 +56,17 @@ public class InteractableResource : MonoBehaviour
 
         
         stickNum = SaveManager.getStickNum();
-
+        stickNum = 2;
     }
     //hola, Mi plan para quien lea esto es hacer una version que vaya con mouse y luego ampliarlo a tocar
     // Update is called once per frame
     void Update()
     {
-        if (busy) { return; }
+        if (busy|| !visible) { return; }
 
         if (Input.GetMouseButtonUp(0))
         {
+            if (!hold) { return; }
             hold = false;
             busy = true;
             //check if rectangle
@@ -75,6 +77,11 @@ public class InteractableResource : MonoBehaviour
                 {
                     Debug.Log("bailecito");
                     Consume();
+                    if(stickNum <= 0) {
+                        //disable
+                        sticky.GetComponent<MeshRenderer>().enabled = false;
+                        visible = false;
+                    }
                     StartCoroutine("Recall");
                 }
             }
@@ -122,7 +129,7 @@ public class InteractableResource : MonoBehaviour
     public IEnumerator Recall()
     {
         sticky.transform.position = gameCamera.ScreenToWorldPoint(pointer);
-        int x = 120;
+        int x = 60;
         Vector3 scaleChange = new Vector3(0.5f/((float)x), 1f/((float)x), 0.5f/((float)x));
         sticky.transform.localScale = new Vector3(0, 0, 0);
         for(int i = 0; i<x; i++)
