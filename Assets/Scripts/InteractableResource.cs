@@ -68,26 +68,29 @@ public class InteractableResource : MonoBehaviour
         {
             if (!hold) { return; }
             hold = false;
-            busy = true;
+            
             //check if rectangle
             mousePos = Input.mousePosition;
             if (mousePos.x > (rectangleCenter.x - rectangle.x) && mousePos.x < (rectangleCenter.x + rectangle.x))
             {
                 if (mousePos.y > (rectangleCenter.y - rectangle.y) && mousePos.y < (rectangleCenter.y + rectangle.y))
                 {
-                    Debug.Log("bailecito");
+                    Debug.Log("Palo soltado a la hoguera");
                     Consume();
                     if(stickNum <= 0) {
                         //disable
                         sticky.GetComponent<MeshRenderer>().enabled = false;
                         visible = false;
                     }
+                    busy = true;
+                    Debug.Log("Recall");
                     StartCoroutine("Recall");
                 }
             }
             else
             {
-                
+                busy = true;
+                Debug.Log("Return");
                 StartCoroutine("ReturnStick");
             }
         }
@@ -107,7 +110,7 @@ public class InteractableResource : MonoBehaviour
                 if (mousePos.y > (pixelPointer.y - grabR) && mousePos.y < (pixelPointer.y + grabR))
                 {
                     hold = true;
-                    Debug.Log("Anivia la criofénix");
+                    Debug.Log("Palo agarrado juejejejejujejajjujaje");
                 }
             }
         }
@@ -117,10 +120,10 @@ public class InteractableResource : MonoBehaviour
 
         Vector3 currPos, moveDis;
         Vector3 pointerWorld = gameCamera.ScreenToWorldPoint(pointer);
-        for (int i = 0; i < 45; i++) {
+        for (int i = 0; i < 40; i++) {
             currPos = sticky.transform.position;
             moveDis = pointerWorld-currPos;
-            sticky.transform.Translate(moveDis* .1f);
+            sticky.transform.Translate(moveDis* .12f);
             yield return new WaitForEndOfFrame();
         }
         busy = false;
