@@ -121,7 +121,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4360047512422390706}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -146,6 +146,13 @@ MonoBehaviour:
   monthText: {fileID: 4360047512929578331}
   dayContainer: {fileID: 4360047513643822483}
   calendarDayPrefab: {fileID: 8466661407417072979, guid: 67c36aa62e0ad444ba88b429fd0251f2, type: 3}
+  weatherIcons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  calendarEventPrefab: {fileID: 1943959566244803020, guid: 120dc81f81980cf45aee781afb372f0e, type: 3}
+  cameraDefaultPosition: {x: 0, y: 1, z: -10}
+  selectedTileOffset: {x: 0, y: 0, z: -0.5}
 --- !u!1 &4360047512526506877
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +387,7 @@ MonoBehaviour:
   m_fontSizeMax: 24.21
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
