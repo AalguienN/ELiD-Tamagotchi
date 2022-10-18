@@ -230,8 +230,9 @@ GameObject:
   m_Component:
   - component: {fileID: 223642490875966052}
   - component: {fileID: 3269041934969442554}
+  - component: {fileID: 7781442631393520880}
   m_Layer: 0
-  m_Name: Square
+  m_Name: TicketColor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,8 +294,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 25
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.6084906, b: 0.6084906, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 5752add5283efc94ebc62d3226a666bd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -304,3 +305,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7781442631393520880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4546810270794901985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8ff4bbce4b124486690ff0b43ef75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colors:
+  - {r: 1, g: 0.4117647, b: 0.38039216, a: 1}
+  - {r: 0.44705886, g: 0.82745105, b: 0.44705886, a: 1}
+  - {r: 0.9568628, g: 0.9568628, b: 0.5686275, a: 1}
+  - {r: 0.43529415, g: 0.6, b: 0.80392164, a: 1}
+  - {r: 0.9921569, g: 0.79215693, b: 0.882353, a: 1}
