@@ -70,6 +70,7 @@ public class MonthlyCalendarManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E))
             AddCalendarEvent(new CalendarEvent(UnityEngine.Random.Range(1,9999).ToString(), UnityEngine.Random.Range(1,9999).ToString(), 2022, 10, UnityEngine.Random.Range(1,31)));
 
+
         //Click on one day to see its events
         if ( Input.GetMouseButtonDown (0)){ 
             if(selectedObject) { selectedObject = null; cameraDesiredPosition = cameraDefaultPosition; return; }
