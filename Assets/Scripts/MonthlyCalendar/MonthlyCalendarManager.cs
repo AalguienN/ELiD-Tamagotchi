@@ -68,7 +68,7 @@ public class MonthlyCalendarManager : MonoBehaviour
 
         //TEMP
         if(Input.GetKeyDown(KeyCode.E))
-            AddCalendarEvent(new CalendarEvent(+"-10-2202",Random.Range(1,9999),));
+            AddCalendarEvent(new CalendarEvent(UnityEngine.Random.Range(1,9999).ToString(), UnityEngine.Random.Range(1,9999).ToString(), 2022, 10, UnityEngine.Random.Range(1,31)));
 
         //Click on one day to see its events
         if ( Input.GetMouseButtonDown (0)){ 
@@ -90,11 +90,12 @@ public class MonthlyCalendarManager : MonoBehaviour
         Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraDesiredPosition, Time.deltaTime*2);
     }
 
-    public CalendarEvent GetCalendarEvent(string id) {
+    public List<CalendarEvent> GetCalendarEvent(int year, int month, int day) {
+        List<CalendarEvent> eventListReturn = new List<CalendarEvent>();
         foreach (CalendarEvent e in events) {
-            if(e.id == id) return e;
+            if(e.year == year && e.month == month && e.day == day) eventListReturn.Add(e);
         }
-        return null;
+        return eventListReturn;
     }
 
     public void AddCalendarEvent(CalendarEvent e) {
@@ -129,30 +130,34 @@ public class MonthlyCalendarManager : MonoBehaviour
                 if(previousMonthInt==0) previousMonthInt = 12;
                 int previousMonthDay = MonthConstants.GetMonth(previousMonthInt, previousYearInt).Days - (firstDayInWeek-1) + i;
 
-                ChangeTileVisuals(gO, Color.grey, previousMonthDay.ToString(), Color.white, previousMonthInt, previousYearInt);
+                ChangeTileVisuals(gO, Color.grey, Color.white, previousYearInt, previousMonthInt, previousMonthDay);
             }
             else if(i>actualMonth.Days+firstDayInWeek-1) {
-                ChangeTileVisuals(gO, Color.grey, (i-actualMonth.Days-(firstDayInWeek-1)).ToString(), Color.white, (currentMonth==12) ? 1 : currentMonth+1, (currentMonth==12) ? currentYear+1 : currentYear);
+                ChangeTileVisuals(gO, Color.grey, Color.white, (currentMonth==12) ? currentYear+1 : currentYear, (currentMonth==12) ? 1 : currentMonth+1, (i-actualMonth.Days-(firstDayInWeek-1)));
             }
             else {
-                ChangeTileVisuals(gO, Color.white, (i-firstDayInWeek+1).ToString(), (currentDay == (i-firstDayInWeek+1)) ? Color.red : Color.black, currentMonth, currentYear);
+                ChangeTileVisuals(gO, Color.white, (currentDay == (i-firstDayInWeek+1)) ? Color.red : Color.black, currentYear, currentMonth, (i-firstDayInWeek+1));
                 //WeeklyCalendar.GetWeather(currentDay);
             }
         }
     }
 
-    void ChangeTileVisuals(GameObject gO, Color tileColor, string textString, Color textColor, int month, int year) {
-        CalendarEvent cE = GetCalendarEvent(textString+"-"+month+"-"+year);
+    void ChangeTileVisuals(GameObject gO, Color tileColor, Color textColor, int year, int month, int day) {
+        List<CalendarEvent> cE = GetCalendarEvent(year,month,day);
         if(cE != null) {
-            GameObject eventObject = Instantiate(calendarEventPrefab);
-            eventObjects.Add(eventObject);
-            eventObject.transform.SetParent(gO);
-            eventObject.transform.localPosition = new Vector3(-0.3928572f+0.1309524f,0.25f-0.125f,0);
-            eventObjects.name = cE.eventName;
+            foreach(CalendarEvent e in cE) {
+                GameObject eventObject = Instantiate(calendarEventPrefab);
+                eventObject.GetComponentInChildren<TMP_Text>().text = e.eventName; 
+                eventObjects.Add(eventObject);
+                eventObject.transform.SetParent(gO.transform.GetChild(0).transform);
+                eventObject.transform.rotation = Quaternion.Euler(0,0,UnityEngine.Random.Range(-25f,25f));
+                eventObject.transform.localPosition = new Vector3(UnityEngine.Random.Range(-0.15f,0.15f),UnityEngine.Random.Range(-0.2f,0.1f),0);
+                eventObject.name = e.eventName;
+            }
         }
         gO.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = tileColor;
-        gO.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<TMP_Text>().text = gO.name = textString;
-        gO.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponentInChildren<TMP_Text>().color = textColor;
+        gO.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = gO.name = day.ToString();
+        gO.transform.GetChild(1).gameObject.GetComponentInChildren<TMP_Text>().color = textColor;
     }
     #endregion
 }
