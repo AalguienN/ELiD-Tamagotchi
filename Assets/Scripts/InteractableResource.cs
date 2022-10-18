@@ -30,6 +30,7 @@ public class InteractableResource : MonoBehaviour
 
     #endregion
 
+    #region Start Set-up
     // Start is called before the first frame update
     void Start()
     {
@@ -58,8 +59,13 @@ public class InteractableResource : MonoBehaviour
         stickNum = SaveManager.getStickNum();
         stickNum = 2;
     }
+
     //hola, Mi plan para quien lea esto es hacer una version que vaya con mouse y luego ampliarlo a tocar
     // Update is called once per frame
+
+    #endregion
+
+    #region Actual Code
     void Update()
     {
         if (busy|| !visible) { return; }
@@ -147,5 +153,6 @@ public class InteractableResource : MonoBehaviour
        SaveManager.setStickNum(--stickNum);
         Debug.Log(stickNum + " palos restantes");
     }
-    
+    #endregion
+
 }
