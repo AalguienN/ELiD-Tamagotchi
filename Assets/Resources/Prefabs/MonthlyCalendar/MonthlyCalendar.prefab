@@ -152,7 +152,7 @@ MonoBehaviour:
   - {fileID: 0}
   calendarEventPrefab: {fileID: 1943959566244803020, guid: 120dc81f81980cf45aee781afb372f0e, type: 3}
   cameraDefaultPosition: {x: 0, y: 1, z: -10}
-  selectedTileOffset: {x: 0, y: 0, z: -0.5}
+  selectedTileOffset: {x: 0, y: 0, z: -0.8}
 --- !u!1 &4360047512526506877
 GameObject:
   m_ObjectHideFlags: 0
