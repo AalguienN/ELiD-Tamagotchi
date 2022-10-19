@@ -53,7 +53,7 @@ MonoBehaviour:
   weather: 0
   standardHpLossFactor: 1
   rainingHpLossFactor: 1
-  turnOn: 0
+  turnOn: 1
   turnOff: 0
 --- !u!1 &5828567603330232755
 GameObject:
