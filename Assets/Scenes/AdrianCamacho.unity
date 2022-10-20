@@ -369,14 +369,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bonfire
       objectReference: {fileID: 0}
-    - target: {fileID: 2880177056032639298, guid: 96d68a07e26cebb41a4adcbc69052d8f, type: 3}
-      propertyPath: maxHp
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2880177056032639298, guid: 96d68a07e26cebb41a4adcbc69052d8f, type: 3}
-      propertyPath: turnOn
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2880177056032639299, guid: 96d68a07e26cebb41a4adcbc69052d8f, type: 3}
       propertyPath: m_RootOrder
       value: 2
