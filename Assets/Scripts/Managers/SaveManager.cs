@@ -22,7 +22,7 @@ public class SaveManager : MonoBehaviour {
         stickNum = ES3.Load("stickNum", stickNum);
         currentDay = ES3.Load("currentDay", currentDay);
         lastConexion = ES3.Load("lastConexion", DateTime.Now);
-        events = ES3.Load("eventHandler", events);
+        events = ES3.Load("eventHandler", new ArrayList());
         days = ES3.Load("dayHandler", days);
 
 

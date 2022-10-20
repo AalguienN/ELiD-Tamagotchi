@@ -7,6 +7,17 @@ public class CameraMangement : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera[] vcams = new CinemachineVirtualCamera[3];
     bool canChange = true;
+
+
+    private void Start()
+    {
+        for (int i = 0; i < vcams.Length; i++)
+        {
+            vcams[i].m_Priority = i;
+
+        }
+    }
+
     private void Update()
     {
 #if UNITY_EDITOR
@@ -23,29 +34,25 @@ public class CameraMangement : MonoBehaviour
     public void SwitchCamera(int dir)
     {
         //NOTE TO SELF: Make that camera changes don't stack
-        int[] newPriority = new int[3];
-        if(dir == 0 || !canChange) { return; }
-            for (int i = 0; i < vcams.Length; i++)
+        int[] newPriority = new int[vcams.Length];
+        bool isDirRight = dir > 0 ? true : false;
+        int changeLength = isDirRight ? vcams.Length : 0;
+        if (dir == 0 || !canChange) { return; }
+        for (int i = 0; i < vcams.Length; i++)
+        {
+            if (vcams[i].m_Priority != changeLength)
             {
-                switch (vcams[i].m_Priority)
-                {
-                    case -1:
-                        newPriority[i] = dir > 0 ? 0 : 1;
-                        break;
-
-                    case 0:
-                        newPriority[i] = dir > 0 ? 1 : -1;
-                        break;
-
-                    case 1:
-                        newPriority[i] = dir > 0 ? -1 : 0;
-                        break;
-                }
+                newPriority[i] = vcams[i].m_Priority + (isDirRight ? 1 : -1);
             }
-            for (int i = 0; i < vcams.Length; i++)
+            else
             {
-                vcams[i].m_Priority = newPriority[i];
+                newPriority[i] = isDirRight ? 0 : vcams.Length;
             }
+        }
+        for (int i = 0; i < vcams.Length; i++)
+        {
+            vcams[i].m_Priority = newPriority[i];
+        }
         canChange = false;
         StartCoroutine(waitForEndOfAnimation(1.5f));
     }
