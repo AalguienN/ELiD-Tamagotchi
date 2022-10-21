@@ -93,6 +93,7 @@ public class MonthlyCalendarManager : MonoBehaviour
 
             //TO BE CHANGED
             cam.transform.position = Vector3.Lerp(cam.transform.position, cameraDesiredPosition, Time.deltaTime*2);
+            cam.transform.LookAt(transform.position);
         }
     }
 
