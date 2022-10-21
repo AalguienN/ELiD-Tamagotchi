@@ -75,23 +75,25 @@ public class MonthlyCalendarManager : MonoBehaviour
 
 
         //Click on one day to see its events
-        if ( Input.GetMouseButtonDown (0) && calendarIsSelected){ 
-            if(selectedObject) { selectedObject = null; cameraDesiredPosition = cameraDefaultPosition; return; }
-            RaycastHit hit; 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
-            if ( Physics.Raycast (ray,out hit,100.0f)) {
-                if(hit.collider.gameObject.CompareTag("CalendarTag")) {
-                    cameraDesiredPosition = hit.collider.gameObject.transform.position + selectedTileOffset;
-                    selectedObject = hit.collider.gameObject;
-                }
-                else if(hit.collider.gameObject.GetComponent<InteractableResource>()) {
-                    
+        if(calendarIsSelected) {
+            if ( Input.GetMouseButtonDown (0)){ 
+                if(selectedObject) { selectedObject = null; cameraDesiredPosition = cameraDefaultPosition; return; }
+                RaycastHit hit; 
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
+                if ( Physics.Raycast (ray,out hit,100.0f)) {
+                    if(hit.collider.gameObject.CompareTag("CalendarTag")) {
+                        cameraDesiredPosition = hit.collider.gameObject.transform.position + selectedTileOffset;
+                        selectedObject = hit.collider.gameObject;
+                    }
+                    else if(hit.collider.gameObject.GetComponent<InteractableResource>()) {
+                        
+                    }
                 }
             }
-        }
 
-        //TO BE CHANGED
-        cam.transform.position = Vector3.Lerp(cam.transform.position, cameraDesiredPosition, Time.deltaTime*2);
+            //TO BE CHANGED
+            cam.transform.position = Vector3.Lerp(cam.transform.position, cameraDesiredPosition, Time.deltaTime*2);
+        }
     }
 
     public List<CalendarEvent> GetCalendarEvent(int year, int month, int day) {
