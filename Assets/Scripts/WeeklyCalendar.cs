@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,7 @@ La parte de eliminar los dias, lo mejor ser�a obtener el dia desde el 1 de Ene
 
 public class WeeklyCalendar : MonoBehaviour
 {
-    public Day[] week = new Day[7]; //Array fijo que representa la semana
+    public List<Day> week = new List<Day>(); //Array fijo que representa la semana
     private const float climateChangeProbability = 0.2f; //Porcentaje de probabilidad de que el clima cambie de un dia para otro 
 
     public void Start()
@@ -29,60 +30,45 @@ public class WeeklyCalendar : MonoBehaviour
         InitWeek(); //Se inicializa la semana;
     }
 
-    public void InitWeek()
+    public List<Day> InitWeek()
     {
-        int day = getDayOfWeek();
-        if (day != 0)
-        {
-            for (int i = 0; i < day; i++)
+        IEnumerable<Day> dayIEnum = (SaveManager.days).OfType<Day>();
+        week = dayIEnum.ToList();
+        
+        for(int i = 0; i < 7; i++) {
+            if(SaveManager.getDay((GetCurrentDay(System.DateTime.UtcNow)+i).ToString()).weather == Day.Tiempo.vacio)
             {
-                week[i].weather = Day.Tiempo.vacio;
+                int r = UnityEngine.Random.Range(1, 4);
+                Day d = new Day(GetCurrentDay(System.DateTime.UtcNow)+i);
+                d.weather = (Day.Tiempo)r; //Rellena con sol o lluvia los dias de la semana restantes
+                week.Add(d);             
+                SaveManager.addDay(d);
             }
-
-        } else{
-
-            for (int i = 0; i < 7; i++)
+        }
+        List<Day> weekTemp = new List<Day>();
+        foreach(Day d in week) {
+            if(d.id < GetCurrentDay(System.DateTime.UtcNow))
             {
-                week[i].weather = Day.Tiempo.vacio;
+                weekTemp.Add(d);
             }
-
         }
 
+            foreach(Day d in weekTemp) {
+                week.Remove(d);
+                SaveManager.removeDay(d.id.ToString());
+        }
+        return week;
     }
-
-     //Funciones para randomizar
-    public int getDayOfWeek() //Obtiene el dia de la semana de Domingo a Lunes de la proxima semana (0-6) 
-     {
-        return (int)DateTime.Now.DayOfWeek;
-     }
 
     public float RandomClimate()
-     {
+    {
         return (float)UnityEngine.Random.Range(0.5f, 1.5f);  //Si es estrictamente mayor al climateChangeProbability se machaca el clima de ese d�a
-     }
-
-    //Funcion para establecer el clima
-    public void RandomWeather(Day[] w)
-     {
-         for (int day = 0; day < 7; day++) {
-            int r = UnityEngine.Random.Range(1, 2);
-            if (week[day].weather == Day.Tiempo.vacio)
-            {
-                w[day].weather = (Day.Tiempo)r; //Rellena con sol o lluvia los dias de la semana restantes
-
-            } else { 
-                float rand = RandomClimate();
-                if (rand * climateChangeProbability > climateChangeProbability) {
-                    w[day].weather = (Day.Tiempo)r; 
-                }
-            }
-          }
-     }
-
-
-
-
-
     }
+
+    public static int GetCurrentDay(System.DateTime dateTime) {
+        System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+        return (int)(dateTime - epochStart).Days;
+    }
+}
 
 

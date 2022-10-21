@@ -107,6 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4360047512422390704}
   - component: {fileID: 4360047512422390705}
+  - component: {fileID: 967089518}
   m_Layer: 0
   m_Name: MonthlyCalendar
   m_TagString: Untagged
@@ -148,11 +149,26 @@ MonoBehaviour:
   calendarDayPrefab: {fileID: 8466661407417072979, guid: 67c36aa62e0ad444ba88b429fd0251f2, type: 3}
   weatherIcons:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 8d731a1a05c0a0c4aa21ba8a3208c6da, type: 3}
+  - {fileID: 21300000, guid: 0ab8e850492294b4a806664d0d5a6cbc, type: 3}
+  - {fileID: 21300000, guid: cb2fe9ae4e8a72e48897a852fff2ab58, type: 3}
   calendarEventPrefab: {fileID: 1943959566244803020, guid: 120dc81f81980cf45aee781afb372f0e, type: 3}
-  cameraDefaultPosition: {x: 0, y: 1, z: -10}
-  selectedTileOffset: {x: 0, y: 0, z: -0.8}
+  calendarIsSelected: 1
+  cam: {fileID: 0}
+  cameraDefaultPosition: {x: 0, y: 5, z: 0}
+  selectedTileOffset: 1
+--- !u!114 &967089518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4360047512422390706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ff1b9c2335f9a4fa260056511c2f38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4360047512526506877
 GameObject:
   m_ObjectHideFlags: 0
