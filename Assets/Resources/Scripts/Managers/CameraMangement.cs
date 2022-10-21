@@ -50,11 +50,11 @@ public class CameraMangement : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SwitchCamera(-1);
+            SwitchCamera(1);
         }
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            SwitchCamera(1);
+            SwitchCamera(-1);
         }
 #endif
     }
@@ -84,7 +84,7 @@ public class CameraMangement : MonoBehaviour
             vcams[i].m_Priority = newPriority[i];
         }
         canChange = false;
-        StartCoroutine(waitForEndOfAnimation(0f));
+        StartCoroutine(waitForEndOfAnimation(1.5f));
     }
 
     IEnumerator waitForEndOfAnimation(float seconds)

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4725203104226010599}
   - component: {fileID: 4725203104226010601}
   m_Layer: 0
-  m_Name: Foc
+  m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

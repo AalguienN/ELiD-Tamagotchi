@@ -9770,7 +9770,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6733729663947744894}
   m_Layer: 0
-  m_Name: Lluvia
+  m_Name: Rain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
