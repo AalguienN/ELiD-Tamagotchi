@@ -28,6 +28,8 @@ public class MonthlyCalendarManager : MonoBehaviour
     private List<GameObject> eventObjects = new List<GameObject>();
 
     [Header("Camera behaviour")]
+    public bool calendarIsSelected = false;
+    public GameObject cam;
     public Vector3 cameraDefaultPosition;
     public Vector3 selectedTileOffset;
     private Vector3 cameraDesiredPosition;
@@ -73,7 +75,7 @@ public class MonthlyCalendarManager : MonoBehaviour
 
 
         //Click on one day to see its events
-        if ( Input.GetMouseButtonDown (0)){ 
+        if ( Input.GetMouseButtonDown (0) && calendarIsSelected){ 
             if(selectedObject) { selectedObject = null; cameraDesiredPosition = cameraDefaultPosition; return; }
             RaycastHit hit; 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
@@ -89,7 +91,7 @@ public class MonthlyCalendarManager : MonoBehaviour
         }
 
         //TO BE CHANGED
-        Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraDesiredPosition, Time.deltaTime*2);
+        cam.transform.position = Vector3.Lerp(cam.transform.position, cameraDesiredPosition, Time.deltaTime*2);
     }
 
     public List<CalendarEvent> GetCalendarEvent(int year, int month, int day) {

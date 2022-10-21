@@ -353,13 +353,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
-      propertyPath: cameraDefaultPosition.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
-      propertyPath: cameraDefaultPosition.z
-      value: -4
-      objectReference: {fileID: 0}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1248348870}
     - target: {fileID: 4360047512422390706, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
       propertyPath: m_Name
       value: MonthlyCalendar
