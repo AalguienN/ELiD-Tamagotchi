@@ -28,7 +28,7 @@ public class MonthlyCalendarManager : MonoBehaviour
     private List<GameObject> eventObjects = new List<GameObject>();
 
     [Header("Camera behaviour")]
-    public bool calendarIsSelected = false;
+    public static bool calendarIsSelected = false;
     public GameObject cam;
     public Vector3 cameraDefaultPosition;
     public float selectedTileOffset;
