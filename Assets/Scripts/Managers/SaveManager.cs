@@ -23,7 +23,7 @@ public class SaveManager : MonoBehaviour {
         currentDay = ES3.Load("currentDay", currentDay);
         lastConexion = ES3.Load("lastConexion", DateTime.Now);
         events = ES3.Load("eventHandler", new ArrayList());
-        days = ES3.Load("dayHandler", days);
+        days = ES3.Load("dayHandler", new ArrayList());
 
 
         //Here calculate seconds since last conexion.
