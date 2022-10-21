@@ -153,8 +153,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0ab8e850492294b4a806664d0d5a6cbc, type: 3}
   - {fileID: 21300000, guid: cb2fe9ae4e8a72e48897a852fff2ab58, type: 3}
   calendarEventPrefab: {fileID: 1943959566244803020, guid: 120dc81f81980cf45aee781afb372f0e, type: 3}
-  cameraDefaultPosition: {x: 0, y: 3, z: -4}
-  selectedTileOffset: {x: 0, y: 0, z: -0.8}
+  calendarIsSelected: 1
+  cam: {fileID: 0}
+  cameraDefaultPosition: {x: 0, y: 5, z: 0}
+  selectedTileOffset: 1
 --- !u!114 &967089518
 MonoBehaviour:
   m_ObjectHideFlags: 0
