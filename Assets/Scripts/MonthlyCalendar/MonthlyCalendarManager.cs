@@ -28,7 +28,6 @@ public class MonthlyCalendarManager : MonoBehaviour
     private List<GameObject> eventObjects = new List<GameObject>();
 
     [Header("Camera behaviour")]
-    public static bool calendarIsSelected = false;
     public GameObject cam;
     public Vector3 cameraDefaultPosition;
     public float selectedTileOffset;
@@ -76,7 +75,7 @@ public class MonthlyCalendarManager : MonoBehaviour
 
 
         //Click on one day to see its events
-        if(calendarIsSelected) {
+        if(CameraMangement.getActiveCamera()!="CamCalendar") {
             if ( Input.GetMouseButtonDown (0)){ 
                 if(selectedObject) { selectedObject = null; cameraDesiredPosition = cameraDefaultPosition; return; }
                 RaycastHit hit; 
