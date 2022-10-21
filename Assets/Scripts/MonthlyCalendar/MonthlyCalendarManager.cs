@@ -28,10 +28,10 @@ public class MonthlyCalendarManager : MonoBehaviour
     private List<GameObject> eventObjects = new List<GameObject>();
 
     [Header("Camera behaviour")]
-    public bool calendarIsSelected = false;
+    public static bool calendarIsSelected = false;
     public GameObject cam;
     public Vector3 cameraDefaultPosition;
-    public Vector3 selectedTileOffset;
+    public float selectedTileOffset;
     private Vector3 cameraDesiredPosition;
     private GameObject selectedObject;
     #endregion
@@ -47,6 +47,7 @@ public class MonthlyCalendarManager : MonoBehaviour
         for(int i = 0; i < 42; i++) {
             GameObject gO = Instantiate(calendarDayPrefab);
             daysInCalendarDisplay.Add(gO);
+            gO.transform.rotation = transform.rotation;
             gO.transform.SetParent(dayContainer);
             gO.transform.localPosition = new Vector3(-0.3928572f+0.1309524f*(i%7),0.25f-0.125f*(i/7),0);
         }
@@ -82,7 +83,7 @@ public class MonthlyCalendarManager : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
                 if ( Physics.Raycast (ray,out hit,100.0f)) {
                     if(hit.collider.gameObject.CompareTag("CalendarTag")) {
-                        cameraDesiredPosition = hit.collider.gameObject.transform.position + selectedTileOffset;
+                        cameraDesiredPosition = hit.collider.gameObject.transform.position + hit.normal*selectedTileOffset;
                         selectedObject = hit.collider.gameObject;
                     }
                     else if(hit.collider.gameObject.GetComponent<InteractableResource>()) {
@@ -93,7 +94,10 @@ public class MonthlyCalendarManager : MonoBehaviour
 
             //TO BE CHANGED
             cam.transform.position = Vector3.Lerp(cam.transform.position, cameraDesiredPosition, Time.deltaTime*2);
-            cam.transform.LookAt(transform.position);
+        }
+        else
+        {
+            cameraDesiredPosition = cameraDefaultPosition;
         }
     }
 
