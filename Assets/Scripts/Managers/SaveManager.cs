@@ -23,7 +23,7 @@ public class SaveManager : MonoBehaviour {
         currentDay = ES3.Load("currentDay", currentDay);
         lastConexion = ES3.Load("lastConexion", DateTime.Now);
         events = ES3.Load("eventHandler", new ArrayList());
-        days = ES3.Load("dayHandler", days);
+        days = ES3.Load("dayHandler", new ArrayList());
 
 
         //Here calculate seconds since last conexion.
@@ -134,13 +134,16 @@ public class SaveManager : MonoBehaviour {
     }
     public static void removeDay(string id)
     {
+        Day d = null;
         foreach (Day x in days)
         {
-            if (x.id == id)
+            if (x.id.ToString() == id)
             {
-                days.Remove(x);
+                d = x;
             }
         }
+        if(d != null)
+            days.Remove(d);
         ES3.Save("dayHandler", days);
     }
 
@@ -148,12 +151,24 @@ public class SaveManager : MonoBehaviour {
     {
         foreach (Day x in days)
         {
-            if (x.id == id)
+            if (x.id.ToString() == id)
             {
                 return x;
             }
         }
-        return null;
+        return new Day(int.Parse(id));
+    }
+
+    public static void setDay(string id, Day.Tiempo w)
+    {
+        foreach (Day x in days)
+        {
+            if (x.id.ToString() == id)
+            {
+                x.weather = w;
+            }
+        }
+        ES3.Save("dayHandler", days);
     }
     #endregion 
 }
