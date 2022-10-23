@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = frameRate;
     }
 
     // Update is called once per frame
