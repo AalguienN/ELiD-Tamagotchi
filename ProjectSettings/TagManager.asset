@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - CalendarTag
+  - Tree
   layers:
   - Default
   - TransparentFX

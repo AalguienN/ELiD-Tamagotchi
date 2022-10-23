@@ -1207,20 +1207,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1470570504}
     - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
-      propertyPath: selectedTileOffset
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
-      propertyPath: selectedTileOffset.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
       propertyPath: cameraDefaultPosition.y
       value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
-      propertyPath: cameraDefaultPosition.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4360047512422390706, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
       propertyPath: m_Name
