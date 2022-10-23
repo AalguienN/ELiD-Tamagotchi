@@ -33,6 +33,9 @@ public class MonthlyCalendarManager : MonoBehaviour
     public float selectedTileOffset;
     private Vector3 cameraDesiredPosition;
     private GameObject selectedObject;
+    
+    [Header("Other variables")]
+    private Vector2 mousePosition;
     #endregion
 
     #region Methods
@@ -75,29 +78,36 @@ public class MonthlyCalendarManager : MonoBehaviour
 
 
         //Click on one day to see its events
-        if(CameraMangement.getActiveCamera()!="CamCalendar") {
-            if ( Input.GetMouseButtonDown (0)){ 
-                if(selectedObject) { selectedObject = null; cameraDesiredPosition = cameraDefaultPosition; return; }
-                RaycastHit hit; 
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
-                if ( Physics.Raycast (ray,out hit,100.0f)) {
-                    if(hit.collider.gameObject.CompareTag("CalendarTag")) {
-                        cameraDesiredPosition = hit.collider.gameObject.transform.position + hit.normal*selectedTileOffset;
-                        selectedObject = hit.collider.gameObject;
-                    }
-                    else if(hit.collider.gameObject.GetComponent<InteractableResource>()) {
-                        
+        if(CameraMangement.getActiveCamera()=="CamCalendar") {
+            if(Input.GetMouseButtonDown(0)) {
+                mousePosition = Input.mousePosition;
+            }
+            if (Input.GetMouseButtonUp(0)){
+                if(Vector3.Distance(mousePosition, Input.mousePosition) < 100f) {
+                    if(selectedObject) { selectedObject = null; cameraDesiredPosition = cameraDefaultPosition; return; }
+                    RaycastHit hit; 
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
+                    if ( Physics.Raycast (ray,out hit,500.0f)) {
+                            print("Henlo");
+                        if(hit.collider.gameObject.CompareTag("CalendarTag")) {
+                            cameraDesiredPosition = hit.collider.gameObject.transform.position + hit.normal*selectedTileOffset;
+                            selectedObject = hit.collider.gameObject;
+                        }
+                        else if(hit.collider.gameObject.GetComponent<InteractableResource>()) {
+                            
+                        }
                     }
                 }
             }
-
-            //TO BE CHANGED
-            cam.transform.position = Vector3.Lerp(cam.transform.position, cameraDesiredPosition, Time.deltaTime*2);
         }
         else
         {
             cameraDesiredPosition = cameraDefaultPosition;
         }
+
+
+        //TO BE CHANGED
+        cam.transform.position = Vector3.Lerp(cam.transform.position, cameraDesiredPosition, Time.deltaTime*2);
     }
 
     public List<CalendarEvent> GetCalendarEvent(int year, int month, int day) {
@@ -163,7 +173,7 @@ public class MonthlyCalendarManager : MonoBehaviour
                 System.DateTime epochToday = new System.DateTime(currentYear, currentMonth, (i-firstDayInWeek+1), 0, 0, 0, System.DateTimeKind.Utc);
                 int globalDay = WeeklyCalendar.GetCurrentDay(epochToday);
                 int dW = (int)SaveManager.getDay(globalDay.ToString()).weather;
-                print(dW);
+
                 ChangeTileVisuals(gO, Color.white, (currentDay == (i-firstDayInWeek+1)) ? Color.red : Color.black, currentYear, currentMonth, (i-firstDayInWeek+1), dW);
             }
         }

@@ -18,31 +18,40 @@ public class MinigameController : MonoBehaviour
     private float precision01;
     public float speed = 1f;
     private bool continueSpeed = false;
-    private bool gameRunning = false;
-
-    private float gameTime;
 
     [Header("Stick variables")]
     public TMP_Text stickTextTemp;
     public int sticks;
 
+    [Header("Other variables")]
+    private float gameTime;
+    private bool gameRunning = false;
+    private Vector2 mousePosition;
+
     void Start() {
-         axePrefab.transform.position = axeStartPosition;
+        Reward(0);
+        axePrefab.transform.position = axeStartPosition;
     }
 
     void StartGame()
     {
         sticks = 0;
+        Reward(0);
         continueSpeed = true;
         gameRunning = true;
         gameTime = Random.Range(0.0f,10.0f);
     }
 
-    IEnumerator EndGame()
+    IEnumerator EndGame(int reason)
     {
+        gameRunning = false;
         yield return new WaitForSeconds(1f);
         yield return new WaitForEndOfFrame();
-        gameRunning = false;
+        if(reason==-1) {
+            if(CameraMangement.getActiveCamera()=="CamMinigame") {
+                gameRunning = true; yield break;
+            }
+        }
         continueSpeed = false;
         gameTime = 0;
         speed = 0;
@@ -55,22 +64,37 @@ public class MinigameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //axePrefab.transform.position = axeStartPosition+ axeEndPositionOffset;
-        if(!gameRunning) {
-            if(Input.GetMouseButtonDown(0)) { 
-                StartGame(); 
+        if(CameraMangement.getActiveCamera()=="CamMinigame") {
+            //axePrefab.transform.position = axeStartPosition+ axeEndPositionOffset;
+            if(!gameRunning) {
+                if(Input.GetMouseButtonDown(0)) {
+                    mousePosition = Input.mousePosition;
+                }
+                if(Input.GetMouseButtonUp(0)) { 
+                    if(Vector3.Distance(mousePosition, Input.mousePosition) < 50f)
+                        StartGame(); 
+                }
+                return;
             }
-            return;
-        }
-        if(!continueSpeed)
-            return;
-        gameTime += Time.deltaTime;
-        speed = Mathf.Clamp(speed+Time.deltaTime*Time.deltaTime*speed, 1f, 15f);
-        precision = Mathf.Sin(gameTime*speed)*80f;
-        precisionNeedle.transform.rotation = Quaternion.Euler(0f,0f,precision);
+            if(!continueSpeed)
+                return;
+            gameTime += Time.deltaTime;
+            speed = Mathf.Clamp(speed+Time.deltaTime*Time.deltaTime*speed, 1f, 15f);
+            precision = Mathf.Sin(gameTime*speed)*80f;
+            precisionNeedle.transform.rotation = Quaternion.Euler(0f,0f,precision);
 
-        if(Input.GetMouseButtonDown(0)) {
-            StartCoroutine(StopNeedle());
+            if(Input.GetMouseButtonUp(0)) {
+                RaycastHit hit; 
+                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position); 
+                if ( Physics.Raycast (ray,out hit,100.0f)) {
+                    if(hit.collider.gameObject.CompareTag("Tree")) {
+                        StartCoroutine(StopNeedle());
+                    }
+                }
+            }
+        }
+        else {
+            if(gameRunning) StartCoroutine(EndGame(-1));
         }
     }
 
@@ -102,7 +126,7 @@ public class MinigameController : MonoBehaviour
         else 
         {
             print("You're out");
-            StartCoroutine(EndGame());
+            StartCoroutine(EndGame(0));
             Reward(-4);
         }
         StartCoroutine(MoveAxe());
