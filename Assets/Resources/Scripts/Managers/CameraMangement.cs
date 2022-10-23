@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
@@ -13,47 +12,44 @@ public class CameraMangement : MonoBehaviour
     }
     #endregion
 
-    private CinemachineVirtualCamera[] vcams;
-    private CinemachineBlenderSettings blender;
-    [SerializeField] private float cameraChangeTime = 2;
-    [SerializeField] private float cameraSwitchThresholdY = 15;
-    [SerializeField] private float cameraSwitchThresholdX = 30;
-    [SerializeField] private float movementReducer = 0.05f;
-    [SerializeField] private float returnTime = .5f;
-    bool canChange = true;
+    #region Variables
+    [Header("Variables")]
+    [SerializeField] private float cameraChangeTime = .8f; //Time between camera blends
+    [SerializeField] private float cameraSwitchThresholdHorizontal = 15; //Horizontal clamp distance (the number for each side)
+    [SerializeField] private float cameraSwitchThresholdVertical = 30; //Vertical clamp distance (the number for each side)
+    [SerializeField] private float velocityMultiplier = 1; //You know how to read mate?
+    [SerializeField] private float returnAnimationTime = .5f; //Well, i think it's quite self explanatory
 
-    private CinemachineVirtualCamera activeCamera;
-    private Quaternion activeCameraInitialRotation;
-    private Quaternion[] initialRotations;
-    private int dir;
-    Touch mainTouch;
-    private int constantToAssureWorking = 5;
+    private CinemachineVirtualCamera[] vcams; //LOTS
+    private CinemachineBlenderSettings blender; //OF
+    private CinemachineVirtualCamera activeCamera; //FUCKING
+    private Quaternion activeCameraInitialRotation; //VARI
+    private Quaternion[] initialRotations; //A
+    private int dir; //B
+    bool canChange = true; //L
+    Touch mainTouch; //ES
+    #endregion
 
+    #region Main Methods
     private void Start()
     {
-        setUpCameras();
+        setUpCameras(); //Lol
     }
 
     private void Update()
     {
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SwitchCamera(1);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            SwitchCamera(-1);
-        }
-#endif
-
-        moveCamera();
-
+        moveCamera(); //Input management frame by frame
     }
+    #endregion
+
+    #region Camera Management
     private void setUpCameras()
     {
-        cameraSwitchThresholdX += 5;
-        cameraSwitchThresholdY += 5;
+        cameraSwitchThresholdVertical += 5; //The number five is because it is used
+        cameraSwitchThresholdHorizontal += 5;// later to not skip the clamp point because the movement was to fast.
+
+        /*Creates and configures every "cameraBlend" from chinemachine with it's animation and shit
+         i don't want to explain every single line so if you're curious read.*/
         vcams = GetComponentsInChildren<CinemachineVirtualCamera>();
         initialRotations = new Quaternion[vcams.Length];
         for (int i = 0; i < vcams.Length; i++)
@@ -73,16 +69,18 @@ public class CameraMangement : MonoBehaviour
             vcams[i].m_Priority = i;
             for (int j = 1; j < 3; j++)
             {
-                int num = i + j - 1 + k; //Este codigo es demasiado raro, en su momento supe que era
+                int num = i + j - 1 + k; //**skeletonface** "im literally dead rn"
                 blender.m_CustomBlends[num].m_From = vcams[i].name;
                 blender.m_CustomBlends[num].m_To = vcams[i + j > vcams.Length - 1 ? i + j - vcams.Length : i + j].name;
                 blender.m_CustomBlends[num].m_Blend.m_Style = CinemachineBlendDefinition.Style.EaseIn;
                 blender.m_CustomBlends[num].m_Blend.m_Time = cameraChangeTime;
             }
-            k++;
+            k++; //k is a funny letter
         }
     }
 
+    /*Takes care of setting the priority order when the camera switches, made automatic by a lot of work
+     and death desire*/
     public void SwitchCamera(int dir)
     {
         int[] newPriority = new int[vcams.Length];
@@ -111,28 +109,30 @@ public class CameraMangement : MonoBehaviour
 
         }
         canChange = false;
-        StartCoroutine(waitForEndOfAnimation(cameraChangeTime * 0.6f));
+        StartCoroutine(waitForEndOfAnimation(cameraChangeTime * 0.6f)); //Assures you wont be able to change until at leas a 60% of the animation has been completed
     }
+    #endregion
 
-    private enum clampCases
-    {
-        Higher,
-        Lower,
-        Normal
-    };
+    #region Input Management
+
+    /*Input management*/
     private void moveCamera()
     {
-        if(Input.touchCount == 0) { return; }
+        if(Input.touchCount == 0) { return; } //Assures the code only works when touching
 
-        mainTouch = Input.GetTouch(0);
+        mainTouch = Input.GetTouch(0); //Get's the first touch on screen
 
         Vector2 iniAng = activeCameraInitialRotation.eulerAngles;
-        float x1 = (iniAng.x - cameraSwitchThresholdX < 0) ? iniAng.x - cameraSwitchThresholdX + 360 : iniAng.x - cameraSwitchThresholdX,
-              x2 = (iniAng.x + cameraSwitchThresholdX > 360) ? iniAng.x + cameraSwitchThresholdX - 360 : iniAng.x + cameraSwitchThresholdX;
-        float y1 = (iniAng.y - cameraSwitchThresholdY < 0) ? iniAng.y - cameraSwitchThresholdY + 360 : iniAng.y - cameraSwitchThresholdY
-            , y2 = (iniAng.y + cameraSwitchThresholdY > 360) ? iniAng.y + cameraSwitchThresholdY - 360 : iniAng.y + cameraSwitchThresholdY;
 
-        float xHigh = x2 > x1 ? x2 : x1,
+        /*Since the camera rotates from 0 to 360 i had to come up with a solution for clamping the camera when the angle goes from 0 to -360 or something, since the code
+         adds the velocity directly and the camera won't work with 375º but 15º*/
+
+        float x1 = (iniAng.x - cameraSwitchThresholdVertical < 0) ? iniAng.x - cameraSwitchThresholdVertical + 360 : iniAng.x - cameraSwitchThresholdVertical, 
+              x2 = (iniAng.x + cameraSwitchThresholdVertical > 360) ? iniAng.x + cameraSwitchThresholdVertical - 360 : iniAng.x + cameraSwitchThresholdVertical;
+        float y1 = (iniAng.y - cameraSwitchThresholdHorizontal < 0) ? iniAng.y - cameraSwitchThresholdHorizontal + 360 : iniAng.y - cameraSwitchThresholdHorizontal
+            , y2 = (iniAng.y + cameraSwitchThresholdHorizontal > 360) ? iniAng.y + cameraSwitchThresholdHorizontal - 360 : iniAng.y + cameraSwitchThresholdHorizontal;
+
+        float xHigh = x2 > x1 ? x2 : x1, //Makes life easier by setting the higher and the lower in new variables
             xLow = x2 > x1 ? x1 : x2,
             yHigh = y2 > y1 ? y2 : y1,
             yLow = y2 > y1 ? y1 : y2;
@@ -142,9 +142,12 @@ public class CameraMangement : MonoBehaviour
             case TouchPhase.Moved:
                 if (!canChange) { return; }
                 Vector2 velocity = mainTouch.deltaPosition;
-                activeCamera.transform.eulerAngles += new Vector3(-velocity.y * movementReducer, velocity.x * movementReducer, 0);
-                dir = (int) Mathf.Sign(velocity.x);
+                float yVel = velocity.x * Time.deltaTime * velocityMultiplier,
+                    xVel = -velocity.y * Time.deltaTime * velocityMultiplier;
 
+                activeCamera.transform.eulerAngles += new Vector3(xVel, yVel, 0); //This is what handles movement
+
+                #region Useless Code
                 /*No voy a borrar este codigo por lo que me ha costado que funcione, pero luego se me ha ocurrido una idea mejor que es lo que he dejado
                  por ser mas facil de entender, un 20% de todo el trabajo que he hecho el dia 22/10/2022 ha sido inútil, y quiero dejar constancia en el 
                 comentario de este codigo
@@ -160,24 +163,28 @@ public class CameraMangement : MonoBehaviour
                 //{
                 //    activeCamera.transform.eulerAngles -= new Vector3(-velocity.y * movementReducer, 0, 0);
                 //}
+                #endregion
 
+                /*Camera clamping.*/
                 float numHy = Mathf.Abs(activeCamera.transform.eulerAngles.y - yHigh);
                 float numLy = Mathf.Abs(activeCamera.transform.eulerAngles.y - yLow);
                 if (numHy >= 0 && numHy < 5f || numLy >= 0 && numLy < 5f)
                 {
-                    activeCamera.transform.eulerAngles -= new Vector3(0, velocity.x * movementReducer, 0);
+                    activeCamera.transform.eulerAngles -= new Vector3(0, yVel, 0);
                 }
 
                 float numHx = Mathf.Abs(activeCamera.transform.eulerAngles.x - xHigh);
                 float numLx = Mathf.Abs(activeCamera.transform.eulerAngles.x - xLow);
                 if (numHx >= 0 && numHx < 5f || numLx >= 0 && numLx < 5f)
                 {
-                    activeCamera.transform.eulerAngles -= new Vector3(-velocity.y * movementReducer, 0, 0);
+                    activeCamera.transform.eulerAngles -= new Vector3(xVel, 0, 0);
                 }
 
                 break; 
 
             case TouchPhase.Ended:
+                dir = activeCamera.transform.eulerAngles.y > activeCameraInitialRotation.eulerAngles.y ? 1 : -1; //Get's the camera direction by using the y initial rotation value
+
                 float numH = Mathf.Abs(activeCamera.transform.eulerAngles.y - yHigh) - 5f;
                 float numL = Mathf.Abs(activeCamera.transform.eulerAngles.y - yLow) - 5f;
                 print("H: " + yHigh + " L: " + yLow);
@@ -185,20 +192,24 @@ public class CameraMangement : MonoBehaviour
                 {
                     SwitchCamera(dir);
                 }
-                StartCoroutine(returnToCenter());
-                StartCoroutine(waitForEndOfAnimation(returnTime));
+                StartCoroutine(returnToCenter()); //Return to center animation
+                StartCoroutine(waitForEndOfAnimation(returnAnimationTime)); //Idk why i did this, but if it's not broken don't fix it
                 break;
         }
     }
+    #endregion
 
+    #region Animation Handling
+
+    //Self explanatory code idk
     private IEnumerator returnToCenter()
     {
         float timeToReturn = 0;
         while (activeCamera.transform.rotation != activeCameraInitialRotation)
         {
             activeCamera.transform.rotation = Quaternion.Lerp(activeCamera.transform.rotation, activeCameraInitialRotation, timeToReturn);
-            timeToReturn += (Time.deltaTime / returnTime);
-            yield return null;
+            timeToReturn += (Time.deltaTime / returnAnimationTime); //I had to do math to get this shit to calculate how many frames is x seconds
+            yield return null; //Wait one frame
             if(Input.touchCount != 0) { break; }
         }
     }
@@ -206,12 +217,15 @@ public class CameraMangement : MonoBehaviour
 
     IEnumerator waitForEndOfAnimation(float seconds)
     {
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(seconds); //O_o
         canChange = true;
     }
+    #endregion
 
-    public static string getActiveCamera()
+    #region Utilities
+    public static string getActiveCamera() //I don't know what this method does, it's super cryptic...
     {
         return instance.activeCamera.name;
     }
+    #endregion
 }

@@ -257,10 +257,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraChangeTime: 0.5
-  cameraSwitchThresholdY: 15
-  cameraSwitchThresholdX: 20
-  movementReducer: 0.05
-  returnTime: 0.5
+  cameraSwitchThresholdHorizontal: 7
+  cameraSwitchThresholdVertical: 15
+  velocityMultiplier: 0.5
+  returnAnimationTime: 0.5
 --- !u!4 &330778209
 Transform:
   m_ObjectHideFlags: 0
