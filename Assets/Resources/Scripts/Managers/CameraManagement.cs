@@ -2,10 +2,10 @@ using System.Collections;
 using UnityEngine;
 using Cinemachine;
 
-public class CameraMangement : MonoBehaviour
+public class CameraManagement : MonoBehaviour
 {
     #region Singleton
-    public static CameraMangement instance;
+    public static CameraManagement instance;
     private void Awake()
     {
         instance = this;
