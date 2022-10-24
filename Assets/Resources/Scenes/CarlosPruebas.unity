@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 1019985788}
   - component: {fileID: 1019985787}
   - component: {fileID: 1019985789}
+  - component: {fileID: 1019985790}
   m_Layer: 0
   m_Name: interactable
   m_TagString: Untagged
@@ -414,6 +415,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d653fbad644bfa4093a6ad8e1026ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1019985790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019985786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b016ba3cbd34393458de96950d3878fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameCamera: {fileID: 1993655557}
+  sticky: {fileID: 81578670}
+  grabR: 10
+  pixelW: 0
+  pixelH: 0
+  pointer: {x: 0, y: 0, z: 0}
+  stickNum: 0
+  hold: 0
+  busy: 0
+  tried: 0
+  visible: 1
 --- !u!1 &1993655555
 GameObject:
   m_ObjectHideFlags: 0
