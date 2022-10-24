@@ -95,5 +95,11 @@ public class BonfireState : MonoBehaviour
 
     //extinguish the bonfire
     private void extinguish() { hp = 0; this.transform.GetComponentInChildren<ParticleSystem>().Stop(); state = BonfireState.states.apagada; }
+
+    public void addFuel(Fuel.types fuel) {
+        fuelList.Add(new Fuel(fuel));
+    }
+
+
     #endregion
 }
