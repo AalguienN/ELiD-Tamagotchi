@@ -48,7 +48,7 @@ public class MinigameController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         yield return new WaitForEndOfFrame();
         if(reason==-1) {
-            if(CameraMangement.getActiveCamera()=="CamMinigame") {
+            if(CameraManagement.getActiveCamera()=="CamMinigame") {
                 gameRunning = true; yield break;
             }
         }
@@ -64,7 +64,7 @@ public class MinigameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CameraMangement.getActiveCamera()=="CamMinigame") {
+        if(CameraManagement.getActiveCamera()=="CamMinigame") {
             //axePrefab.transform.position = axeStartPosition+ axeEndPositionOffset;
             if(!gameRunning) {
                 if(Input.GetMouseButtonDown(0)) {

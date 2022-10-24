@@ -78,7 +78,7 @@ public class MonthlyCalendarManager : MonoBehaviour
 
 
         //Click on one day to see its events
-        if(CameraMangement.getActiveCamera()=="CamCalendar") {
+        if(CameraManagement.getActiveCamera()=="CamCalendar") {
             if(Input.GetMouseButtonDown(0)) {
                 mousePosition = Input.mousePosition;
             }
