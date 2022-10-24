@@ -25,8 +25,8 @@ public class InteractableTouch : MonoBehaviour
     public bool busy = false;
     public bool tried = false;
     public bool visible = true;
+    bool isActive;
 
-    Touch fingertouch;
     #endregion
 
     #region Start Set-up
@@ -49,7 +49,7 @@ public class InteractableTouch : MonoBehaviour
         //NO MULTITOUCH
         Input.multiTouchEnabled = false;
 
-        //Defining campfire rectangle hitbox
+        //Defining campfire rectangle hitbox -> rectangel is where the family is
         rectangle = new Vector2(pixelW * .2f, pixelH * .3f);
         rectangleCenter = new Vector3(pixelW * .5f, pixelH * .5f);
         adjustZ = new Vector3(0, 0, 3f);
@@ -57,20 +57,22 @@ public class InteractableTouch : MonoBehaviour
 
         stickNum = SaveManager.getStickNum();
         stickNum = 2;
-    }
 
-    //hola, Mi plan para quien lea esto es hacer una version que vaya con mouse y luego ampliarlo a tocar
-    // Update is called once per frame
+    }
 
     #endregion
 
     #region Actual Code
     void Update()
     {
+        //if not looking at this camera dont do shit, or if busy or if empty , at this point just dont do anything
         if (busy || !visible) { return; }
+        if (!(CameraManagement.getActiveCamera() == "CamBonfire")) { return; }
+        if (Input.touchCount == 0) { return; }
 
-        fingertouch = Input.GetTouch(0);
+        Touch fingertouch = Input.GetTouch(0);
 
+        //untouch with the finger
         if (fingertouch.phase == TouchPhase.Ended)
         {
             if (!hold) { return; }
@@ -78,10 +80,10 @@ public class InteractableTouch : MonoBehaviour
 
             //check if rectangle
             mousePos = fingertouch.position;
-            if (mousePos.x > (rectangleCenter.x - rectangle.x) && mousePos.x < (rectangleCenter.x + rectangle.x))
+            if (mousePos.x > (rectangleCenter.x - rectangle.x) && mousePos.x < (rectangleCenter.x + rectangle.x) 
+                && mousePos.y > (rectangleCenter.y - rectangle.y) && mousePos.y < (rectangleCenter.y + rectangle.y))
+
             {
-                if (mousePos.y > (rectangleCenter.y - rectangle.y) && mousePos.y < (rectangleCenter.y + rectangle.y))
-                {
                     Debug.Log("Palo soltado a la hoguera");
                     Consume();
                     if (stickNum <= 0)
@@ -93,13 +95,6 @@ public class InteractableTouch : MonoBehaviour
                     busy = true;
                     Debug.Log("Recall");
                     StartCoroutine("Recall");
-                }
-                else
-                {
-                    busy = true;
-                    Debug.Log("Return");
-                    StartCoroutine("ReturnStick");
-                }
             }
             else
             {
@@ -109,27 +104,27 @@ public class InteractableTouch : MonoBehaviour
             }
         }
 
+        //a toothpick changes everything
         if (hold)
         {
             mousePos = new Vector3(fingertouch.position.x, fingertouch.position.y, adjustZ.z);
             sticky.transform.position = gameCamera.ScreenToWorldPoint(mousePos);
             return;
         }
-
+        //touch with the finger 
         if (fingertouch.phase == TouchPhase.Began)
         {
             mousePos = fingertouch.position;
-            if (mousePos.x > (pixelPointer.x - grabR) && mousePos.x < (pixelPointer.x + grabR))
+            if (mousePos.x > (pixelPointer.x - grabR) && mousePos.x < (pixelPointer.x + grabR) 
+                && mousePos.y > (pixelPointer.y - grabR) && mousePos.y < (pixelPointer.y + grabR))
             {
-                if (mousePos.y > (pixelPointer.y - grabR) && mousePos.y < (pixelPointer.y + grabR))
-                {
                     hold = true;
                     Debug.Log("Palo agarrado juejejejejujejajjujaje");
-                }
             }
         }
     }
 
+    //back with the moves
     public IEnumerator ReturnStick()
     {
 
@@ -145,6 +140,7 @@ public class InteractableTouch : MonoBehaviour
         busy = false;
     }
 
+    //back without the moves
     public IEnumerator Recall()
     {
         sticky.transform.position = gameCamera.ScreenToWorldPoint(pointer);
@@ -158,11 +154,14 @@ public class InteractableTouch : MonoBehaviour
         }
         busy = false;
     }
+
+    //eat the fod
     public void Consume()
     {
         SaveManager.setStickNum(--stickNum);
         Debug.Log(stickNum + " palos restantes");
     }
+    //Im blue
     public void ConsumeBlue()
     {
         SaveManager.setStickNum(--stickNum);
