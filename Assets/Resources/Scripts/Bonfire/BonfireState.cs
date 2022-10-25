@@ -63,7 +63,7 @@ public class BonfireState : MonoBehaviour
     {
         //For testing remove later
         if (turnOn) { lit(); turnOn = false; }
-        if (turnOff) { extinguish(); turnOff = false; }
+        if (turnOff) { extinguish(); turnOff = false;  }
 
     }
     #endregion
@@ -90,11 +90,11 @@ public class BonfireState : MonoBehaviour
 
     #region methods
     //lits up the bonfire
-    public void lit() { hp = maxHp; this.transform.GetComponentInChildren<ParticleSystem>().Play(); state = BonfireState.states.encendida; }
+    public void lit() { hp = maxHp; this.transform.GetComponentInChildren<ParticleSystem>().Play(); state = BonfireState.states.encendida; GetComponentInChildren<Light>().GetComponent<Intensity>().encender(); }
     public void lit(int modifier) { hp = maxHp + modifier; this.transform.GetComponentInChildren<ParticleSystem>().Play(); state = BonfireState.states.encendida; }
 
     //extinguish the bonfire
-    private void extinguish() { hp = 0; this.transform.GetComponentInChildren<ParticleSystem>().Stop(); state = BonfireState.states.apagada; }
+    private void extinguish() { hp = 0; this.transform.GetComponentInChildren<ParticleSystem>().Stop(); state = BonfireState.states.apagada; GetComponentInChildren<Light>().GetComponent<Intensity>().apagar(); }
 
     public void addFuel(Fuel.types fuel) {
         fuelList.Add(new Fuel(fuel));
