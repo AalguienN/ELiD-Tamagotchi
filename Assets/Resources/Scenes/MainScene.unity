@@ -1307,6 +1307,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7791977127566477142, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791977127566477142, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
       propertyPath: SizeModule.curve.minMaxState
       value: 1
       objectReference: {fileID: 0}
