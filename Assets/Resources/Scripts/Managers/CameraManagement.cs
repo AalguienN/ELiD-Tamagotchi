@@ -28,6 +28,7 @@ public class CameraManagement : MonoBehaviour
     private int dir; //B
     bool canChange = true; //L
     Touch mainTouch; //ES
+    Vector2 startPos;
     #endregion
 
     #region Main Methods
@@ -125,7 +126,7 @@ public class CameraManagement : MonoBehaviour
         Vector2 iniAng = activeCameraInitialRotation.eulerAngles;
 
         /*Since the camera rotates from 0 to 360 i had to come up with a solution for clamping the camera when the angle goes from 0 to -360 or something, since the code
-         adds the velocity directly and the camera won't work with 375º but 15º*/
+         adds the velocity directly and the camera won't work with 375ï¿½ but 15ï¿½*/
 
         float x1 = (iniAng.x - cameraSwitchThresholdVertical < 0) ? iniAng.x - cameraSwitchThresholdVertical + 360 : iniAng.x - cameraSwitchThresholdVertical, 
               x2 = (iniAng.x + cameraSwitchThresholdVertical > 360) ? iniAng.x + cameraSwitchThresholdVertical - 360 : iniAng.x + cameraSwitchThresholdVertical;
@@ -136,9 +137,12 @@ public class CameraManagement : MonoBehaviour
             xLow = x2 > x1 ? x1 : x2,
             yHigh = y2 > y1 ? y2 : y1,
             yLow = y2 > y1 ? y1 : y2;
-
+        
         switch (mainTouch.phase)
         {
+            case TouchPhase.Began:
+                    startPos = mainTouch.position;
+                    break;
             case TouchPhase.Moved:
                 if (!canChange) { return; }
                 Vector2 velocity = mainTouch.deltaPosition;
@@ -149,7 +153,7 @@ public class CameraManagement : MonoBehaviour
 
                 #region Useless Code
                 /*No voy a borrar este codigo por lo que me ha costado que funcione, pero luego se me ha ocurrido una idea mejor que es lo que he dejado
-                 por ser mas facil de entender, un 20% de todo el trabajo que he hecho el dia 22/10/2022 ha sido inútil, y quiero dejar constancia en el 
+                 por ser mas facil de entender, un 20% de todo el trabajo que he hecho el dia 22/10/2022 ha sido inï¿½til, y quiero dejar constancia en el 
                 comentario de este codigo
                 @paraxodon*/
                 //float y = activeCamera.transform.eulerAngles.y;
@@ -188,11 +192,11 @@ public class CameraManagement : MonoBehaviour
                 float numH = Mathf.Abs(activeCamera.transform.eulerAngles.y - yHigh) - 5f;
                 float numL = Mathf.Abs(activeCamera.transform.eulerAngles.y - yLow) - 5f;
                 print("H: " + yHigh + " L: " + yLow);
-                if (numH >= 0 && numH < 1f || numL >= 0 && numL < 1f)
+                if ((numH >= 0 && numH < 1f || numL >= 0 && numL < 1f) && Vector2.Distance(startPos, mainTouch.position) > 100f)
                 {
                     SwitchCamera(dir);
                 }
-                StartCoroutine(returnToCenter()); //Return to center animation
+                else StartCoroutine(returnToCenter()); //Return to center animation
                 StartCoroutine(waitForEndOfAnimation(returnAnimationTime)); //Idk why i did this, but if it's not broken don't fix it
                 break;
         }

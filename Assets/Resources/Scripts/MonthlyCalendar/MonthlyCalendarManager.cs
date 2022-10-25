@@ -88,7 +88,6 @@ public class MonthlyCalendarManager : MonoBehaviour
                     RaycastHit hit; 
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
                     if ( Physics.Raycast (ray,out hit,500.0f)) {
-                            print("Henlo");
                         if(hit.collider.gameObject.CompareTag("CalendarTag")) {
                             cameraDesiredPosition = hit.collider.gameObject.transform.position + hit.normal*selectedTileOffset;
                             selectedObject = hit.collider.gameObject;
