@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CalendarTag
   - Tree
+  - SettingsMenu
   layers:
   - Default
   - TransparentFX

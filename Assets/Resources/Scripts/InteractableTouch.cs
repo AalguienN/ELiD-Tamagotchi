@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class InteractableTouch : MonoBehaviour
 {
+    //Singleton
+    public static InteractableTouch instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+
     #region Variables
     public Camera gameCamera;
     public GameObject sticky;
@@ -21,6 +28,8 @@ public class InteractableTouch : MonoBehaviour
     Vector2 rectangle;
     Vector3 rectangleCenter;
 
+    Vector3 initialPos;
+
     public bool hold = false;
     public bool busy = false;
     public bool tried = false;
@@ -34,7 +43,7 @@ public class InteractableTouch : MonoBehaviour
     void Start()
     {
         //resolution setup
-        Screen.SetResolution(720, 1080, true);
+        //Screen.SetResolution(720, 1080, true);
         pixelW = gameCamera.pixelWidth;
         pixelH = gameCamera.pixelHeight;
 
@@ -56,8 +65,10 @@ public class InteractableTouch : MonoBehaviour
 
 
         stickNum = SaveManager.getStickNum();
-        stickNum = 2;
+        // stickNum = 2; testing
 
+
+        initialPos = sticky.transform.position;
     }
 
     #endregion
@@ -67,7 +78,7 @@ public class InteractableTouch : MonoBehaviour
     {
         //if not looking at this camera dont do shit, or if busy or if empty , at this point just dont do anything
         if (busy || !visible) { return; }
-        if (!(CameraManagement.getActiveCamera() == "CamBonfire")) { return; }
+        if (!CameraManagement.getActiveCamera().Equals("CamBonfire")) { return; }
         if (Input.touchCount == 0) { return; }
 
         Touch fingertouch = Input.GetTouch(0);
@@ -111,6 +122,7 @@ public class InteractableTouch : MonoBehaviour
             sticky.transform.position = gameCamera.ScreenToWorldPoint(mousePos);
             return;
         }
+
         //touch with the finger 
         if (fingertouch.phase == TouchPhase.Began)
         {
@@ -119,7 +131,6 @@ public class InteractableTouch : MonoBehaviour
                 && mousePos.y > (pixelPointer.y - grabR) && mousePos.y < (pixelPointer.y + grabR))
             {
                     hold = true;
-                    Debug.Log("Palo agarrado juejejejejujejajjujaje");
             }
         }
     }
@@ -129,7 +140,7 @@ public class InteractableTouch : MonoBehaviour
     {
 
         Vector3 currPos, moveDis;
-        Vector3 pointerWorld = gameCamera.ScreenToWorldPoint(pointer);
+        Vector3 pointerWorld = initialPos;
         for (int i = 0; i < 40; i++)
         {
             currPos = sticky.transform.position;
@@ -143,8 +154,8 @@ public class InteractableTouch : MonoBehaviour
     //back without the moves
     public IEnumerator Recall()
     {
-        sticky.transform.position = gameCamera.ScreenToWorldPoint(pointer);
-        int x = 60;
+        sticky.transform.position = initialPos;
+        int x = GameManager.instance.frameRate;
         Vector3 scaleChange = new Vector3(0.1f / ((float)x), .25f / ((float)x), 0.1f / ((float)x));
         sticky.transform.localScale = new Vector3(0, 0, 0);
         for (int i = 0; i < x; i++)
