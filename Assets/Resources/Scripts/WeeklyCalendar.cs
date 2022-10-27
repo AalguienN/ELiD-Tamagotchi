@@ -53,10 +53,10 @@ public class WeeklyCalendar : MonoBehaviour
             }
         }
 
-            foreach(Day d in weekTemp) {
+            /*foreach(Day d in weekTemp) {
                 week.Remove(d);
                 SaveManager.removeDay(d.id.ToString());
-        }
+        }*/
         return week;
     }
 
