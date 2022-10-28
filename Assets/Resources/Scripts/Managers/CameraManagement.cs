@@ -16,43 +16,52 @@ public class CameraManagement : MonoBehaviour
     #region Variables
     [Header("Variables")]
     [SerializeField] private float cameraChangeTime = .8f; //Time between camera blends
-    [SerializeField] private float cameraWallThresholdHorizontal = 15; //Horizontal clamp distance (the number for each side)
-    [SerializeField] private float cameraWallThresholdVertical = 30; //Vertical clamp distance (the number for each side)
+    [SerializeField] public float cameraWallThresholdHorizontal = 15; //Horizontal clamp distance (the number for each side)
+    [SerializeField] public float cameraWallThresholdVertical = 30; //Vertical clamp distance (the number for each side)
     [SerializeField] private float cameraSwitchThreshold = 2f; //Value getting the change of camara activated when it's this close to the borders
     [SerializeField] private float velocityMultiplier = 1; //You know how to read mate?
+    [SerializeField] private float velocityReducerOnChangeThreshold = .3f; //When enters change threshold it slows down to a x% (0.3 30% example)
     [SerializeField] private float returnAnimationTime = .5f; //Well, i think it's quite self explanatory
     [SerializeField][Range(-1,1)] private int movementDirection = 1; 
-    private float securityConstant = 5f; //Make sure everything works
+    [HideInInspector] public float securityConstant = 5f; //Make sure everything works
 
     private CinemachineVirtualCamera[] vcams; //LOTS
     private CinemachineBlenderSettings blender; //OF
-    private CinemachineVirtualCamera activeCamera; //FUCKING
-    private Quaternion activeCameraInitialRotation; //VARI
+    [HideInInspector] public CinemachineVirtualCamera activeCamera; //FUCKING
+    [HideInInspector] public Quaternion activeCameraInitialRotation; //VARI
     private Quaternion[] initialRotations; //A
     private int dir; //B
     bool canChange = true; //L
-    Touch mainTouch; //ES
-    //Vector2 startPos;
+    [HideInInspector] public Touch mainTouch; //ES
+    public bool strangeCase = false;
 
-    private float x1, x2, y1, y2, xHigh, xLow, yHigh, yLow;
+    [HideInInspector] public float x1, x2, y1, y2, xHigh, xLow, yHigh, yLow;
 
-    Animator anim;
     #endregion
 
     #region Main Methods
     private void Start()
     {
         setUpCameras(); //Lol
-        setUpAnimations(); // I'd really like to move this to a separate script, but i'll do it other day, i literally have 8 minutes until i have to go to sleep
         handleBarriers(); //Lol
+
+        if ((activeCameraInitialRotation.eulerAngles.x - cameraWallThresholdVertical < 0) ||
+        (activeCameraInitialRotation.eulerAngles.x + cameraWallThresholdVertical > 360))
+        {
+            strangeCase = true;
+        }
+
+#if UNITY_EDITOR
+        velocityMultiplier *= 8;
+#endif
     }
 
     private void Update()
     {
         moveCamera(); //Input management frame by frame
-        animateHand(); //If this works first try im going to draw something big
+
     }
-    #endregion
+#endregion
 
     #region Camera Management
     private void setUpCameras()
@@ -157,9 +166,22 @@ public class CameraManagement : MonoBehaviour
 
         mainTouch = Input.GetTouch(0); //Get's the first touch on screen
 
+        float numHY = Mathf.Abs(activeCamera.transform.eulerAngles.y - yHigh) - securityConstant;
+        float numLY = Mathf.Abs(activeCamera.transform.eulerAngles.y - yLow) - securityConstant;
+
+        bool switchThresholdHorizontal = (numHY >= cameraSwitchThreshold && numHY < securityConstant || numLY >= cameraSwitchThreshold && numLY < securityConstant);
+
+        float numHX = Mathf.Abs(activeCamera.transform.eulerAngles.x - xHigh);
+        float numLX = Mathf.Abs(activeCamera.transform.eulerAngles.x - xLow);
+
+        
+        bool switchThresholdVertical = ((strangeCase ? numLX : numHX) >= 1f);
+
+
         Vector2 velocity = mainTouch.deltaPosition; //Velocity configuration (to move through the screen)
-        float yVel = velocity.x * Time.deltaTime * movementDirection * velocityMultiplier,
-            xVel = -velocity.y * Time.deltaTime * movementDirection * velocityMultiplier;
+        float yVel = velocity.x * Time.deltaTime * movementDirection * (!switchThresholdHorizontal ? velocityMultiplier : velocityMultiplier * velocityReducerOnChangeThreshold),
+            xVel = -velocity.y * Time.deltaTime * movementDirection * (!switchThresholdHorizontal ? velocityMultiplier : velocityMultiplier * velocityReducerOnChangeThreshold);
+
 
         switch (mainTouch.phase)
         {
@@ -201,25 +223,36 @@ public class CameraManagement : MonoBehaviour
                     activeCamera.transform.eulerAngles -= new Vector3(xVel, 0, 0);
                 }
 
+                if (!switchThresholdHorizontal) //so it doesn't change at last moment
+                {
+                    dir = (int)Mathf.Sign(yVel); //Get's the camera direction by using the y initial rotation value (before it ends moving)
+                }
 
-                dir = (int)Mathf.Sign(yVel); //Get's the camera direction by using the y initial rotation value (before it ends moving)
 
                 break; 
 
             case TouchPhase.Ended:
 
-                float numH = Mathf.Abs(activeCamera.transform.eulerAngles.y - yHigh) - securityConstant;
-                float numL = Mathf.Abs(activeCamera.transform.eulerAngles.y - yLow) - securityConstant;
+                if (switchThresholdVertical)
+                {
+                    if(getActiveCamera() != "CamBonfire") { return; }
+                    print("Something");
+                    AnimationManager.instance.lockHand = !AnimationManager.instance.lockHand;
+                }
 
-                if ((numH >= cameraSwitchThreshold && numH < securityConstant || numL >= cameraSwitchThreshold && numL < securityConstant ) /*&& Vector2.Distance(startPos, mainTouch.position) > 100f && !InteractableTouch.instance.hold*/)
+                if (switchThresholdHorizontal) /*&& Vector2.Distance(startPos, mainTouch.position) > 100f && !InteractableTouch.instance.hold*/
                 {
                     SwitchCamera(dir);
                     StartCoroutine(returnToCenter());
                 }
-                else { 
-                    StartCoroutine(returnToCenter()); 
-                    StartCoroutine(waitForEndOfAnimation(returnAnimationTime)); //Idk why i did this, but if it's not broken don't fix it
+                else {
+                    if (!AnimationManager.instance.lockHand)
+                    {
+                        StartCoroutine(returnToCenter());
+                        StartCoroutine(waitForEndOfAnimation(returnAnimationTime)); //Idk why i did this, but if it's not broken don't fix it
+                    }
                 } //Return to center animation
+
                 break;
         }
     }
@@ -229,9 +262,6 @@ public class CameraManagement : MonoBehaviour
 
     //Self explanatory code idk
 
-    void setUpAnimations() {
-        anim = GameObject.FindGameObjectWithTag("SettingsMenu").GetComponent<Animator>(); ; //I know how unperformant this is, i'll fix it don't worry
-    }
 
 
     private IEnumerator returnToCenter()
@@ -254,31 +284,7 @@ public class CameraManagement : MonoBehaviour
         canChange = true;
     }
 
-
-    private void animateHand() //This should also go to the animation script :P
-    {
-
-        Vector2 iniAng = activeCameraInitialRotation.eulerAngles;
-        bool strangeCase = false;
-
-        if((iniAng.x - cameraWallThresholdVertical < 0) ||
-        (iniAng.x + cameraWallThresholdVertical > 360))
-        {
-            strangeCase = true;
-        }
-        float num = Mathf.Abs(activeCamera.transform.eulerAngles.x - (strangeCase ? xLow : xHigh) + 5);
-        if (num <= 5)
-        {
-            float value = (Mathf.Abs((num / 5) - 1));
-            anim.SetFloat("Blend", value);
-            print("blend value " + anim.GetFloat("Blend"));
-        }
-        else
-        {
-            anim.SetFloat("Blend", 0);
-        }
-
-    }
+    
     #endregion
 
     #region Utilities

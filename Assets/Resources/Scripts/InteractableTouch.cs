@@ -86,7 +86,7 @@ public class InteractableTouch : MonoBehaviour
         //untouch with the finger
         if (fingertouch.phase == TouchPhase.Ended)
         {
-            if (!hold) { return; }
+            if (!hold || AnimationManager.instance.lockHand) { return; }
             hold = false;
 
             //check if rectangle
