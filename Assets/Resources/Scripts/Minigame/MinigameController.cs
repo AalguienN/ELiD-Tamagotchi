@@ -142,31 +142,31 @@ public class MinigameController : MonoBehaviour
 
     IEnumerator MoveAxe() {
         float t = 0;
-        while(axePrefab.transform.position != axeEndPositionOffset) {
+        while(axePrefab.transform.localPosition != axeEndPositionOffset) {
             t += Time.deltaTime*3;
-            axePrefab.transform.position = new Vector3(
+            axePrefab.transform.localPosition = new Vector3(
                                                         Mathf.Lerp(axeStartPosition.x,axeEndPositionOffset.x,t),
                                                         Mathf.Lerp(axeStartPosition.y,axeEndPositionOffset.y,t),
                                                         Mathf.Lerp(axeStartPosition.z,axeEndPositionOffset.z,t)
                                                     );
-            axePrefab.transform.rotation = Quaternion.Euler(new Vector3(
+            axePrefab.transform.localRotation = Quaternion.Euler(new Vector3(
                                                                 Mathf.Lerp(axeStartRotation.x,axeEndRotationOffset.x,t),
                                                                 Mathf.Lerp(axeStartRotation.y,axeEndRotationOffset.y,t),
                                                                 Mathf.Lerp(axeStartRotation.z,axeEndRotationOffset.z,t)
                                                             ));
             yield return new WaitForEndOfFrame();
         }
-        axePrefab.transform.position = axeEndPositionOffset;
+        axePrefab.transform.localPosition = axeEndPositionOffset;
         yield return new WaitForSeconds(0.15f);
         t=0;
-        while(axePrefab.transform.position != axeStartPosition) {
+        while(axePrefab.transform.localPosition != axeStartPosition) {
             t += Time.deltaTime;
-            axePrefab.transform.position = new Vector3(
+            axePrefab.transform.localPosition = new Vector3(
                                                                 Mathf.Lerp(axeEndPositionOffset.x,axeStartPosition.x,t),
                                                                 Mathf.Lerp(axeEndPositionOffset.y,axeStartPosition.y,t),
                                                                 Mathf.Lerp(axeEndPositionOffset.z,axeStartPosition.z,t)
                                                             );
-            axePrefab.transform.rotation = Quaternion.Euler(new Vector3(
+            axePrefab.transform.localRotation = Quaternion.Euler(new Vector3(
                                                                 Mathf.Lerp(axeEndRotationOffset.x,axeStartRotation.x,t),
                                                                 Mathf.Lerp(axeEndRotationOffset.y,axeStartRotation.y,t),
                                                                 Mathf.Lerp(axeEndRotationOffset.z,axeStartRotation.z,t)
