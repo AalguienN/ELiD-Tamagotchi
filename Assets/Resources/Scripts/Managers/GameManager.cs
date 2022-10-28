@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private int frameRate = 60;
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    [SerializeField] public int frameRate = 60;
     // Start is called before the first frame update
     void Start()
     {
