@@ -52,7 +52,7 @@ public class CameraManagement : MonoBehaviour
         }
 
 #if UNITY_EDITOR
-        velocityMultiplier *= 8;
+        velocityMultiplier = 4;
 #endif
     }
 
@@ -171,12 +171,10 @@ public class CameraManagement : MonoBehaviour
 
         bool switchThresholdHorizontal = (numHY >= cameraSwitchThreshold && numHY < securityConstant || numLY >= cameraSwitchThreshold && numLY < securityConstant);
 
-        float numHX = Mathf.Abs(activeCamera.transform.eulerAngles.x - xHigh);
-        float numLX = Mathf.Abs(activeCamera.transform.eulerAngles.x - xLow);
-
+        float numHX = Mathf.Abs(activeCamera.transform.eulerAngles.x - xHigh) - securityConstant;
+        float numLX = Mathf.Abs(activeCamera.transform.eulerAngles.x - xLow) - securityConstant;
         
-        bool switchThresholdVertical = ((strangeCase ? numLX : numHX) >= 1f);
-
+        bool switchThresholdVertical = ((strangeCase ? numLX : numHX) <= 1f);
 
         Vector2 velocity = mainTouch.deltaPosition; //Velocity configuration (to move through the screen)
         float yVel = velocity.x * Time.deltaTime * movementDirection * (!switchThresholdHorizontal ? velocityMultiplier : velocityMultiplier * velocityReducerOnChangeThreshold),
@@ -235,12 +233,17 @@ public class CameraManagement : MonoBehaviour
 
                 if (switchThresholdVertical)
                 {
-                    if(getActiveCamera() != "CamBonfire") { return; }
-                    print("Something");
-                    AnimationManager.instance.lockHand = !AnimationManager.instance.lockHand;
+                    if (getActiveCamera() == "CamBonfire")
+                    {
+                        AnimationManager.instance.lockHand = !AnimationManager.instance.lockHand;
+                    }
+                    else 
+                    {
+                        AnimationManager.instance.lockHand = false;
+                    }
                 }
 
-                if (switchThresholdHorizontal) /*&& Vector2.Distance(startPos, mainTouch.position) > 100f && !InteractableTouch.instance.hold*/
+                if (switchThresholdHorizontal)
                 {
                     SwitchCamera(dir);
                     StartCoroutine(returnToCenter());
@@ -249,7 +252,6 @@ public class CameraManagement : MonoBehaviour
                     if (!AnimationManager.instance.lockHand)
                     {
                         StartCoroutine(returnToCenter());
-                        StartCoroutine(waitForEndOfAnimation(returnAnimationTime)); //Idk why i did this, but if it's not broken don't fix it
                     }
                 } //Return to center animation
 
