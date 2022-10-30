@@ -15,6 +15,9 @@ public class MonthlyCalendarManager : MonoBehaviour
     private int currentYear = -1;
     private Month actualMonth;
 
+    public GameObject LluviaParent;
+    public GameObject Rayo;
+
     ArrayList events;
     List<Day> weekClimate = new List<Day>();
 
@@ -69,6 +72,22 @@ public class MonthlyCalendarManager : MonoBehaviour
             savedDay = currentDay; savedMonth = currentMonth; savedYear = currentYear;
 
             actualMonth = MonthConstants.GetMonth(currentMonth, currentYear);
+            switch(GetDayWeather()) {
+                case 0:
+                    break;
+                case 1:
+                    LluviaParent.SetActive(false);
+                    Rayo.SetActive(false);
+                    break;
+                case 2:
+                    LluviaParent.SetActive(true);
+                    Rayo.SetActive(false);
+                    break;
+                case 3:
+                    LluviaParent.SetActive(true);
+                    Rayo.SetActive(true);
+                    break;
+            }
             UpdateCalendarDisplay();
         }
 
@@ -195,6 +214,10 @@ public class MonthlyCalendarManager : MonoBehaviour
         gO.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = gO.name = day.ToString();
         gO.transform.GetChild(1).gameObject.GetComponentInChildren<TMP_Text>().color = textColor;
         gO.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().sprite = weatherIcons[climateIntIcon]; 
+    }
+
+    public int GetDayWeather() {
+        return (int)SaveManager.getDay(WeeklyCalendar.GetCurrentDay(DateTime.Now).ToString()).weather;
     }
     #endregion
 }
