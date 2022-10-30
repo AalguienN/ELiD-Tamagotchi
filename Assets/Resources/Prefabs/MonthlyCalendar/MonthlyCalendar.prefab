@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,6 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9193094c449f569498398c167dd1526d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LluviaParent: {fileID: 0}
+  Rayo: {fileID: 0}
   monthText: {fileID: 4360047512929578331}
   dayContainer: {fileID: 4360047513643822483}
   calendarDayPrefab: {fileID: 8466661407417072979, guid: 67c36aa62e0ad444ba88b429fd0251f2, type: 3}
@@ -154,6 +156,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cb2fe9ae4e8a72e48897a852fff2ab58, type: 3}
   calendarEventPrefab: {fileID: 1943959566244803020, guid: 120dc81f81980cf45aee781afb372f0e, type: 3}
   cam: {fileID: 0}
+  cameraDefaultPosition: {x: 0, y: 0, z: 0}
   selectedTileOffset: 3
 --- !u!114 &967089518
 MonoBehaviour:
@@ -231,7 +234,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

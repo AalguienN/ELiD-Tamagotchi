@@ -224,6 +224,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraChangeTime: 2
+  cameraWallThresholdHorizontal: 15
+  cameraWallThresholdVertical: 30
+  cameraSwitchThreshold: 2
+  velocityMultiplier: 1
+  velocityReducerOnChangeThreshold: 0.3
+  returnAnimationTime: 0.5
+  movementDirection: 1
+  securityConstant: 5
+  activeCamera: {fileID: 0}
+  activeCameraInitialRotation: {x: 0, y: 0, z: 0, w: 0}
+  strangeCase: 0
+  x1: 0
+  x2: 0
+  y1: 0
+  y2: 0
+  xHigh: 0
+  xLow: 0
+  yHigh: 0
+  yLow: 0
 --- !u!4 &330778209
 Transform:
   m_ObjectHideFlags: 0
@@ -1046,6 +1065,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4360047511685876879, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 4360047512422390704, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1114,6 +1137,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonthlyCalendar
       objectReference: {fileID: 0}
+    - target: {fileID: 4360047512526506114, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
 --- !u!1 &1547683869
