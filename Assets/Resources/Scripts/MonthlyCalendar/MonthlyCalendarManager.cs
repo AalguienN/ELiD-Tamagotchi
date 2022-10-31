@@ -76,14 +76,17 @@ public class MonthlyCalendarManager : MonoBehaviour
                 case 0:
                     break;
                 case 1:
+                    BonfireState.Instance.weather = BonfireState.globalState.despejado;
                     LluviaParent.SetActive(false);
                     Rayo.SetActive(false);
                     break;
                 case 2:
+                    BonfireState.Instance.weather = BonfireState.globalState.lluvia;
                     LluviaParent.SetActive(true);
                     Rayo.SetActive(false);
                     break;
                 case 3:
+                    BonfireState.Instance.weather = BonfireState.globalState.lluvia;
                     LluviaParent.SetActive(true);
                     Rayo.SetActive(true);
                     break;

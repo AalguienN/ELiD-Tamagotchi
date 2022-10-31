@@ -22,13 +22,15 @@ public class SaveManager : MonoBehaviour {
         stickNum = ES3.Load("stickNum", stickNum);
         currentDay = ES3.Load("currentDay", currentDay);
         lastConexion = ES3.Load("lastConexion", DateTime.Now);
-        events = ES3.Load("eventHandler", new ArrayList());
-        days = ES3.Load("dayHandler", new ArrayList());
-
+        //events = ES3.Load("eventHandler", new ArrayList());
+        //days = ES3.Load("dayHandler", new ArrayList());
 
         //Here calculate seconds since last conexion.
-        TimeSpan timeSpan = lastConexion - DateTime.Now;
-        timeSinceLastConexion = Convert.ToInt32(timeSpan.TotalSeconds); //Check if works idk
+        DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        int currentEpochTime = (int)(DateTime.Now - epochStart).TotalSeconds;
+
+        int difference = currentEpochTime - (int)(lastConexion - epochStart).TotalSeconds;
+        timeSinceLastConexion = difference; //Check if works idk
     }
 
     private void OnApplicationPause(bool pause)

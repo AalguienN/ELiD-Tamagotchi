@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class BonfireState : MonoBehaviour
 {
+    public static BonfireState Instance { get; private set; }
+
     [Header("References")]
     //For now is empty
-
+    
     #region Variables
     [Header("TickRate in seconds")]
     public float tickRate = 1f;
@@ -43,6 +45,12 @@ public class BonfireState : MonoBehaviour
     public enum globalState { 
         despejado,
         lluvia
+    }
+    #endregion
+
+    #region Awake
+    void Awake() {
+        Instance = this; 
     }
     #endregion
 
