@@ -88,24 +88,24 @@ public class InteractableTouch : MonoBehaviour
         {
             if (!hold || AnimationManager.instance.lockHand) { return; }
             hold = false;
+            CameraManagement.blockCamera = false;
 
             //check if rectangle
             mousePos = fingertouch.position;
-            if (mousePos.x > (rectangleCenter.x - rectangle.x) && mousePos.x < (rectangleCenter.x + rectangle.x) 
-                && mousePos.y > (rectangleCenter.y - rectangle.y) && mousePos.y < (rectangleCenter.y + rectangle.y))
-
-            {
-                    Debug.Log("Palo soltado a la hoguera");
-                    Consume();
-                    if (stickNum <= 0)
-                    {
-                        //disable
-                        sticky.GetComponent<MeshRenderer>().enabled = false;
-                        visible = false;
-                    }
-                    busy = true;
-                    Debug.Log("Recall");
-                    StartCoroutine("Recall");
+            RaycastHit hit; 
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            if (Physics.Raycast (ray,out hit,100.0f) && hit.collider.gameObject.CompareTag("Bonfire")) {
+                Debug.Log("Palo soltado a la hoguera");
+                Consume();
+                if (stickNum <= 0)
+                {
+                    //disable
+                    sticky.GetComponent<MeshRenderer>().enabled = false;
+                    visible = false;
+                }
+                busy = true;
+                Debug.Log("Recall");
+                StartCoroutine("Recall");
             }
             else
             {
@@ -113,6 +113,28 @@ public class InteractableTouch : MonoBehaviour
                 Debug.Log("Return");
                 StartCoroutine("ReturnStick");
             }
+            // if (mousePos.x > (rectangleCenter.x - rectangle.x) && mousePos.x < (rectangleCenter.x + rectangle.x) 
+            //     && mousePos.y > (rectangleCenter.y - rectangle.y) && mousePos.y < (rectangleCenter.y + rectangle.y))
+
+            // {
+            //         Debug.Log("Palo soltado a la hoguera");
+            //         Consume();
+            //         if (stickNum <= 0)
+            //         {
+            //             //disable
+            //             sticky.GetComponent<MeshRenderer>().enabled = false;
+            //             visible = false;
+            //         }
+            //         busy = true;
+            //         Debug.Log("Recall");
+            //         StartCoroutine("Recall");
+            // }
+            // else
+            // {
+            //     busy = true;
+            //     Debug.Log("Return");
+            //     StartCoroutine("ReturnStick");
+            // }
         }
 
         //a toothpick changes everything
@@ -120,18 +142,32 @@ public class InteractableTouch : MonoBehaviour
         {
             mousePos = new Vector3(fingertouch.position.x, fingertouch.position.y, adjustZ.z);
             sticky.transform.position = gameCamera.ScreenToWorldPoint(mousePos);
+            if(sticky.GetComponent<CapsuleCollider>().enabled) {
+                sticky.GetComponent<CapsuleCollider>().enabled = false;
+            }
             return;
+        }
+        else if(!sticky.GetComponent<CapsuleCollider>().enabled) {
+            sticky.GetComponent<CapsuleCollider>().enabled = true;
         }
 
         //touch with the finger 
         if (fingertouch.phase == TouchPhase.Began)
         {
             mousePos = fingertouch.position;
-            if (mousePos.x > (pixelPointer.x - grabR) && mousePos.x < (pixelPointer.x + grabR) 
-                && mousePos.y > (pixelPointer.y - grabR) && mousePos.y < (pixelPointer.y + grabR))
-            {
+            RaycastHit hit; 
+            Ray ray = Camera.main.ScreenPointToRay(mousePos); 
+            if ( Physics.Raycast (ray,out hit,100.0f)) {
+                if(hit.collider.gameObject.CompareTag("Stick")) {
                     hold = true;
+                    CameraManagement.blockCamera = true;
+                }
             }
+            // if (mousePos.x > (pixelPointer.x - grabR) && mousePos.x < (pixelPointer.x + grabR) 
+            //     && mousePos.y > (pixelPointer.y - grabR) && mousePos.y < (pixelPointer.y + grabR))
+            // {
+            //    hold = true;
+            // }
         }
     }
 

@@ -59,6 +59,7 @@ public class MinigameController : MonoBehaviour
         precisionNeedle.transform.rotation = Quaternion.Euler(0f,0f,0f);
         int s = SaveManager.getStickNum();
         SaveManager.setStickNum(s+sticks);
+        InteractableTouch.instance.stickNum+=sticks;
     }
 
     // Update is called once per frame

@@ -35,6 +35,8 @@ public class CameraManagement : MonoBehaviour
     [HideInInspector] public Touch mainTouch; //ES
     public bool strangeCase = false;
 
+    public static bool blockCamera;
+
     [HideInInspector] public float x1, x2, y1, y2, xHigh, xLow, yHigh, yLow;
 
     #endregion
@@ -58,7 +60,10 @@ public class CameraManagement : MonoBehaviour
 
     private void Update()
     {
-        moveCamera(); //Input management frame by frame
+        if(!blockCamera)
+            moveCamera(); //Input management frame by frame
+        else
+            returnToCenter();
 
     }
 #endregion

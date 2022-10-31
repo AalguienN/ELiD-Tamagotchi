@@ -182,6 +182,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5828567603330232755, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+      propertyPath: m_TagString
+      value: Bonfire
+      objectReference: {fileID: 0}
     - target: {fileID: 7791977127566477142, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
       propertyPath: ColorModule.enabled
       value: 1
@@ -220,6 +224,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7980692880416574270, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
       propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984101232141593424, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984101232141593424, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984101232141593424, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+      propertyPath: m_Size.z
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1588,7 +1604,7 @@ GameObject:
   - component: {fileID: 950728161}
   m_Layer: 0
   m_Name: sticky
-  m_TagString: Untagged
+  m_TagString: Stick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1603,8 +1619,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 2
+  m_Height: 4
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &950728162
@@ -1677,6 +1693,26 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1158671987943693800, guid: 3159dab4b9711114fb5ae68ab61b994c, type: 3}
   m_PrefabInstance: {fileID: 427414941}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &957519171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957519169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &993859948 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2396276078739565025, guid: 3159dab4b9711114fb5ae68ab61b994c, type: 3}
@@ -2800,7 +2836,6 @@ GameObject:
   - component: {fileID: 1975000077}
   - component: {fileID: 1975000076}
   - component: {fileID: 1975000079}
-  - component: {fileID: 1975000080}
   - component: {fileID: 1975000081}
   - component: {fileID: 1975000082}
   m_Layer: 5
@@ -2910,29 +2945,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1975000080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975000075}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cae4e2b3264a37e4f85452466fbd18a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameCamera: {fileID: 1975000077}
-  sticky: {fileID: 950728160}
-  grabR: 0
-  pixelW: 0
-  pixelH: 0
-  pointer: {x: 0, y: 0, z: 0}
-  stickNum: 0
-  hold: 0
-  busy: 0
-  tried: 0
-  visible: 1
 --- !u!114 &1975000081
 MonoBehaviour:
   m_ObjectHideFlags: 0

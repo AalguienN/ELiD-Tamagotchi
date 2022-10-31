@@ -7,6 +7,8 @@ TagManager:
   - CalendarTag
   - Tree
   - SettingsMenu
+  - Stick
+  - Bonfire
   layers:
   - Default
   - TransparentFX
