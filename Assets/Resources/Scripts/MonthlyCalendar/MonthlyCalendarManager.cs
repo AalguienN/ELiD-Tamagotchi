@@ -208,8 +208,9 @@ public class MonthlyCalendarManager : MonoBehaviour
                 eventObject.GetComponentInChildren<TMP_Text>().text = e.eventName; 
                 eventObjects.Add(eventObject);
                 eventObject.transform.SetParent(gO.transform.GetChild(0).transform);
-                eventObject.transform.rotation = Quaternion.Euler(0,0,UnityEngine.Random.Range(-25f,25f));
+                eventObject.transform.localRotation = Quaternion.Euler(0,0,UnityEngine.Random.Range(-25f,25f));
                 eventObject.transform.localPosition = new Vector3(UnityEngine.Random.Range(-0.15f,0.15f),UnityEngine.Random.Range(-0.2f,0.1f),0);
+                eventObject.transform.localScale = new Vector3(0.8f,0.8f,0.8f);
                 eventObject.name = e.eventName;
             }
         }
