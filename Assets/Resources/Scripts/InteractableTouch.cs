@@ -177,13 +177,21 @@ public class InteractableTouch : MonoBehaviour
 
         Vector3 currPos, moveDis;
         Vector3 pointerWorld = initialPos;
-        for (int i = 0; i < 40; i++)
+
+        float t = 0;
+        while(sticky.transform.position != initialPos)
         {
-            currPos = sticky.transform.position;
-            moveDis = pointerWorld - currPos;
-            sticky.transform.Translate(moveDis * .12f);
+            t += Time.deltaTime;
+            sticky.transform.position = Vector3.Lerp(sticky.transform.position, initialPos, t);
             yield return new WaitForEndOfFrame();
         }
+        // for (int i = 0; i < 80; i++)
+        // {
+        //     currPos = sticky.transform.position;
+        //     moveDis = pointerWorld - currPos;
+        //     sticky.transform.Translate(moveDis * .12f);
+        //     yield return new WaitForEndOfFrame();
+        // }
         busy = false;
     }
 
@@ -192,7 +200,7 @@ public class InteractableTouch : MonoBehaviour
     {
         sticky.transform.position = initialPos;
         int x = GameManager.instance.frameRate;
-        Vector3 scaleChange = new Vector3(0.1f / ((float)x), .25f / ((float)x), 0.1f / ((float)x));
+        Vector3 scaleChange = new Vector3(1f / ((float)x), 1f / ((float)x), 1f / ((float)x));
         sticky.transform.localScale = new Vector3(0, 0, 0);
         for (int i = 0; i < x; i++)
         {

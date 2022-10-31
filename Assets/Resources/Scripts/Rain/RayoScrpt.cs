@@ -18,7 +18,7 @@ public class RayoScrpt : MonoBehaviour
         {
           
         
-        StartCoroutine(Flickering());
+            StartCoroutine(Flickering());
         }
     }
     IEnumerator Flickering()

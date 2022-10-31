@@ -158,10 +158,10 @@ public class MinigameController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         axePrefab.transform.localPosition = axeEndPositionOffset;
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.5f);
         t=0;
         while(axePrefab.transform.localPosition != axeStartPosition) {
-            t += Time.deltaTime;
+            t += Time.deltaTime/4;
             axePrefab.transform.localPosition = new Vector3(
                                                                 Mathf.Lerp(axeEndPositionOffset.x,axeStartPosition.x,t),
                                                                 Mathf.Lerp(axeEndPositionOffset.y,axeStartPosition.y,t),
