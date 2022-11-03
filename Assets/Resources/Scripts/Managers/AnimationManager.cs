@@ -14,8 +14,8 @@ public class AnimationManager : MonoBehaviour
     #endregion
 
     [SerializeField] float handAnimationThreshold = 3f;
-    [SerializeField] Animator anim;
-    [HideInInspector] public bool lockHand = false;
+    //[SerializeField] Animator anim;
+    //[HideInInspector] public bool lockHand = false;
 
     private void Start()
     {
@@ -23,29 +23,29 @@ public class AnimationManager : MonoBehaviour
 
     private void Update()
     {
-        animateHand();
+        //animateHand();
     }
 
-    private void animateHand() //This should also go to the animation script :P
-    {
-        if (CameraManagement.getActiveCamera() != "CamBonfire") { return; }
-        Vector2 iniAng = CameraManagement.instance.activeCameraInitialRotation.eulerAngles;
+    //private void animateHand() //This should also go to the animation script :P
+    //{
+    //    if (CameraManagement.getActiveCamera() != "CamBonfire") { return; }
+    //    Vector2 iniAng = CameraManagement.instance.activeCameraInitialRotation.eulerAngles;
        
-        float num = Mathf.Abs(CameraManagement.instance.activeCamera.transform.eulerAngles.x - 
-            ((CameraManagement.instance.strangeCase ? CameraManagement.instance.xLow : CameraManagement.instance.xHigh) - CameraManagement.instance.securityConstant)) - handAnimationThreshold;
-        if (num <= handAnimationThreshold)
-        {
-            float value = (Mathf.Abs((num / handAnimationThreshold) - 1));
-            anim.SetFloat("Blend", value);
-        }
-        else
-        {
-            anim.SetFloat("Blend", 0);
-        }
-    }
+    //    float num = Mathf.Abs(CameraManagement.instance.activeCamera.transform.eulerAngles.x - 
+    //        ((CameraManagement.instance.strangeCase ? CameraManagement.instance.xLow : CameraManagement.instance.xHigh) - CameraManagement.instance.securityConstant)) - handAnimationThreshold;
+    //    if (num <= handAnimationThreshold)
+    //    {
+    //        float value = (Mathf.Abs((num / handAnimationThreshold) - 1));
+    //        anim.SetFloat("Blend", value);
+    //    }
+    //    else
+    //    {
+    //        anim.SetFloat("Blend", 0);
+    //    }
+    //}
 
-    public void changeLockState()
-    {
-        lockHand = !lockHand;
-    }
+    //public void changeLockState()
+    //{
+    //    lockHand = !lockHand;
+    //}
 }

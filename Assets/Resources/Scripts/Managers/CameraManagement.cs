@@ -22,7 +22,7 @@ public class CameraManagement : MonoBehaviour
     [SerializeField] private float velocityMultiplier = 1; //You know how to read mate?
     [SerializeField] private float velocityReducerOnChangeThreshold = .3f; //When enters change threshold it slows down to a x% (0.3 30% example)
     [SerializeField] private float returnAnimationTime = .5f; //Well, i think it's quite self explanatory
-    [SerializeField][Range(-1,1)] private int movementDirection = 1; 
+    [SerializeField][Range(-1,1)] private int movementDirection = -1; 
     [HideInInspector] public float securityConstant = 5f; //Make sure everything works
 
     private CinemachineVirtualCamera[] vcams; //LOTS
@@ -236,17 +236,17 @@ public class CameraManagement : MonoBehaviour
 
             case TouchPhase.Ended:
 
-                if (switchThresholdVertical)
-                {
-                    if (getActiveCamera() == "CamBonfire")
-                    {
-                        AnimationManager.instance.lockHand = !AnimationManager.instance.lockHand;
-                    }
-                    else 
-                    {
-                        AnimationManager.instance.lockHand = false;
-                    }
-                }
+                //if (switchThresholdVertical)
+                //{
+                //    if (getActiveCamera() == "CamBonfire")
+                //    {
+                //        AnimationManager.instance.lockHand = !AnimationManager.instance.lockHand;
+                //    }
+                //    else 
+                //    {
+                //        AnimationManager.instance.lockHand = false;
+                //    }
+                //}
 
                 if (switchThresholdHorizontal)
                 {
@@ -254,10 +254,10 @@ public class CameraManagement : MonoBehaviour
                     StartCoroutine(returnToCenter());
                 }
                 else {
-                    if (!AnimationManager.instance.lockHand)
-                    {
+                    //if (!AnimationManager.instance.lockHand)
+                    //{
                         StartCoroutine(returnToCenter());
-                    }
+                    //}
                 } //Return to center animation
 
                 break;
