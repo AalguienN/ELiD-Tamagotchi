@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hierba
+  m_Name: Hierba 1
   m_Shader: {fileID: 4800000, guid: bf1b67d8223379749a0a88d47d0a7154, type: 3}
   m_ValidKeywords:
   - USE_RT
@@ -17,7 +17,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2001
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -93,8 +93,8 @@ Material:
     - _GrassCut: 1
     - _GrassSaturation: 8.29
     - _GrassShading: 0
-    - _GrassThinness: 2.5
-    - _GrassThinnessIntersection: 0.01
+    - _GrassThinness: 1.434
+    - _GrassThinnessIntersection: 2
     - _LightIntensity: 1.01
     - _Metallic: 0
     - _MinimumNumberStacks: 5.33
@@ -115,9 +115,9 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TilingN1: 0.001
+    - _TilingN1: 2.2
     - _TilingN2: 3.17
-    - _TilingN3: 24.57
+    - _TilingN3: 0.3
     - _UVSec: 0
     - _UseAmbientLight: 0
     - _UsePR: 0
@@ -128,14 +128,14 @@ Material:
     - _UseVP: 0
     - _UseVR: 0
     - _UseWC: 0
-    - _WindForce: 0
-    - _WindMovement: 0
+    - _WindForce: 0.01
+    - _WindMovement: 0.05
     - _WorldRotation: 0
     - _WorldScale: 10
     - _ZWrite: 1
     - __NumberOfStacks: 1
     m_Colors:
-    - _Color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+    - _Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0.38679248, g: 0.3547533, b: 0.27549842, a: 1}
     - _OffsetVector: {r: 0, g: 0, b: 0, a: 0}
