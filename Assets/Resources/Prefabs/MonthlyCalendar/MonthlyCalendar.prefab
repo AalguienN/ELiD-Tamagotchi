@@ -157,7 +157,7 @@ MonoBehaviour:
   calendarEventPrefab: {fileID: 1943959566244803020, guid: 120dc81f81980cf45aee781afb372f0e, type: 3}
   cam: {fileID: 0}
   cameraDefaultPosition: {x: 0, y: 2.5, z: 0}
-  selectedTileOffset: 1.2
+  selectedTileOffset: 1.6
 --- !u!114 &967089518
 MonoBehaviour:
   m_ObjectHideFlags: 0

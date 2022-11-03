@@ -72,6 +72,7 @@ public class MonthlyCalendarManager : MonoBehaviour
             savedDay = currentDay; savedMonth = currentMonth; savedYear = currentYear;
 
             actualMonth = MonthConstants.GetMonth(currentMonth, currentYear);
+            UpdateCalendarDisplay();
             switch(GetDayWeather()) {
                 case 0:
                     break;
@@ -91,7 +92,6 @@ public class MonthlyCalendarManager : MonoBehaviour
                     Rayo.SetActive(true);
                     break;
             }
-            UpdateCalendarDisplay();
         }
 
         //TEMP

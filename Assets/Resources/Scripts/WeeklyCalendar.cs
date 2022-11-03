@@ -32,9 +32,27 @@ public class WeeklyCalendar : MonoBehaviour
 
     public List<Day> InitWeek()
     {
-        IEnumerable<Day> dayIEnum = (SaveManager.days).OfType<Day>();
-        week = dayIEnum.ToList();
+        try{
+            IEnumerable<Day> dayIEnum = (SaveManager.days).OfType<Day>();
+            week = dayIEnum.ToList();
+        } catch(Exception e) {
+            week.Clear();
+        }
         
+        if(week.Count == 0) {
+            for(int i = 0; i < 7; i++) {
+                Day d = new Day(GetCurrentDay(System.DateTime.UtcNow)+i);
+
+                if(i == 2 || i == 4)
+                    d.weather = (Day.Tiempo)3;
+                else
+                    d.weather = (Day.Tiempo)1;
+
+                week.Add(d);             
+                SaveManager.addDay(d);
+            }
+        }
+
         for(int i = 0; i < 7; i++) {
             if(SaveManager.getDay((GetCurrentDay(System.DateTime.UtcNow)+i).ToString()).weather == Day.Tiempo.vacio)
             {
