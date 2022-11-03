@@ -85,7 +85,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _FadeDistanceEnd: 26
-    - _FadeDistanceStart: 16
+    - _FadeDistanceStart: 18.34
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -99,12 +99,12 @@ Material:
     - _MinimumNumberStacks: 5.33
     - _Mode: 0
     - _NoisePower: 1.45
-    - _NumberOfStacks: 14.19
+    - _NumberOfStacks: 4.44
     - _OcclusionStrength: 1
-    - _OffsetValue: 0.75
+    - _OffsetValue: 1.53
     - _Parallax: 0.02
     - _ProceduralDistance: 0
-    - _ProceduralStrength: 1.5
+    - _ProceduralStrength: 38.9
     - _RTEffect: 1
     - _RimMax: 0.905
     - _RimMin: 0.285
@@ -114,7 +114,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TilingN1: 40
+    - _TilingN1: 36.9
     - _TilingN2: 0.05
     - _TilingN3: 1
     - _UVSec: 0

@@ -47,6 +47,7 @@ public class CameraManagement : MonoBehaviour
         setUpCameras(); //Lol
         handleBarriers(); //Lol
 
+
         if ((activeCameraInitialRotation.eulerAngles.x - cameraWallThresholdVertical < 0) ||
         (activeCameraInitialRotation.eulerAngles.x + cameraWallThresholdVertical > 360))
         {
@@ -130,6 +131,7 @@ public class CameraManagement : MonoBehaviour
             {
                 activeCamera = vcams[i];
                 activeCameraInitialRotation = initialRotations[i];
+                ScreenShake.instance.setInitialRotation(initialRotations[i]);
             }
             vcams[i].m_Priority = newPriority[i];
 
@@ -271,7 +273,7 @@ public class CameraManagement : MonoBehaviour
 
 
 
-    private IEnumerator returnToCenter()
+    public IEnumerator returnToCenter()
     {
         float timeToReturn = 0;
         while (activeCamera.transform.rotation != activeCameraInitialRotation)
