@@ -65,6 +65,10 @@ public class InteractableTouch : MonoBehaviour
 
 
         stickNum = SaveManager.getStickNum();
+        if(stickNum <= 0)
+        {
+            sticky.SetActive(false);
+        }
         // stickNum = 2; testing
 
 
@@ -76,6 +80,14 @@ public class InteractableTouch : MonoBehaviour
     #region Actual Code
     void Update()
     {
+        stickNum = SaveManager.getStickNum();
+        if (!visible && stickNum > 0) //Reappear sticks when reget
+        {
+            sticky.SetActive(true);
+            StartCoroutine(Recall());
+        }
+        visible = sticky.activeSelf;
+
         //if not looking at this camera dont do shit, or if busy or if empty , at this point just dont do anything
         if (busy || !visible) { return; }
         if (!CameraManagement.getActiveCamera().Equals("CamBonfire")) { return; }
@@ -83,25 +95,26 @@ public class InteractableTouch : MonoBehaviour
 
         Touch fingertouch = Input.GetTouch(0);
 
+
+
         //untouch with the finger
         if (fingertouch.phase == TouchPhase.Ended)
         {
-            if (!hold /*|| AnimationManager.instance.lockHand*/) { return; }
+            if (!hold) { return; }
             hold = false;
             CameraManagement.blockCamera = false;
 
             //check if rectangle
             mousePos = fingertouch.position;
-            RaycastHit hit; 
             Ray ray = Camera.main.ScreenPointToRay(mousePos);
-            if (Physics.Raycast (ray,out hit,100.0f) && hit.collider.gameObject.CompareTag("Bonfire")) {
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100.0f) && hit.collider.CompareTag("Bonfire")) {
                 Debug.Log("Palo soltado a la hoguera");
                 Consume();
                 if (stickNum <= 0)
                 {
                     //disable
-                    sticky.GetComponent<MeshRenderer>().enabled = false;
-                    visible = false;
+                    sticky.SetActive(false);
                 }
                 busy = true;
                 Debug.Log("Recall");
@@ -142,13 +155,13 @@ public class InteractableTouch : MonoBehaviour
         {
             mousePos = new Vector3(fingertouch.position.x, fingertouch.position.y, adjustZ.z);
             sticky.transform.position = gameCamera.ScreenToWorldPoint(mousePos);
-            if(sticky.GetComponent<CapsuleCollider>().enabled) {
-                sticky.GetComponent<CapsuleCollider>().enabled = false;
+            if(sticky.GetComponent<Collider>().enabled) {
+                sticky.GetComponent<Collider>().enabled = false;
             }
             return;
         }
-        else if(!sticky.GetComponent<CapsuleCollider>().enabled) {
-            sticky.GetComponent<CapsuleCollider>().enabled = true;
+        else if(!sticky.GetComponent<Collider>().enabled) {
+            sticky.GetComponent<Collider>().enabled = true;
         }
 
         //touch with the finger 
@@ -157,8 +170,10 @@ public class InteractableTouch : MonoBehaviour
             mousePos = fingertouch.position;
             RaycastHit hit; 
             Ray ray = Camera.main.ScreenPointToRay(mousePos); 
-            if ( Physics.Raycast (ray,out hit,100.0f)) {
+            if (Physics.Raycast (ray,out hit,100.0f)){
+                print(hit.collider.name);
                 if(hit.collider.gameObject.CompareTag("Stick")) {
+                    print("kik");
                     hold = true;
                     CameraManagement.blockCamera = true;
                 }
@@ -179,7 +194,7 @@ public class InteractableTouch : MonoBehaviour
         Vector3 pointerWorld = initialPos;
 
         float t = 0;
-        while(sticky.transform.position != initialPos)
+        while(sticky.transform.position != initialPos || !hold)
         {
             t += Time.deltaTime;
             sticky.transform.position = Vector3.Lerp(sticky.transform.position, initialPos, t);

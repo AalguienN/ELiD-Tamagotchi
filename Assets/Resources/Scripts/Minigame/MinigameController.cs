@@ -44,6 +44,7 @@ public class MinigameController : MonoBehaviour
 
     IEnumerator EndGame(int reason)
     {
+        print("Game has ended");
         gameRunning = false;
         yield return new WaitForSeconds(1f);
         yield return new WaitForEndOfFrame();
@@ -59,7 +60,7 @@ public class MinigameController : MonoBehaviour
         precisionNeedle.transform.rotation = Quaternion.Euler(0f,0f,0f);
         int s = SaveManager.getStickNum();
         SaveManager.setStickNum(s+sticks);
-        InteractableTouch.instance.stickNum+=sticks;
+        print("Stick number: " + SaveManager.getStickNum());
     }
 
     // Update is called once per frame

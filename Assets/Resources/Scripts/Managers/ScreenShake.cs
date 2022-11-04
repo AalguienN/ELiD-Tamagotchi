@@ -62,9 +62,10 @@ public class ScreenShake : MonoBehaviour
 
             shakeRotation = Mathf.MoveTowards(shakeRotation, 0f, shakeFadeTime * Time.deltaTime);
         }
-        else if(transform.rotation != initialRotation)
+        else if(transform.rotation != initialRotation && shakeTimeRemaining < 0)
         {
             StartCoroutine(returnToCenter());
+            shakeTimeRemaining = 0;
         }
 
     }

@@ -55,7 +55,7 @@ public class CameraManagement : MonoBehaviour
         }
 
 #if UNITY_EDITOR
-        velocityMultiplier = 4;
+        //velocityMultiplier = 4;
 #endif
     }
 
@@ -184,8 +184,8 @@ public class CameraManagement : MonoBehaviour
         bool switchThresholdVertical = ((strangeCase ? numLX : numHX) <= 1f);
 
         Vector2 velocity = mainTouch.deltaPosition; //Velocity configuration (to move through the screen)
-        float yVel = velocity.x * Time.deltaTime * movementDirection * (!switchThresholdHorizontal ? velocityMultiplier : velocityMultiplier * velocityReducerOnChangeThreshold),
-            xVel = -velocity.y * Time.deltaTime * movementDirection * (!switchThresholdHorizontal ? velocityMultiplier : velocityMultiplier * velocityReducerOnChangeThreshold);
+        float yVel = velocity.x *  Time.fixedDeltaTime * movementDirection * (!switchThresholdHorizontal ? velocityMultiplier : velocityMultiplier * velocityReducerOnChangeThreshold),
+            xVel = -velocity.y * Time.fixedDeltaTime * movementDirection * (!switchThresholdHorizontal ? velocityMultiplier : velocityMultiplier * velocityReducerOnChangeThreshold);
 
 
         switch (mainTouch.phase)
@@ -193,7 +193,7 @@ public class CameraManagement : MonoBehaviour
             case TouchPhase.Moved:
                 if (!canChange) { return; }
 
-                activeCamera.transform.eulerAngles += (InteractableTouch.instance.hold ? new Vector3(0,0,0) : new Vector3(xVel, yVel, 0)); //This is what handles movement
+                activeCamera.transform.eulerAngles += (InteractableTouch.instance.hold ? new Vector3(0,0,0) : new Vector3(xVel , yVel, 0)); //This is what handles movement
 
                 #region Useless Code
                 /*No voy a borrar este codigo por lo que me ha costado que funcione, pero luego se me ha ocurrido una idea mejor que es lo que he dejado
