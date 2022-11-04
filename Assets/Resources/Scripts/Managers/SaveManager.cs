@@ -7,6 +7,7 @@ public class SaveManager : MonoBehaviour {
     #region Variables
     [Header("Variables to be saved")]
     [HideInInspector] private static int fireState, stickNum, currentDay;
+    [HideInInspector] private static bool startedGame;
     DateTime lastConexion;
     public static int timeSinceLastConexion;
 
@@ -19,11 +20,19 @@ public class SaveManager : MonoBehaviour {
     {
         //Here load
         fireState = ES3.Load("lastFireState", fireState);
-        stickNum = ES3.Load("stickNum", stickNum);
+        stickNum = ES3.Load("stickNum", 1);
         currentDay = ES3.Load("currentDay", currentDay);
         lastConexion = ES3.Load("lastConexion", DateTime.Now);
+        startedGame = ES3.Load("startedGame", false);
         //events = ES3.Load("eventHandler", new ArrayList());
         //days = ES3.Load("dayHandler", new ArrayList());
+        
+        if(!startedGame)
+        {
+            ES3.Save("startedGame", true);
+            startedGame = true;
+            print("Welcome, new Player");
+        }
 
         //Here calculate seconds since last conexion.
         DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
@@ -57,6 +66,7 @@ public class SaveManager : MonoBehaviour {
         ES3.Save("lastFireState", fireState);
         ES3.Save("lastConexion", DateTime.Now);
         ES3.Save("eventHandler", events);
+        ES3.Save("startedGame", startedGame);
     }
     #endregion
 

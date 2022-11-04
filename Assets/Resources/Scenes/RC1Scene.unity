@@ -203,8 +203,24 @@ PrefabInstance:
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7984101232141593424, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984101232141593424, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984101232141593424, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+      propertyPath: m_Size.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984101232141593424, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984101232141593424, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+      propertyPath: m_Center.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
@@ -2162,7 +2178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 950728164}
-  - component: {fileID: 950728161}
+  - component: {fileID: 950728165}
   m_Layer: 0
   m_Name: sticky
   m_TagString: Stick
@@ -2170,20 +2186,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &950728161
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950728160}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 0
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!4 &950728164
 Transform:
   m_ObjectHideFlags: 0
@@ -2200,6 +2202,19 @@ Transform:
   m_Father: {fileID: 386168962}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 37.731, y: 90, z: 90}
+--- !u!135 &950728165
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950728160}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &957519169 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1158671987943693800, guid: 3159dab4b9711114fb5ae68ab61b994c, type: 3}

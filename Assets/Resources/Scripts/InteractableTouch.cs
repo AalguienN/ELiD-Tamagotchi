@@ -71,7 +71,7 @@ public class InteractableTouch : MonoBehaviour
         }
         // stickNum = 2; testing
 
-
+        visible = sticky.activeSelf;
         initialPos = sticky.transform.position;
     }
 
@@ -89,14 +89,11 @@ public class InteractableTouch : MonoBehaviour
         visible = sticky.activeSelf;
 
         //if not looking at this camera dont do shit, or if busy or if empty , at this point just dont do anything
-        if (busy || !visible) { return; }
+        if (!visible) { return; }
         if (!CameraManagement.getActiveCamera().Equals("CamBonfire")) { return; }
         if (Input.touchCount == 0) { return; }
 
         Touch fingertouch = Input.GetTouch(0);
-
-
-
         //untouch with the finger
         if (fingertouch.phase == TouchPhase.Ended)
         {
@@ -116,13 +113,11 @@ public class InteractableTouch : MonoBehaviour
                     //disable
                     sticky.SetActive(false);
                 }
-                busy = true;
                 Debug.Log("Recall");
                 StartCoroutine("Recall");
             }
             else
             {
-                busy = true;
                 Debug.Log("Return");
                 StartCoroutine("ReturnStick");
             }
@@ -150,20 +145,6 @@ public class InteractableTouch : MonoBehaviour
             // }
         }
 
-        //a toothpick changes everything
-        if (hold)
-        {
-            mousePos = new Vector3(fingertouch.position.x, fingertouch.position.y, adjustZ.z);
-            sticky.transform.position = gameCamera.ScreenToWorldPoint(mousePos);
-            if(sticky.GetComponent<Collider>().enabled) {
-                sticky.GetComponent<Collider>().enabled = false;
-            }
-            return;
-        }
-        else if(!sticky.GetComponent<Collider>().enabled) {
-            sticky.GetComponent<Collider>().enabled = true;
-        }
-
         //touch with the finger 
         if (fingertouch.phase == TouchPhase.Began)
         {
@@ -184,6 +165,21 @@ public class InteractableTouch : MonoBehaviour
             //    hold = true;
             // }
         }
+
+        //a toothpick changes everything
+        if (hold)
+        {
+            mousePos = new Vector3(fingertouch.position.x, fingertouch.position.y, adjustZ.z);
+            sticky.transform.position = gameCamera.ScreenToWorldPoint(mousePos);
+            if(sticky.GetComponent<Collider>().enabled) {
+                sticky.GetComponent<Collider>().enabled = false;
+            }
+            return;
+        }
+        else if(!sticky.GetComponent<Collider>().enabled) {
+            sticky.GetComponent<Collider>().enabled = true;
+        }
+
     }
 
     //back with the moves
@@ -194,7 +190,7 @@ public class InteractableTouch : MonoBehaviour
         Vector3 pointerWorld = initialPos;
 
         float t = 0;
-        while(sticky.transform.position != initialPos || !hold)
+        while(sticky.transform.position != initialPos)
         {
             t += Time.deltaTime;
             sticky.transform.position = Vector3.Lerp(sticky.transform.position, initialPos, t);
@@ -207,7 +203,6 @@ public class InteractableTouch : MonoBehaviour
         //     sticky.transform.Translate(moveDis * .12f);
         //     yield return new WaitForEndOfFrame();
         // }
-        busy = false;
     }
 
     //back without the moves
@@ -222,7 +217,6 @@ public class InteractableTouch : MonoBehaviour
             yield return new WaitForEndOfFrame();
             sticky.transform.localScale += scaleChange;
         }
-        busy = false;
     }
 
     //eat the fod
