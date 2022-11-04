@@ -194,6 +194,7 @@ public class InteractableTouch : MonoBehaviour
         {
             t += Time.deltaTime;
             sticky.transform.position = Vector3.Lerp(sticky.transform.position, initialPos, t);
+            if (hold) { yield break; }
             yield return new WaitForEndOfFrame();
         }
         // for (int i = 0; i < 80; i++)
