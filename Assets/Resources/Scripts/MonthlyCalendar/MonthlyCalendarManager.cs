@@ -54,8 +54,10 @@ public class MonthlyCalendarManager : MonoBehaviour
             daysInCalendarDisplay.Add(gO);
             gO.transform.rotation = transform.rotation;
             gO.transform.SetParent(dayContainer);
-            gO.transform.localPosition = new Vector3(-0.3928572f+0.1309524f*(i%7),0.25f-0.125f*(i/7),0);
+            gO.transform.localPosition = new Vector3((-0.3928572f+0.1309524f*(i%7)),0.25f-0.125f*(i/7),0);
         }
+
+        transform.GetChild(0).transform.localScale = transform.GetChild(0).transform.localScale*2.5f/6f;
     }
 
     // Update is called once per frame
@@ -214,7 +216,7 @@ public class MonthlyCalendarManager : MonoBehaviour
                 eventObject.name = e.eventName;
             }
         }
-        gO.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = tileColor;
+        gO.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(tileColor.r,tileColor.g,tileColor.b,gO.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color.a);
         gO.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = gO.name = day.ToString();
         gO.transform.GetChild(1).gameObject.GetComponentInChildren<TMP_Text>().color = textColor;
         gO.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().sprite = weatherIcons[climateIntIcon]; 
