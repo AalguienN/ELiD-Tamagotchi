@@ -62,7 +62,7 @@ public class BonfireState : MonoBehaviour
         int tiempoFuera = SaveManager.getSecondsSinceLastConexion();
         
         fuelList = new List<Fuel>();
-        lit(tiempoFuera);
+        lit(-tiempoFuera);
         StartCoroutine(bonfireTick());
 
         Debug.Log("El juego ha estado cerrado " + Mathf.Abs(tiempoFuera) + " segundos");

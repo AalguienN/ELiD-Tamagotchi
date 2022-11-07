@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1222663792003506280}
   m_Layer: 0
   m_Name: Bonfire
-  m_TagString: Untagged
+  m_TagString: Bonfire2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tickRate: 1
   hp: 0
-  maxHp: 1000
+  maxHp: 100
   state: 0
   weather: 0
   standardHpLossFactor: 1

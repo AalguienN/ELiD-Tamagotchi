@@ -9,6 +9,7 @@ TagManager:
   - SettingsMenu
   - Stick
   - Bonfire
+  - Bonfire2
   layers:
   - Default
   - TransparentFX
