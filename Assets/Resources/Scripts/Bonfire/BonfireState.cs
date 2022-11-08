@@ -104,8 +104,16 @@ public class BonfireState : MonoBehaviour
     //extinguish the bonfire
     private void extinguish() { hp = 0; this.transform.GetComponentInChildren<ParticleSystem>().Stop(); state = BonfireState.states.apagada; GetComponentInChildren<Light>().GetComponent<Intensity>().apagar(); }
 
+    public void heal(double n) {
+        if (hp + n < maxHp && hp != 0)
+            hp += n;
+        else lit();
+    }
     public void addFuel(Fuel.types fuel) {
         fuelList.Add(new Fuel(fuel));
+        Fuel f = new Fuel(fuel);
+        f.init();
+        heal(f.heal);
     }
 
 

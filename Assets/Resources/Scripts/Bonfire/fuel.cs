@@ -22,12 +22,12 @@ public class Fuel
 
     //Valores inicializados como un palo normal
     //Añade tiempo de vida a la hoguera
-    private double heal = 10;
+    public double heal = 10;
 
     //Debuf, si el combustible es rápido, lento...
-    private double debuff;
+    public double debuff;
 
-    private bool waterSield = false;
+    public bool waterSield = false;
 
     //tiempo que se mantiene activa la acción
     private double duration;

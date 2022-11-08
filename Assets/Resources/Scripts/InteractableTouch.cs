@@ -225,12 +225,15 @@ public class InteractableTouch : MonoBehaviour
     {
         SaveManager.setStickNum(--stickNum);
         Debug.Log(stickNum + " palos restantes");
+        //Modificado por Adrián
+        GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.stick);
     }
     //Im blue
     public void ConsumeBlue()
     {
         SaveManager.setStickNum(--stickNum);
         Debug.Log(stickNum + " palos restantes");
+        GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.blueStick);
     }
     #endregion
 }
