@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5150453296002645758
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs_Fire 4
+  m_Shader: {fileID: -6465566751694194690, guid: d98082c90314e2248ab1a3748bd6d7a6, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_59b28e82c7394377b1f7f8f530e810f5:
+        m_Texture: {fileID: 2800000, guid: 266d43742c4dd3a4abf1c865b4de1dca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_173bef07977449718f2061cac42aad33_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 71053d7ef278bba44be465388ef6ed73, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_745eb8989dac46e89e7aa0e16479718f_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 71053d7ef278bba44be465388ef6ed73, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - Vector1_15742c12472c4789be8388ef813b821b: 1.85
+    - _Power_Abajo: -5
+    - _Power_Text: 1.33
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _power_lados: 0.39
+    m_Colors:
+    - Color_1c74365aad6147ceb05d3a795691ead2: {r: 31.999996, g: 2.680628, b: 0, a: 0}
+    - Vector2_e50630c308ff47f2876677c9e1eeae47: {r: -0.2, g: -0.5, b: 0, a: 0}
+    - _Emission_Color: {r: 1, g: 0.29411766, b: 0, a: 0}
+  m_BuildTextureStacks: []
