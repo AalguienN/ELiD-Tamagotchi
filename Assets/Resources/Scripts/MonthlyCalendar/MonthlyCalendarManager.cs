@@ -18,7 +18,7 @@ public class MonthlyCalendarManager : MonoBehaviour
     public GameObject LluviaParent;
     public GameObject Rayo;
 
-    ArrayList events;
+    List<CalendarEvent> events = new List<CalendarEvent>();
     List<Day> weekClimate = new List<Day>();
 
     [Header("Reference objects to display info")]

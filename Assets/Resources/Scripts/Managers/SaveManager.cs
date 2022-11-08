@@ -11,8 +11,8 @@ public class SaveManager : MonoBehaviour {
     DateTime lastConexion;
     public static int timeSinceLastConexion;
 
-    public static ArrayList events = new ArrayList();
-    public static ArrayList days = new ArrayList();
+    public static List<CalendarEvent> events = new List<CalendarEvent>();
+    public static List<Day> days = new List<Day>();
     #endregion
 
     #region Save and Load
@@ -24,8 +24,8 @@ public class SaveManager : MonoBehaviour {
         currentDay = ES3.Load("currentDay", currentDay);
         lastConexion = ES3.Load("lastConexion", DateTime.Now);
         startedGame = ES3.Load("startedGame", false);
-        //events = ES3.Load("eventHandler", new ArrayList());
-        //days = ES3.Load("dayHandler", new ArrayList());
+        events = ES3.Load("eventHandler", new List<CalendarEvent>());
+        days = ES3.Load("dayHandler", new List<Day>());
         
         if(!startedGame)
         {
@@ -66,6 +66,7 @@ public class SaveManager : MonoBehaviour {
         ES3.Save("lastFireState", fireState);
         ES3.Save("lastConexion", DateTime.Now);
         ES3.Save("eventHandler", events);
+        ES3.Save("dayHandler", days);
         ES3.Save("startedGame", startedGame);
     }
     #endregion

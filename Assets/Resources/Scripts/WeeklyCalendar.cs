@@ -33,15 +33,14 @@ public class WeeklyCalendar : MonoBehaviour
     public List<Day> InitWeek()
     {
         try{
-            IEnumerable<Day> dayIEnum = (SaveManager.days).OfType<Day>();
-            week = dayIEnum.ToList();
+            week = SaveManager.days;
         } catch(Exception e) {
             week.Clear();
         }
         
         if(week.Count == 0) {
             for(int i = 0; i < 7; i++) {
-                Day d = new Day(GetCurrentDay(System.DateTime.UtcNow)+i);
+                Day d = new Day(GetCurrentDay(System.DateTime.Now)+i);
 
                 if(i == 2 || i == 4)
                     d.weather = (Day.Tiempo)3;
@@ -54,10 +53,10 @@ public class WeeklyCalendar : MonoBehaviour
         }
 
         for(int i = 0; i < 7; i++) {
-            if(SaveManager.getDay((GetCurrentDay(System.DateTime.UtcNow)+i).ToString()).weather == Day.Tiempo.vacio)
+            if(SaveManager.getDay((GetCurrentDay(System.DateTime.Now)+i).ToString()).weather == Day.Tiempo.vacio)
             {
                 int r = UnityEngine.Random.Range(1, 4);
-                Day d = new Day(GetCurrentDay(System.DateTime.UtcNow)+i);
+                Day d = new Day(GetCurrentDay(System.DateTime.Now)+i);
                 d.weather = (Day.Tiempo)r; //Rellena con sol o lluvia los dias de la semana restantes
                 week.Add(d);             
                 SaveManager.addDay(d);
@@ -65,7 +64,7 @@ public class WeeklyCalendar : MonoBehaviour
         }
         List<Day> weekTemp = new List<Day>();
         foreach(Day d in week) {
-            if(d.id < GetCurrentDay(System.DateTime.UtcNow))
+            if(d.id < GetCurrentDay(System.DateTime.Now))
             {
                 weekTemp.Add(d);
             }
