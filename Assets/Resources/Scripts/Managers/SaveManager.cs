@@ -18,8 +18,6 @@ public class SaveManager : MonoBehaviour {
     #region Save and Load
     void Awake()
     {
-
-        DialogueEventStarter.instance.startConversation(1);
         //Here load
         fireState = ES3.Load("lastFireState", fireState);
         stickNum = ES3.Load("stickNum", 1);
