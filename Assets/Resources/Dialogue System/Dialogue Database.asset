@@ -304,8 +304,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 61.7498
-        y: 158.47162
+        x: 60.65091
+        y: 157.37273
         width: 160
         height: 30
     - id: 3
@@ -336,7 +336,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(CommandTest, ,--MANAGERS);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 1
@@ -360,8 +360,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 63.8687
-        y: 231.3292
+        x: 67.9924
+        y: 234.52286
         width: 160
         height: 30
     - id: 4
@@ -392,7 +392,13 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: 'Delay(3)->Message(activateContinue);
+
+          SetContinueMode(true)@Message(activateContinue);
+
+          Delay(6)->Message(autoContinue);
+
+          Continue()@Message(autoContinue);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 1
@@ -687,13 +693,13 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 510.28387
+        x: 509.22003
         y: 517.6213
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 24.668236, y: 39.602627}
-    canvasZoom: 0.94000053
+    canvasScrollPosition: {x: 64.5528, y: 22.559076}
+    canvasZoom: 0.9700005
   - id: 2
     fields:
     - title: Title

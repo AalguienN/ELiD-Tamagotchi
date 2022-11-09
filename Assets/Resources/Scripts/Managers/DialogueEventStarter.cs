@@ -19,4 +19,11 @@ public class DialogueEventStarter : MonoBehaviour
         DialogueManager.StartConversation(conversations[day - 1]);
     }
 
+
+
+    public void giveFirstStick()
+    {
+
+    }
+
 }
