@@ -19,11 +19,38 @@ public class DialogueEventStarter : MonoBehaviour
         DialogueManager.StartConversation(conversations[day - 1]);
     }
 
-
+    IEnumerator sex() {
+        yield return new WaitForSeconds(5);
+        print("lol");
+        (DialogueManager.dialogueUI as StandardDialogueUI).OnContinue();
+    }
 
     public void giveFirstStick()
     {
+        
+    }
+
+    public void firstBurn()
+    {
+        print("worked1");
+        StartCoroutine(sex());
+    }
+
+    public void negationAnimation() {
 
     }
+
+    public void activateCameraMovementRight() {
+
+    }
+
+    public void activateBlueStick() {
+
+    }
+
+    public void apareceCara() { 
+    
+    }
+
 
 }
