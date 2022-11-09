@@ -331,7 +331,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "Antes que nada, toma esta madera y enciende un fuego. Hace fr\xEDo
+        value: "Antes que nada, toma esta madera y enciende un fuego.\n\n Hace fr\xEDo
           y la Noche no perdona a nadie."
         type: 0
         typeString: CustomFieldType_Text
@@ -360,8 +360,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 67.9924
-        y: 234.52286
+        x: 63.868683
+        y: 235.55377
         width: 160
         height: 30
     - id: 4
@@ -422,8 +422,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 286.98502
-        y: 235.69125
+        x: 285.9541
+        y: 237.75311
         width: 160
         height: 30
     - id: 5
@@ -449,7 +449,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Ya veo, parece que no puedes hablar.
+        value: Ya veo. Parece que no puedes hablar.
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -478,7 +478,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 504.54547
-        y: 235.97281
+        y: 238.03464
         width: 160
         height: 30
     - id: 6
@@ -504,8 +504,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "No te preocupes, yo tambi\xE9n he perdido a mis hermanos. Al menos
-          no estamos solos."
+        value: "No te preocupes, yo tambi\xE9n he perdido a mis hermanos.\n\n Al
+          menos no estamos solos."
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -615,8 +615,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "Estas noches cada vez son m\xE1s largas y sigues muy d\xE9bil. Cada
-          vez necesitamos m\xE1s madera."
+        value: "Estas noches cada vez son m\xE1s largas y sigues muy d\xE9bil.\n\n
+          Cada vez necesitamos m\xE1s madera."
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -698,8 +698,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 64.5528, y: 22.559076}
-    canvasZoom: 0.9700005
+    canvasScrollPosition: {x: 0, y: 6.438116}
+    canvasZoom: 0.91000056
   - id: 2
     fields:
     - title: Title
