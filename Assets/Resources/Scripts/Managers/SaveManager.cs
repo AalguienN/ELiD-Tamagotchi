@@ -63,7 +63,7 @@ public class SaveManager : MonoBehaviour {
     {
         ES3.Save("stickNum", stickNum);
         ES3.Save("currentDay", currentDay);
-        ES3.Save("lastFireState", fireState);
+        ES3.Save("lastFireState", (int) GameObject.FindWithTag("Bonfire2").GetComponent<BonfireState>().hp);
         ES3.Save("lastConexion", DateTime.Now);
         ES3.Save("eventHandler", events);
         ES3.Save("dayHandler", days);
