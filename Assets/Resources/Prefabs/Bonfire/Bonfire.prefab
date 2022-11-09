@@ -80,8 +80,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tickRate: 1
-  hp: 0
-  maxHp: 100
+  hp: 1000
+  maxHp: 1000
   state: 0
   weather: 0
   standardHpLossFactor: 1

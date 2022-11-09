@@ -60,9 +60,10 @@ public class BonfireState : MonoBehaviour
         turnOn = false; turnOff = false;
 
         int tiempoFuera = SaveManager.getSecondsSinceLastConexion();
-        
+
+        Debug.Log(SaveManager.getFireState());
         fuelList = new List<Fuel>();
-        lit(-tiempoFuera);
+        lit(-tiempoFuera, SaveManager.getFireState());
         StartCoroutine(bonfireTick());
 
         Debug.Log("El juego ha estado cerrado " + Mathf.Abs(tiempoFuera) + " segundos");
@@ -100,6 +101,11 @@ public class BonfireState : MonoBehaviour
     //lits up the bonfire
     public void lit() { hp = maxHp; this.transform.GetComponentInChildren<ParticleSystem>().Play(); state = BonfireState.states.encendida; GetComponentInChildren<Light>().GetComponent<Intensity>().encender(); }
     public void lit(int modifier) { hp = maxHp + modifier; this.transform.GetComponentInChildren<ParticleSystem>().Play(); state = BonfireState.states.encendida; }
+    public void lit(int modifier, int ini) { 
+        hp = ini + modifier; 
+        this.transform.GetComponentInChildren<ParticleSystem>().Play(); 
+        state = BonfireState.states.encendida; 
+    }
 
     //extinguish the bonfire
     private void extinguish() { hp = 0; this.transform.GetComponentInChildren<ParticleSystem>().Stop(); state = BonfireState.states.apagada; GetComponentInChildren<Light>().GetComponent<Intensity>().apagar(); }
