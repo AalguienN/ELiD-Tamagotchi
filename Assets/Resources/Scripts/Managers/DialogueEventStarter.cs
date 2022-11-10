@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PixelCrushers.DialogueSystem;
+using UnityEngine.UI;
 
 public class DialogueEventStarter : MonoBehaviour
 {
@@ -13,6 +14,23 @@ public class DialogueEventStarter : MonoBehaviour
 
     public string[] conversations = new string[7];
     public Transform encapuchado, player;
+    public Button continueBtn;
+
+
+    public void startCurrentDayDialogue()
+    {
+        startConversation(SaveManager.getCurrentDay());
+    }
+
+
+    public void disableContinue() {
+        continueBtn.interactable = false;
+    }
+
+    public void enableContinue()
+    {
+        continueBtn.interactable = true;
+    }
 
     public void startConversation(int day)
     {
@@ -20,8 +38,10 @@ public class DialogueEventStarter : MonoBehaviour
     }
 
     IEnumerator sex() {
-        yield return new WaitForSeconds(5);
-        print("lol");
+        while (!SaveManager.hasBurntFirstStick)
+        {
+            yield return null;
+        }
         (DialogueManager.dialogueUI as StandardDialogueUI).OnContinue();
     }
 
@@ -29,10 +49,10 @@ public class DialogueEventStarter : MonoBehaviour
     {
         
     }
-
     public void firstBurn()
     {
-        print("worked1");
+        print("firstBurn");
+        SaveManager.setStickNum(SaveManager.getStickNum() + 1);
         StartCoroutine(sex());
     }
 

@@ -280,7 +280,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SendMessage(firstBurn,  , Dialogue Manager);
+        value: 
         type: 0
         typeString: CustomFieldType_Text
       - title: Response Menu Sequence
@@ -340,11 +340,16 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 'SetContinueMode(false)
+        value: 'SendMessage(firstBurn,  , Dialogue Manager);
 
-          SetContinueMode(true)@Message(Test)'
+          SendMessage(disableContinue,
+          , Dialogue Manager);'
         type: 0
         typeString: CustomFieldType_Text
+      - title: Response Menu Sequence
+        value: 
+        type: 0
+        typeString: 
       conversationID: 1
       isRoot: 0
       isGroup: 0
@@ -379,7 +384,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 63.868683
-        y: 235.55377
+        y: 236.73022
         width: 160
         height: 30
     - id: 4
@@ -410,13 +415,11 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 'Delay(3)->Message(activateContinue);
+        value: 'SendMessage(enableContinue, , Dialogue Manager);
 
-          SetContinueMode(true)@Message(activateContinue);
+          Delay(5)->Message(finishedDelay);
 
-          Delay(6)->Message(autoContinue);
-
-          Continue()@Message(autoContinue);'
+          Continue()@Message(finishedDelay);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 1
@@ -440,7 +443,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 285.9541
+        x: 287.13058
         y: 237.75311
         width: 160
         height: 30
@@ -633,8 +636,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "Estas noches cada vez son m\xE1s largas y sigues muy d\xE9bil.\n\n
-          Cada vez necesitamos m\xE1s madera."
+        value: "Estas noches cada vez son m\xE1s largas y sigues muy d\xE9bil.\n\nCada
+          vez necesitamos m\xE1s madera."
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -716,8 +719,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 6.438116}
-    canvasZoom: 0.91000056
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.8500006
   - id: 2
     fields:
     - title: Title

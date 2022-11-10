@@ -6,13 +6,21 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour {
     #region Variables
     [Header("Variables to be saved")]
-    [HideInInspector] private static int fireState, stickNum, currentDay;
+    [HideInInspector] private static int fireState, stickNum, currentDay, startingDay;
     [HideInInspector] private static bool startedGame;
     DateTime lastConexion;
     public static int timeSinceLastConexion;
 
     public static List<CalendarEvent> events = new List<CalendarEvent>();
     public static List<Day> days = new List<Day>();
+    #endregion
+
+    #region DialogueVariables
+    public static bool hasBurntFirstStick = false;
+    public static bool miniGameActive = false;
+    public static bool blueWood = false;
+    public static bool isCaputxaActive = false;
+
     #endregion
 
     #region Save and Load
@@ -26,10 +34,16 @@ public class SaveManager : MonoBehaviour {
         startedGame = ES3.Load("startedGame", false);
         events = ES3.Load("eventHandler", new List<CalendarEvent>());
         days = ES3.Load("dayHandler", new List<Day>());
+        startingDay = ES3.Load("startingDay", 0);
+        hasBurntFirstStick = ES3.Load("hasBurntFirstStick", false);
+
+        currentDay = startingDay - WeeklyCalendar.GetCurrentDay(System.DateTime.Now);
+        ES3.Save("currentDay",currentDay);
         
         if(!startedGame)
         {
             ES3.Save("startedGame", true);
+            setStartingDay();
             startedGame = true;
             print("Welcome, new Player");
         }
@@ -59,15 +73,15 @@ public class SaveManager : MonoBehaviour {
             saveAll();
     }
 
-    public void saveAll()
+    public static void saveAll()
     {
         ES3.Save("stickNum", stickNum);
-        ES3.Save("currentDay", currentDay);
         ES3.Save("lastFireState", (int) GameObject.FindWithTag("Bonfire2").GetComponent<BonfireState>().hp);
         ES3.Save("lastConexion", DateTime.Now);
         ES3.Save("eventHandler", events);
         ES3.Save("dayHandler", days);
         ES3.Save("startedGame", startedGame);
+        ES3.Save("hasBurntFirstStick", hasBurntFirstStick);
     }
     #endregion
 
@@ -98,6 +112,11 @@ public class SaveManager : MonoBehaviour {
     {
         ES3.Save("currentDay", newCurrentDay);
         currentDay = newCurrentDay;
+    }
+
+    public static void setStartingDay()
+    {
+        startingDay = WeeklyCalendar.GetCurrentDay(System.DateTime.Now);
     }
 
     public static int getSecondsSinceLastConexion()

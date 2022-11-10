@@ -81,6 +81,12 @@ public class InteractableTouch : MonoBehaviour
     #region Actual Code
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Consume();
+        }
+        /*TEST CODE*/
         stickNum = SaveManager.getStickNum();
         if (!visible && stickNum > 0) //Reappear sticks when reget
         {
@@ -224,6 +230,11 @@ public class InteractableTouch : MonoBehaviour
     //eat the fod
     public void Consume()
     {
+        if (!SaveManager.hasBurntFirstStick)
+        {
+            SaveManager.hasBurntFirstStick = true;
+            SaveManager.saveAll();
+        }
         SaveManager.setStickNum(--stickNum);
         Debug.Log(stickNum + " palos restantes");
         //Modificado por Adrián
