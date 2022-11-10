@@ -217,6 +217,7 @@ public class MonthlyCalendarManager : MonoBehaviour
             }
         }
         gO.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = gO.name = day.ToString();
+        gO.transform.GetChild(1).gameObject.transform.rotation = Quaternion.Euler(0,0, UnityEngine.Random.Range(-25f,25f));
         gO.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().sprite = weatherIcons[climateIntIcon]; 
     }
 

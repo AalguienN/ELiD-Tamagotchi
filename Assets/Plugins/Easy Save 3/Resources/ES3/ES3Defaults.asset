@@ -32,8 +32,6 @@ MonoBehaviour:
     - Assembly-CSharp-firstpass
     - Assembly-CSharp
     - Cinemachine
-    - sc.fae.runtime
-    - sc.fae.editor
     - PsdPlugin
     - PPv2URPConverters
     showAdvancedSettings: 0
