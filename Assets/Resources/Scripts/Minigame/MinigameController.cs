@@ -9,8 +9,14 @@ public class MinigameController : MonoBehaviour
     public GameObject axePrefab;
     public Vector3 axeStartPosition;
     public Vector3 axeStartRotation;
-    public Vector3 axeEndPositionOffset;
-    public Vector3 axeEndRotationOffset;
+    public Vector3 axeMinPosition;
+    public Vector3 axeMinRotation;
+    public Vector3 axeMaxPosition;
+    public Vector3 axeMaxRotation;
+    Vector3 axeActualPosition;
+    Vector3 axeActualRotation;
+    public Vector3 axeHitPosition;
+    public Vector3 axeHitRotation;
 
     [Header("Needle variables")]
     public GameObject precisionNeedle;
@@ -30,16 +36,25 @@ public class MinigameController : MonoBehaviour
 
     void Start() {
         Reward(0);
-        axePrefab.transform.position = axeStartPosition;
+        axePrefab.transform.localPosition = axeStartPosition;
         axePrefab.transform.localRotation = Quaternion.Euler(axeStartRotation);
     }
 
-    void StartGame()
+    IEnumerator StartGame()
     {
         sticks = 0;
-        Reward(0);
-        continueSpeed = true;
         gameRunning = true;
+        Reward(0);
+        float t = 0;
+        while(t<=1) {
+            t += Time.deltaTime/2f;
+            axePrefab.transform.localPosition = Vector3.Lerp(axeStartPosition,axeActualPosition,t);
+            axePrefab.transform.localRotation = Quaternion.Euler(Vector3.Lerp(axeStartRotation,axeActualRotation,t));
+            axeActualPosition = axeMaxPosition;
+            axeActualRotation = axeMaxRotation;
+            yield return new WaitForEndOfFrame();
+        }
+        continueSpeed = true;
         gameTime = Random.Range(0.0f,10.0f);
     }
 
@@ -47,7 +62,13 @@ public class MinigameController : MonoBehaviour
     {
         print("Game has ended");
         gameRunning = false;
-        yield return new WaitForSeconds(1f);
+        float t = 0;
+        while(t<=1) {
+            t += Time.deltaTime/2f;
+            axePrefab.transform.localPosition = Vector3.Lerp(axeActualPosition,axeStartPosition,t);
+            axePrefab.transform.localRotation = Quaternion.Euler(Vector3.Lerp(axeActualRotation,axeStartRotation,t));
+            yield return new WaitForEndOfFrame();
+        }
         yield return new WaitForEndOfFrame();
         if(reason==-1) {
             if(CameraManagement.getActiveCamera()=="CamMinigame") {
@@ -75,7 +96,7 @@ public class MinigameController : MonoBehaviour
                 }
                 if(Input.GetMouseButtonUp(0)) { 
                     if(Vector3.Distance(mousePosition, Input.mousePosition) < 50f)
-                        StartGame(); 
+                        StartCoroutine(StartGame()); 
                 }
                 return;
             }
@@ -85,19 +106,13 @@ public class MinigameController : MonoBehaviour
             speed = Mathf.Clamp(speed+Time.deltaTime*Time.deltaTime*speed, 1f, 15f);
             precision = Mathf.Sin(gameTime*speed)*80f;
             precisionNeedle.transform.rotation = Quaternion.Euler(0f,0f,precision);
+            axePrefab.transform.localPosition = axeActualPosition = Vector3.Lerp(axeMinPosition,axeMaxPosition,1f - Mathf.Abs(precision/80f));
+            axeActualRotation = Vector3.Lerp(axeMinRotation,axeMaxRotation,1f - Mathf.Abs(precision/80f));
+            axePrefab.transform.localRotation = Quaternion.Euler(axeActualRotation);
 
             if(Input.GetMouseButtonUp(0)) {
-                RaycastHit hit; 
-                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position); 
-                if ( Physics.Raycast (ray,out hit,100.0f)) {
-                    if(hit.collider.gameObject.CompareTag("Tree")) {
-                        StartCoroutine(StopNeedle());
-                    }
-                }
+                StartCoroutine(StopNeedle());
             }
-        }
-        else {
-            if(gameRunning) StartCoroutine(EndGame(-1));
         }
     }
 
@@ -106,9 +121,30 @@ public class MinigameController : MonoBehaviour
         speed += (0.5f-Mathf.Abs(precision)/80f)*2f;
         gameTime = Random.Range(0.0f,10.0f);
         precision01 = 1f - Mathf.Abs(precision/80f);
+        
+        float t = 0;
+        while(axePrefab.transform.localPosition != axeHitPosition) {
+            t += Time.deltaTime*3;
+            axePrefab.transform.localPosition = new Vector3(
+                                                        Mathf.Lerp(axeActualPosition.x,axeHitPosition.x,t),
+                                                        Mathf.Lerp(axeActualPosition.y,axeHitPosition.y,t),
+                                                        Mathf.Lerp(axeActualPosition.z,axeHitPosition.z,t)
+                                                    );
+            axePrefab.transform.localRotation = Quaternion.Euler(new Vector3(
+                                                                Mathf.Lerp(axeActualRotation.x,axeHitRotation.x,t),
+                                                                Mathf.Lerp(axeActualRotation.y,axeHitRotation.y,t),
+                                                                Mathf.Lerp(axeActualRotation.z,axeHitRotation.z,t)
+                                                            ));
+            yield return new WaitForEndOfFrame();
+        }
+        axePrefab.transform.localPosition = axeHitPosition;
+
+        yield return new WaitForSeconds(0.5f);
+
         if(precision01 > 0.9f)
         {
             print("Perfect");
+            //Play sound
             Reward(3);
         }
         else if(precision01 > 0.7f) 
@@ -131,8 +167,25 @@ public class MinigameController : MonoBehaviour
             print("You're out");
             StartCoroutine(EndGame(0));
             Reward(-4);
+            yield break;
         }
-        StartCoroutine(MoveAxe());
+        t=0;
+        while(axePrefab.transform.localPosition != axeActualPosition) {
+            t += Time.deltaTime/4;
+            axePrefab.transform.localPosition = new Vector3(
+                                                                Mathf.Lerp(axeHitPosition.x,axeActualPosition.x,t),
+                                                                Mathf.Lerp(axeHitPosition.y,axeActualPosition.y,t),
+                                                                Mathf.Lerp(axeHitPosition.z,axeActualPosition.z,t)
+                                                            );
+            axePrefab.transform.localRotation = Quaternion.Euler(new Vector3(
+                                                                Mathf.Lerp(axeHitRotation.x,axeActualRotation.x,t),
+                                                                Mathf.Lerp(axeHitRotation.y,axeActualRotation.y,t),
+                                                                Mathf.Lerp(axeHitRotation.z,axeActualRotation.z,t)
+                                                            ));
+            yield return new WaitForEndOfFrame();
+        }
+        axePrefab.transform.localPosition = axeActualPosition;
+
         yield return new WaitForSeconds(1f);
         continueSpeed = true;
     }
@@ -141,40 +194,5 @@ public class MinigameController : MonoBehaviour
         sticks+=rewardCount;
         sticks = Mathf.Max(0,sticks);
         stickTextTemp.text = "Sticks: " + sticks;
-    }
-
-    IEnumerator MoveAxe() {
-        float t = 0;
-        while(axePrefab.transform.localPosition != axeEndPositionOffset) {
-            t += Time.deltaTime*3;
-            axePrefab.transform.localPosition = new Vector3(
-                                                        Mathf.Lerp(axeStartPosition.x,axeEndPositionOffset.x,t),
-                                                        Mathf.Lerp(axeStartPosition.y,axeEndPositionOffset.y,t),
-                                                        Mathf.Lerp(axeStartPosition.z,axeEndPositionOffset.z,t)
-                                                    );
-            axePrefab.transform.localRotation = Quaternion.Euler(new Vector3(
-                                                                Mathf.Lerp(axeStartRotation.x,axeEndRotationOffset.x,t),
-                                                                Mathf.Lerp(axeStartRotation.y,axeEndRotationOffset.y,t),
-                                                                Mathf.Lerp(axeStartRotation.z,axeEndRotationOffset.z,t)
-                                                            ));
-            yield return new WaitForEndOfFrame();
-        }
-        axePrefab.transform.localPosition = axeEndPositionOffset;
-        yield return new WaitForSeconds(0.5f);
-        t=0;
-        while(axePrefab.transform.localPosition != axeStartPosition) {
-            t += Time.deltaTime/4;
-            axePrefab.transform.localPosition = new Vector3(
-                                                                Mathf.Lerp(axeEndPositionOffset.x,axeStartPosition.x,t),
-                                                                Mathf.Lerp(axeEndPositionOffset.y,axeStartPosition.y,t),
-                                                                Mathf.Lerp(axeEndPositionOffset.z,axeStartPosition.z,t)
-                                                            );
-            axePrefab.transform.localRotation = Quaternion.Euler(new Vector3(
-                                                                Mathf.Lerp(axeEndRotationOffset.x,axeStartRotation.x,t),
-                                                                Mathf.Lerp(axeEndRotationOffset.y,axeStartRotation.y,t),
-                                                                Mathf.Lerp(axeEndRotationOffset.z,axeStartRotation.z,t)
-                                                            ));
-            yield return new WaitForEndOfFrame();
-        }
     }
 }
