@@ -5,14 +5,18 @@ using UnityEngine;
 public class VisualBonfire : MonoBehaviour
 {
     public float targetLight;
+    static float _sTargetLight;
 
     // Update is called once per frame
     void Update()
     {
-        //Change shader variable to targetLight
+        if(targetLight != _sTargetLight)
+        {
+            targetLight = _sTargetLight;
+        }
     }
 
     public static void SetTargetLight(float target) {
-        targetLight = target;
+        _sTargetLight = target;
     }
 }
