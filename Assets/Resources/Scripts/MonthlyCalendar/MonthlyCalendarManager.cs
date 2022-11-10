@@ -224,7 +224,7 @@ public class MonthlyCalendarManager : MonoBehaviour
         gO.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().sprite = weatherIcons[climateIntIcon]; 
     }
 
-    public int GetDayWeather() {
+    public static int GetDayWeather() {
         return (int)SaveManager.getDay(WeeklyCalendar.GetCurrentDay(DateTime.Now).ToString()).weather;
     }
     #endregion
