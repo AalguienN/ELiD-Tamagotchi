@@ -159,11 +159,14 @@ public class InteractableTouch : MonoBehaviour
             RaycastHit hit; 
             Ray ray = Camera.main.ScreenPointToRay(mousePos); 
             if (Physics.Raycast (ray,out hit,100.0f)){
-                print(hit.collider.name);
                 if(hit.collider.gameObject.CompareTag("Stick")) {
-                    print("kik");
                     hold = true;
                     CameraManagement.blockCamera = true;
+                }
+                else if (hit.collider.gameObject.CompareTag("Caputxa") && SaveManager.canCaputxaBeeInteracted) //starts current day dialogue
+                {
+                    print("caputxa");
+                    DialogueEventStarter.instance.startCurrentDayDialogue();
                 }
             }
             // if (mousePos.x > (pixelPointer.x - grabR) && mousePos.x < (pixelPointer.x + grabR) 

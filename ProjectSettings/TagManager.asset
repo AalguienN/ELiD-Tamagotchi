@@ -11,6 +11,7 @@ TagManager:
   - Bonfire
   - Bonfire2
   - DialogueManager
+  - Caputxa
   layers:
   - Default
   - TransparentFX

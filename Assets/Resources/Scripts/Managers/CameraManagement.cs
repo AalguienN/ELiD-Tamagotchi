@@ -127,7 +127,22 @@ public class CameraManagement : MonoBehaviour
      and death desire*/
     public void SwitchCamera(int dir)
     {
-        if(dir == 0) { return; } //Camera is locked, no turning
+        if(SaveManager.getCanOnlyTurn() == 1) {
+            if (dir == 1 && getActiveCamera().Equals("CamMinigame") || dir == -1 && getActiveCamera().Equals("CamBonfire"))
+            {
+                returnToCenter();
+                return;
+            }
+        }
+        if (SaveManager.getCanOnlyTurn() == -1)
+        {
+            if (dir == -1 && getActiveCamera().Equals("CamCalendar") || dir == 1 && getActiveCamera().Equals("CamBonfire"))
+            {
+                returnToCenter();
+                return;
+            }
+        }
+        if (dir == 0) { return; } //Camera is locked, no turning
         int[] newPriority = new int[vcams.Length];
         bool isDirRight = dir > 0 ? true : false;
         int changeLength = isDirRight ? vcams.Length - 1 : 0;
@@ -258,20 +273,11 @@ public class CameraManagement : MonoBehaviour
             case TouchPhase.Ended:
                 if (switchThresholdHorizontal)
                 {
-                    int dir2 = 0; //The direction when camera is locked
-                    if(SaveManager.getCanOnlyTurn() == 1 && !getActiveCamera().Equals("CamMinigame") || SaveManager.getCanOnlyTurn() == -1 && !getActiveCamera().Equals("CamCalendar"))
-                    {
-                        dir2 = SaveManager.getCanOnlyTurn();
-                    }
-                    else if(SaveManager.getCanOnlyTurn() == 1 && getActiveCamera().Equals("CamMinigame") || SaveManager.getCanOnlyTurn() == -1 && getActiveCamera().Equals("CamCalendar"))
-                    {
-                        dir2 = -SaveManager.getCanOnlyTurn();
-                    }
-                    SwitchCamera(SaveManager.getCanOnlyTurn() == 2 ? dir : dir2);
+                    SwitchCamera(dir);
                     StartCoroutine(returnToCenter());
                 }
                 else {
-                    if (switchThresholdHorizontal){
+                    if (switchThresholdVertical){
                         DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
                         dataDir.Delete(true);
                     }

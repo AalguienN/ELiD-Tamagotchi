@@ -24,7 +24,8 @@ public class SaveManager : MonoBehaviour {
     public static bool blueWood = false;
     public static bool isCaputxaActive = false;
     public static int canOnlyTurn = 0;
-    public static bool isCaputxaDisabled = true;
+    //public static bool isCaputxaDisabled = true;
+    public static bool canCaputxaBeeInteracted = false;
 
     #endregion
 
@@ -75,12 +76,12 @@ public class SaveManager : MonoBehaviour {
         if (lastConexion.Day != System.DateTime.Now.Day || aux_startedGame)
         {
             DialogueEventStarter.instance.enableCaputxa();
-            DialogueEventStarter.instance.enableCaputxaInteraction();
+            canCaputxaBeeInteracted = true;
             aux_startedGame = false;
         }
         else
         {
-            DialogueEventStarter.instance.disableCaputxaInteraction();
+            canCaputxaBeeInteracted = false;
             DialogueEventStarter.instance.disableCaputxa();
         }
     }
