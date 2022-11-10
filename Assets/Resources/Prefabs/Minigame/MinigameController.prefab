@@ -221,8 +221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axePrefab: {fileID: 9106220330699471697}
-  axeStartPosition: {x: 8, y: -0.5, z: -1}
-  axeStartRotation: {x: 0, y: 0, z: -90}
+  axeStartPosition: {x: 3.08, y: -1.45, z: 1.09}
+  axeStartRotation: {x: 75, y: -190, z: -160}
   axeEndPositionOffset: {x: 1, y: 0.25, z: -0.2}
   axeEndRotationOffset: {x: 0, y: -100, z: -90}
   precisionNeedle: {fileID: 9106220330866221236}
@@ -436,15 +436,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9106220330699471697}
-  m_LocalRotation: {x: 0.5416752, y: -0.5416752, z: -0.45451948, w: 0.45451948}
-  m_LocalPosition: {x: 6.01, y: -0.28, z: -0.99}
+  m_LocalRotation: {x: 0.7691142, y: -0.18949118, z: 0.17340294, w: 0.5852246}
+  m_LocalPosition: {x: 3.08, y: -1.45, z: 1.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1231465443369180415}
   m_Father: {fileID: 9106220330176073959}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 75, y: -190, z: -160}
 --- !u!65 &9106220330699471696
 BoxCollider:
   m_ObjectHideFlags: 0

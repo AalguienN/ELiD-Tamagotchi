@@ -31,6 +31,7 @@ public class MinigameController : MonoBehaviour
     void Start() {
         Reward(0);
         axePrefab.transform.position = axeStartPosition;
+        axePrefab.transform.localRotation = Quaternion.Euler(axeStartRotation);
     }
 
     void StartGame()
