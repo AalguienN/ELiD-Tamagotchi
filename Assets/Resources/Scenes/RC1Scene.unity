@@ -208,86 +208,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 386168962}
     m_Modifications:
-    - target: {fileID: 2149364326499811193, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149364326499811193, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: prewarm
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149364326499811193, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: lengthInSec
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149364326499811193, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149364326499811193, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: ringBufferMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149364326499811193, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: simulationSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149396350643702363, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: prewarm
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149396350643702363, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: lengthInSec
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149396350643702363, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149396350643702363, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: simulationSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149455024270358437, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: prewarm
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149455024270358437, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: lengthInSec
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149455024270358437, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149455024270358437, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: simulationSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149533656128472779, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: prewarm
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149533656128472779, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149920225145613443, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: prewarm
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149920225145613443, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: lengthInSec
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149920225145613443, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149920225145613443, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
-      propertyPath: simulationSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2880177056032639292, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
       propertyPath: m_Name
       value: Bonfire
@@ -1348,14 +1268,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 386168962}
     m_Modifications:
-    - target: {fileID: 97996823489128336, guid: 2d5a90614639e794cb181b213dd73581, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f07c38be8c5a26848a84064966a8bd31, type: 2}
-    - target: {fileID: 97996823489128336, guid: 2d5a90614639e794cb181b213dd73581, type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 17b98d8bb8064cc49aeeb5a382ae729e, type: 2}
     - target: {fileID: 9106220330176073957, guid: 2d5a90614639e794cb181b213dd73581, type: 3}
       propertyPath: m_Name
       value: MinigameController
@@ -5716,16 +5628,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 993859948}
     - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
+      propertyPath: crossColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
       propertyPath: crossTexture
       value: 
       objectReference: {fileID: 21300000, guid: 23bb017c72f93ca48a64470c23a042ae, type: 3}
     - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
-      propertyPath: circleTexture
-      value: 
-      objectReference: {fileID: 21300000, guid: 0b5c64d355632c64e91739d0a314a75c, type: 3}
+      propertyPath: circleColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
-      propertyPath: weatherIcons.Array.data[1]
-      value: 
+      propertyPath: circleColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
+      propertyPath: circleColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
+      propertyPath: circleColor.r
+      value: 0.5660378
       objectReference: {fileID: 0}
     - target: {fileID: 4360047512422390706, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
       propertyPath: m_Name
