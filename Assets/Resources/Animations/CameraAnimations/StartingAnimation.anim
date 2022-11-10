@@ -56,11 +56,20 @@ AnimationClip:
       - serializedVersion: 3
         time: 4.5
         value: {x: 0, y: 0, z: 0}
-        inSlope: {x: 93.93293, y: 0, z: 0}
-        outSlope: {x: 93.93293, y: 0, z: 0}
+        inSlope: {x: 0.001443968, y: 0, z: 0}
+        outSlope: {x: 0.001443968, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.086890616, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.11840248, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 6.5
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: -0.0016670022, y: 0, z: 0}
+        outSlope: {x: -0.0016670022, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.102561, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -601,7 +610,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 4.5
+    m_StopTime: 6.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -659,11 +668,20 @@ AnimationClip:
       - serializedVersion: 3
         time: 4.5
         value: 0
-        inSlope: 93.93293
-        outSlope: 93.93293
+        inSlope: 0.001443968
+        outSlope: 0.001443968
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.086890616
+        outWeight: 0.11840248
+      - serializedVersion: 3
+        time: 6.5
+        value: 0
+        inSlope: -0.0016670022
+        outSlope: -0.0016670022
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.102561
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -1232,8 +1250,22 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0
+    functionName: waitForEndOfAnimation
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 4.5
+    intParameter: 0
+    messageOptions: 0
   - time: 2.5
     functionName: ReturnToIDLE
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 6.5
+    functionName: startFirstConversation
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

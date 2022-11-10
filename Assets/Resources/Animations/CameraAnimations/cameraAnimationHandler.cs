@@ -12,6 +12,8 @@ public class cameraAnimationHandler : MonoBehaviour
 
     public const string START_ANIMATION = "StartingAnimation";
     public const string IDLE_ANIMATION = "IdleAnim";
+    public const string RIGHT_ARROW = "RightArrowAnim";
+    public const string LEFT_ARROW = "LeftArrowAnim";
 
     private void Awake()
     {
@@ -27,6 +29,35 @@ public class cameraAnimationHandler : MonoBehaviour
     public void ReturnToIDLE()
     {
         ChangeAnimation(IDLE_ANIMATION);
+    }
+
+    public void startFirstConversation()
+    {
+        DialogueEventStarter.instance.startConversation(1);
+    }
+
+    public void caputxaEnabler(bool isEnabled)
+    {
+        if (isEnabled)
+        {
+            DialogueEventStarter.instance.enableCaputxa();
+        }
+        else
+        {
+            DialogueEventStarter.instance.disableCaputxa();
+        }
+    }
+
+    public void caputxaInteractionEnabler(bool isEnabled)
+    {
+        if (isEnabled)
+        {
+            DialogueEventStarter.instance.enableCaputxaInteraction();
+        }
+        else
+        {
+            DialogueEventStarter.instance.disableCaputxaInteraction();
+        }
     }
 
     public void ChangeAnimation(string newState)

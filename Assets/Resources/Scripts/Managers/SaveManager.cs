@@ -8,6 +8,7 @@ public class SaveManager : MonoBehaviour {
     [Header("Variables to be saved")]
     [HideInInspector] private static int fireState, stickNum, currentDay, startingDay;
     [HideInInspector] private static bool startedGame;
+    private bool aux_startedGame = false;
     DateTime lastConexion;
     public static int timeSinceLastConexion;
 
@@ -17,18 +18,24 @@ public class SaveManager : MonoBehaviour {
 
     #region DialogueVariables
     public static bool hasBurntFirstStick = false;
+    public static bool hasTurnedRight = false;
+    public static bool hasTurnedLeft = false;
     public static bool miniGameActive = false;
     public static bool blueWood = false;
     public static bool isCaputxaActive = false;
+    public static int canOnlyTurn = 0;
+    public static bool isCaputxaDisabled = true;
 
     #endregion
 
     #region Save and Load
     void Awake()
     {
+        
+
         //Here load
         fireState = ES3.Load("lastFireState", fireState);
-        stickNum = ES3.Load("stickNum", 1);
+        stickNum = ES3.Load("stickNum", 0);
         currentDay = ES3.Load("currentDay", currentDay);
         lastConexion = ES3.Load("lastConexion", DateTime.Now);
         startedGame = ES3.Load("startedGame", false);
@@ -36,6 +43,9 @@ public class SaveManager : MonoBehaviour {
         days = ES3.Load("dayHandler", new List<Day>());
         startingDay = ES3.Load("startingDay", 0);
         hasBurntFirstStick = ES3.Load("hasBurntFirstStick", false);
+        hasTurnedLeft = ES3.Load("hasTurnedLeft", false);
+        hasTurnedRight = ES3.Load("hasTurnedRight", false);
+        canOnlyTurn = ES3.Load("canOnlyTurn", 0);
 
         currentDay = startingDay - WeeklyCalendar.GetCurrentDay(System.DateTime.Now);
         ES3.Save("currentDay",currentDay);
@@ -43,11 +53,13 @@ public class SaveManager : MonoBehaviour {
         if(!startedGame)
         {
             ES3.Save("startedGame", true);
+            aux_startedGame = true;
             cameraAnimationHandler.instance.ChangeAnimation(cameraAnimationHandler.START_ANIMATION);
             setStartingDay();
             startedGame = true;
-            print("Welcome, new Player");
         }
+
+
 
         //Here calculate seconds since last conexion.
         DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
@@ -55,6 +67,22 @@ public class SaveManager : MonoBehaviour {
 
         int difference = currentEpochTime - (int)(lastConexion - epochStart).TotalSeconds;
         timeSinceLastConexion = difference; //Check if works idk
+    }
+
+    private void Start()
+    {
+        //Make sure caputxa only appears in different day
+        if (lastConexion.Day != System.DateTime.Now.Day || aux_startedGame)
+        {
+            DialogueEventStarter.instance.enableCaputxa();
+            DialogueEventStarter.instance.enableCaputxaInteraction();
+            aux_startedGame = false;
+        }
+        else
+        {
+            DialogueEventStarter.instance.disableCaputxaInteraction();
+            DialogueEventStarter.instance.disableCaputxa();
+        }
     }
 
     private void OnApplicationPause(bool pause)
@@ -83,6 +111,9 @@ public class SaveManager : MonoBehaviour {
         ES3.Save("dayHandler", days);
         ES3.Save("startedGame", startedGame);
         ES3.Save("hasBurntFirstStick", hasBurntFirstStick);
+        ES3.Save("hasTurnedLeft", true);
+        ES3.Save("hasTurnedRight", true);
+        ES3.Save("canOnlyTurn", canOnlyTurn);
     }
     #endregion
 
@@ -123,6 +154,17 @@ public class SaveManager : MonoBehaviour {
     public static int getSecondsSinceLastConexion()
     {
         return timeSinceLastConexion;
+    }
+
+    public static int getCanOnlyTurn()
+    {
+        return canOnlyTurn;
+    }
+
+    public static void setCanOnlyTurn(int num)
+    {
+        ES3.Save("canOnlyTurn", num);
+        canOnlyTurn = num; //from -1 to 2
     }
     #endregion
 

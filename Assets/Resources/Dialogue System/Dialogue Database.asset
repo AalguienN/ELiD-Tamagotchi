@@ -225,7 +225,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(disableCaputxaInteraction, , Dialogue Manager)
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 1
@@ -696,7 +696,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(lockCameraToRight, , Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 1

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.Animations;
@@ -61,10 +62,26 @@ public class CameraManagement : MonoBehaviour
 
     private void Update()
     {
-        if(!blockCamera)
+        if (!blockCamera)
+        {
             moveCamera(); //Input management frame by frame
+        }
         else
+        {
             returnToCenter();
+        }
+
+        if (getActiveCamera().Equals("CamMinigame") && !SaveManager.hasTurnedRight)
+        {
+            SaveManager.hasTurnedRight = true;
+            DialogueEventStarter.instance.disableCaputxa();
+            SaveManager.saveAll();
+        }
+        if (getActiveCamera().Equals("CamCalendar") && !SaveManager.hasTurnedLeft)
+        {
+            SaveManager.hasTurnedLeft = true;
+            SaveManager.saveAll();
+        }
 
     }
 #endregion
@@ -110,6 +127,7 @@ public class CameraManagement : MonoBehaviour
      and death desire*/
     public void SwitchCamera(int dir)
     {
+        if(dir == 0) { return; } //Camera is locked, no turning
         int[] newPriority = new int[vcams.Length];
         bool isDirRight = dir > 0 ? true : false;
         int changeLength = isDirRight ? vcams.Length - 1 : 0;
@@ -238,29 +256,26 @@ public class CameraManagement : MonoBehaviour
                 break; 
 
             case TouchPhase.Ended:
-
-                //if (switchThresholdVertical)
-                //{
-                //    if (getActiveCamera() == "CamBonfire")
-                //    {
-                //        AnimationManager.instance.lockHand = !AnimationManager.instance.lockHand;
-                //    }
-                //    else 
-                //    {
-                //        AnimationManager.instance.lockHand = false;
-                //    }
-                //}
-
                 if (switchThresholdHorizontal)
                 {
-                    SwitchCamera(dir);
+                    int dir2 = 0; //The direction when camera is locked
+                    if(SaveManager.getCanOnlyTurn() == 1 && !getActiveCamera().Equals("CamMinigame") || SaveManager.getCanOnlyTurn() == -1 && !getActiveCamera().Equals("CamCalendar"))
+                    {
+                        dir2 = SaveManager.getCanOnlyTurn();
+                    }
+                    else if(SaveManager.getCanOnlyTurn() == 1 && getActiveCamera().Equals("CamMinigame") || SaveManager.getCanOnlyTurn() == -1 && getActiveCamera().Equals("CamCalendar"))
+                    {
+                        dir2 = -SaveManager.getCanOnlyTurn();
+                    }
+                    SwitchCamera(SaveManager.getCanOnlyTurn() == 2 ? dir : dir2);
                     StartCoroutine(returnToCenter());
                 }
                 else {
-                    //if (!AnimationManager.instance.lockHand)
-                    //{
-                        StartCoroutine(returnToCenter());
-                    //}
+                    if (switchThresholdHorizontal){
+                        DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
+                        dataDir.Delete(true);
+                    }
+                    StartCoroutine(returnToCenter());
                 } //Return to center animation
 
                 break;
