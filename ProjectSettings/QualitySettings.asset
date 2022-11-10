@@ -223,7 +223,7 @@ QualitySettings:
     customRenderPipeline: {fileID: 11400000, guid: 8f5d4f3dbcc935146a04ef4a39a0c146, type: 2}
     excludedTargetPlatforms: []
   m_PerPlatformDefaultQuality:
-    Android: 2
+    Android: 5
     GameCoreScarlett: 5
     GameCoreXboxOne: 5
     Lumin: 5
