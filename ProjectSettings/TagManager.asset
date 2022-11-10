@@ -10,6 +10,7 @@ TagManager:
   - Stick
   - Bonfire
   - Bonfire2
+  - DialogueManager
   layers:
   - Default
   - TransparentFX
