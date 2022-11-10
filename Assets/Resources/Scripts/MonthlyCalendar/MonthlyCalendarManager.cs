@@ -26,6 +26,9 @@ public class MonthlyCalendarManager : MonoBehaviour
     public Transform dayContainer;
     public GameObject calendarDayPrefab;
     public Sprite[] weatherIcons = new Sprite[3];
+    public Sprite noneTexture;
+    public Sprite circleTexture;
+    public Sprite crossTexture;
     private List<GameObject> daysInCalendarDisplay = new List<GameObject>();
     public GameObject calendarEventPrefab;
     private List<GameObject> eventObjects = new List<GameObject>();
@@ -55,6 +58,7 @@ public class MonthlyCalendarManager : MonoBehaviour
             gO.transform.rotation = transform.rotation;
             gO.transform.SetParent(dayContainer);
             gO.transform.localPosition = new Vector3((-0.3928572f+0.1309524f*(i%7)),0.25f-0.125f*(i/7),0);
+            gO.transform.GetChild(1).transform.rotation = Quaternion.Euler(0,0, UnityEngine.Random.Range(-25f,25f));
         }
 
         transform.GetChild(0).transform.localScale = transform.GetChild(0).transform.localScale*2.5f/6f;
@@ -217,7 +221,6 @@ public class MonthlyCalendarManager : MonoBehaviour
             }
         }
         gO.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = gO.name = day.ToString();
-        gO.transform.GetChild(1).gameObject.transform.rotation = Quaternion.Euler(0,0, UnityEngine.Random.Range(-25f,25f));
         gO.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().sprite = weatherIcons[climateIntIcon]; 
     }
 
