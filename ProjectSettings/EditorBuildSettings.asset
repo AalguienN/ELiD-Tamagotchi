@@ -8,13 +8,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/RC1Scene.unity
     guid: a0804f3cf49322049a1bea2247539ffa
-  - enabled: 0
-    path: Assets/Resources/Scenes/MainScene.unity
-    guid: db4a1840a4ff1244e9a34e1068d047ca
-  - enabled: 0
-    path: Assets/Resources/Scenes/CarlosPruebas.unity
-    guid: 0ddf50af379e88c44b47a70f37c68629
-  - enabled: 0
-    path: Assets/Resources/Scenes/PruebasParaxodon.unity
-    guid: 20a7b4b5c0f9f174f8cb50f0bdff67a7
   m_configObjects: {}
