@@ -48,4 +48,11 @@ public class AnimationManager : MonoBehaviour
     //{
     //    lockHand = !lockHand;
     //}
+
+    public IEnumerator startAnimation()
+    {
+        CameraManagement.blockCamera = true;
+        yield return new WaitForSeconds(10);
+        CameraManagement.blockCamera = false;
+    }
 }
