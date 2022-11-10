@@ -42,7 +42,9 @@ public class WeeklyCalendar : MonoBehaviour
             for(int i = 0; i < 7; i++) {
                 Day d = new Day(GetCurrentDay(System.DateTime.Now)+i);
 
-                if(i == 2 || i == 4)
+                if(i == 2)
+                    d.weather = (Day.Tiempo)2;
+                else if(i == 4)
                     d.weather = (Day.Tiempo)3;
                 else
                     d.weather = (Day.Tiempo)1;
