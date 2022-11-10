@@ -388,6 +388,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 386168962}
     m_Modifications:
+    - target: {fileID: 1222663792003506280, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+      propertyPath: fire
+      value: 
+      objectReference: {fileID: 111482907}
+    - target: {fileID: 1222663792003506280, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+      propertyPath: light
+      value: 
+      objectReference: {fileID: 1019302660}
     - target: {fileID: 2880177056032639292, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
       propertyPath: m_Name
       value: Bonfire
@@ -434,6 +442,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2880177056032639299, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3305980892483163874, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7205140777894429493, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -575,6 +591,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 883e4a7eea02bf742ac91e0d686e97ba, type: 3}
   m_PrefabInstance: {fileID: 1361123803}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &111482907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3305980892483163874, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+  m_PrefabInstance: {fileID: 64368418}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &132872145 stripped
 Transform:
@@ -4806,6 +4827,11 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 883e4a7eea02bf742ac91e0d686e97ba, type: 3}
   m_PrefabInstance: {fileID: 766558068}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1019302660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7980692880416574271, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+  m_PrefabInstance: {fileID: 64368418}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1021679927
 GameObject:

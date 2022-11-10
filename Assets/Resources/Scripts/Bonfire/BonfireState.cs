@@ -12,7 +12,6 @@ public class BonfireState : MonoBehaviour
     #region Variables
     [Header("TickRate in seconds")]
     public float tickRate = 1f;
-    
 
     [Header("Stats")]
     public double hp;
@@ -99,16 +98,34 @@ public class BonfireState : MonoBehaviour
 
     #region methods
     //lits up the bonfire
-    public void lit() { hp = maxHp; this.transform.GetComponentInChildren<ParticleSystem>().Play(); state = BonfireState.states.encendida; GetComponentInChildren<Light>().GetComponent<Intensity>().encender(); }
-    public void lit(int modifier) { hp = maxHp + modifier; this.transform.GetComponentInChildren<ParticleSystem>().Play(); state = BonfireState.states.encendida; }
+    public void lit() { 
+        hp = maxHp;  
+        this.transform.GetComponentInChildren<ParticleSystem>().Play(); 
+        state = BonfireState.states.encendida; 
+        GetComponentInChildren<Light>().GetComponent<Intensity>().encender();
+        VisualBonfire.SetTargetLight(1);
+    }
+    public void lit(int modifier) { 
+        hp = maxHp + modifier; 
+        this.transform.GetComponentInChildren<ParticleSystem>().Play(); 
+        state = BonfireState.states.encendida;
+        VisualBonfire.SetTargetLight(1);
+    }
     public void lit(int modifier, int ini) { 
         hp = ini + modifier; 
         this.transform.GetComponentInChildren<ParticleSystem>().Play(); 
         state = BonfireState.states.encendida; 
+        VisualBonfire.SetTargetLight(1);
     }
 
     //extinguish the bonfire
-    private void extinguish() { hp = 0; this.transform.GetComponentInChildren<ParticleSystem>().Stop(); state = BonfireState.states.apagada; GetComponentInChildren<Light>().GetComponent<Intensity>().apagar(); }
+    private void extinguish() { 
+        hp = 0; 
+        this.transform.GetComponentInChildren<ParticleSystem>().Stop(); 
+        state = BonfireState.states.apagada; 
+        GetComponentInChildren<Light>().GetComponent<Intensity>().apagar();
+        VisualBonfire.SetTargetLight(0);
+    }
 
     public void heal(double n) {
         if (hp + n < maxHp && hp != 0)

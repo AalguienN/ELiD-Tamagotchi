@@ -10034,8 +10034,16 @@ PrefabInstance:
       value: Fire
       objectReference: {fileID: 0}
     - target: {fileID: 4725203104226010599, guid: cd251252e5e156f4681b543af25d48ee, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725203104226010599, guid: cd251252e5e156f4681b543af25d48ee, type: 3}
       propertyPath: m_Intensity
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725203104226010599, guid: cd251252e5e156f4681b543af25d48ee, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4725203104226010600, guid: cd251252e5e156f4681b543af25d48ee, type: 3}
       propertyPath: m_RootOrder
