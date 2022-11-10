@@ -25,12 +25,12 @@ public class DialogueEventStarter : MonoBehaviour
     
     public void disableCaputxaInteraction()
     {
-        caputxa.GetComponentInChildren<Button>().interactable = false;
+        SaveManager.canCaputxaBeeInteracted = false;
     }
 
     public void enableCaputxaInteraction()
     {
-        caputxa.GetComponentInChildren<Button>().interactable = true;
+        SaveManager.canCaputxaBeeInteracted = true;
     }
 
     public void enableCaputxa()
