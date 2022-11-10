@@ -43,6 +43,7 @@ public class SaveManager : MonoBehaviour {
         if(!startedGame)
         {
             ES3.Save("startedGame", true);
+            cameraAnimationHandler.instance.ChangeAnimation(cameraAnimationHandler.START_ANIMATION);
             setStartingDay();
             startedGame = true;
             print("Welcome, new Player");

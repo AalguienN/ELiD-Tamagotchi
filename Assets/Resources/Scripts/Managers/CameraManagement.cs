@@ -143,6 +143,7 @@ public class CameraManagement : MonoBehaviour
         /**/
         canChange = false;
         StartCoroutine(waitForEndOfAnimation(cameraChangeTime * 0.6f)); //Assures you wont be able to change until at leas a 60% of the animation has been completed
+
     }
     #endregion
 
