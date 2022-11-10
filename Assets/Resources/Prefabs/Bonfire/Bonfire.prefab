@@ -10198,6 +10198,10 @@ PrefabInstance:
       value: Fire_Model (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7205140776170859923, guid: 4cbb8cb61af483948b8b6c8adb81af7f, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7205140776170859923, guid: 4cbb8cb61af483948b8b6c8adb81af7f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 03c1aadb5ab88ba41b892193e490b164, type: 2}

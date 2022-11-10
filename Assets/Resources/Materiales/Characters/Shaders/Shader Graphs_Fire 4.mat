@@ -64,7 +64,7 @@ Material:
     - _Power_Text: 1.33
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _power_lados: 0.39
+    - _power_lados: 0.12
     m_Colors:
     - Color_1c74365aad6147ceb05d3a795691ead2: {r: 31.999996, g: 2.680628, b: 0, a: 0}
     - Vector2_e50630c308ff47f2876677c9e1eeae47: {r: -0.2, g: -0.5, b: 0, a: 0}

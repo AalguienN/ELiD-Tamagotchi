@@ -179,7 +179,7 @@ public class MonthlyCalendarManager : MonoBehaviour
                 int globalDay = WeeklyCalendar.GetCurrentDay(epochToday);
                 int dW = (int)SaveManager.getDay(globalDay.ToString()).weather;
 
-                ChangeTileVisuals(gO, Color.grey, Color.white, previousYearInt, previousMonthInt, previousMonthDay, dW);
+                //ChangeTileVisuals(gO, Color.grey, Color.white, previousYearInt, previousMonthInt, previousMonthDay, dW);
             }
             else if(i>actualMonth.Days+firstDayInWeek-1) {
                 int localYear = (currentMonth==12) ? currentYear+1 : currentYear;
@@ -190,19 +190,19 @@ public class MonthlyCalendarManager : MonoBehaviour
                 int globalDay = WeeklyCalendar.GetCurrentDay(epochToday);
                 int dW = (int)SaveManager.getDay(globalDay.ToString()).weather;
                 
-                ChangeTileVisuals(gO, Color.grey, Color.white, localYear, localMonth, localDay, dW);
+                //ChangeTileVisuals(gO, Color.grey, Color.white, localYear, localMonth, localDay, dW);
             }
             else {
                 System.DateTime epochToday = new System.DateTime(currentYear, currentMonth, (i-firstDayInWeek+1), 0, 0, 0, System.DateTimeKind.Utc);
                 int globalDay = WeeklyCalendar.GetCurrentDay(epochToday);
                 int dW = (int)SaveManager.getDay(globalDay.ToString()).weather;
 
-                ChangeTileVisuals(gO, Color.white, (currentDay == (i-firstDayInWeek+1)) ? Color.red : Color.black, currentYear, currentMonth, (i-firstDayInWeek+1), dW);
+                //ChangeTileVisuals(gO, Color.white, (currentDay == (i-firstDayInWeek+1)) ? circleTexture : noneTexture, currentYear, currentMonth, (i-firstDayInWeek+1), dW);
             }
         }
     }
 
-    void ChangeTileVisuals(GameObject gO, Color tileColor, Color textColor, int year, int month, int day, int climateIntIcon) {
+    void ChangeTileVisuals(GameObject gO, Sprite dayTexture, int year, int month, int day, int climateIntIcon) {
         List<CalendarEvent> cE = GetCalendarEvent(year,month,day);
         if(cE != null) {
             foreach(CalendarEvent e in cE) {
@@ -216,9 +216,7 @@ public class MonthlyCalendarManager : MonoBehaviour
                 eventObject.name = e.eventName;
             }
         }
-        gO.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(tileColor.r,tileColor.g,tileColor.b,gO.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color.a);
         gO.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = gO.name = day.ToString();
-        gO.transform.GetChild(1).gameObject.GetComponentInChildren<TMP_Text>().color = textColor;
         gO.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().sprite = weatherIcons[climateIntIcon]; 
     }
 

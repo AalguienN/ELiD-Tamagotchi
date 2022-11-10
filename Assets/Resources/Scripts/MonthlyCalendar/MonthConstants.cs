@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class MonthConstants
 {    
     public static int[] monthDays = new int[] { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, 29 };
-    public static string[] monthNames = new string[] { "", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+    public static string[] monthNames = new string[] { "", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
 
     public static Month GetMonth(int monthNumber, int yearNumber) {
         if(monthNumber==0) return null;
