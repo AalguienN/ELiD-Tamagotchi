@@ -1966,7 +1966,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(enableContinue, , Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 3
@@ -3403,8 +3403,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.7900002
+    canvasScrollPosition: {x: 0, y: 9.895355}
+    canvasZoom: 0.8200002
   - id: 6
     fields:
     - title: Title
