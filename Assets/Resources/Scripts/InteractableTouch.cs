@@ -35,7 +35,10 @@ public class InteractableTouch : MonoBehaviour
     public bool busy = false;
     public bool tried = false;
     public bool visible = true;
+    public bool isBlue = false;
     bool isActive;
+
+    public ParticleSystem stickyParticles;
 
     #endregion
 
@@ -81,15 +84,24 @@ public class InteractableTouch : MonoBehaviour
     #region Actual Code
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Consume();
-        }
-        /*TEST CODE*/
+        
         stickNum = SaveManager.getStickNum();
+        if (SaveManager.getBlueStickNum() > 0 && !isBlue)
+        {
+            print("is blue");
+            changeWoodColor(true);
+            isBlue = true;
+        }
+        else if (SaveManager.getBlueStickNum() <= 0 && isBlue)
+        {
+            print("is not blue");
+            changeWoodColor(false);
+            isBlue = false;
+        }
         if (!visible && stickNum > 0) //Reappear sticks when reget
         {
+            //if blue wood variable > 0 then recolor the normal wood and activate isBlue
+            
             sticky.SetActive(true);
             StartCoroutine(Recall());
         }
@@ -114,7 +126,13 @@ public class InteractableTouch : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100.0f) && hit.collider.CompareTag("Bonfire")) {
                 Debug.Log("Palo soltado a la hoguera");
-                Consume();
+                if (!isBlue) {
+                    Consume();
+                }
+                else {
+                
+                ConsumeBlue();
+                }
                 if (stickNum <= 0)
                 {
                     //disable
@@ -188,6 +206,19 @@ public class InteractableTouch : MonoBehaviour
     }
 
     //back with the moves
+
+    public void changeWoodColor(bool isBlue)
+    {
+        //here change color
+        if (isBlue)
+        {
+            stickyParticles.Play();
+        }
+        else
+        {
+            stickyParticles.Stop();
+        }
+    }
     public IEnumerator ReturnStick()
     {
 
@@ -242,7 +273,7 @@ public class InteractableTouch : MonoBehaviour
     public void ConsumeBlue()
     {
         SaveManager.setStickNum(--stickNum);
-        Debug.Log(stickNum + " palos restantes");
+        SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() - 1); //Soy Pau, he añadido el azul
         GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.blueStick);
     }
     #endregion

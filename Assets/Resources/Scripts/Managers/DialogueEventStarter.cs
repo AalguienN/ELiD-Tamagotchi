@@ -24,7 +24,6 @@ public class DialogueEventStarter : MonoBehaviour
         Touch fingertouch = Input.GetTouch(0);
         if (fingertouch.phase == TouchPhase.Began)
         {
-            print("worked1");
             Vector3 mousePos = fingertouch.position;
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(mousePos);

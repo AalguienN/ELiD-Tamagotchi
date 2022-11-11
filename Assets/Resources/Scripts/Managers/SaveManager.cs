@@ -7,7 +7,7 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour {
     #region Variables
     [Header("Variables to be saved")]
-    [HideInInspector] private static int fireState, stickNum, currentDay, startingDay, mgMinutes, mgHits,mgSticks;
+    [HideInInspector] private static int fireState, stickNum, blueStickNum, currentDay, startingDay, mgMinutes, mgHits,mgSticks;
     [HideInInspector] private static bool startedGame;
     private bool aux_startedGame = false;
     DateTime lastConexion;
@@ -37,6 +37,7 @@ public class SaveManager : MonoBehaviour {
         //Here load
         fireState = ES3.Load("lastFireState", fireState);
         stickNum = ES3.Load("stickNum", 0);
+        blueStickNum = ES3.Load("blueStickNum", 0);
         currentDay = ES3.Load("currentDay", currentDay);
         lastConexion = ES3.Load("lastConexion", DateTime.Now);
         startedGame = ES3.Load("startedGame", false);
@@ -92,8 +93,6 @@ public class SaveManager : MonoBehaviour {
             DialogueEventStarter.instance.disableCaputxa();
         }
 
-
-        print(hasBeenDialoguePlayed);
     }
 
     private void OnApplicationPause(bool pause)
@@ -148,6 +147,7 @@ public class SaveManager : MonoBehaviour {
     public static void saveAll()
     {
         ES3.Save("stickNum", stickNum);
+        ES3.Save("blueStickNum", blueStickNum);
         ES3.Save("lastFireState", (int) GameObject.FindWithTag("Bonfire2").GetComponent<BonfireState>().hp);
         ES3.Save("lastConexion", DateTime.Now);
         ES3.Save("eventHandler", events);
@@ -204,10 +204,20 @@ public class SaveManager : MonoBehaviour {
         return ES3.Load("stickNum", stickNum);
     }
 
+    public static int getBlueStickNum()
+    {
+        return ES3.Load("blueStickNum", blueStickNum);
+    }
+
     public static void setStickNum(int newStickNum)
     {
         ES3.Save("stickNum", newStickNum);
         stickNum = newStickNum;
+    }
+    public static void setBlueStickNum(int newStickNum)
+    {
+        ES3.Save("blueStickNum", newStickNum);
+        blueStickNum = newStickNum;
     }
 
     public static int getCurrentDay()

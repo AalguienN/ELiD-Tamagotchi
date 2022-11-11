@@ -7117,6 +7117,8 @@ MonoBehaviour:
   busy: 0
   tried: 0
   visible: 1
+  isBlue: 0
+  stickyTexture: {fileID: 2100000, guid: 6b04f5ac01e787542aa76b327163ed40, type: 2}
 --- !u!114 &1975000082
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -282,7 +282,9 @@ public class CameraManagement : MonoBehaviour
                 }
                 else {
                     if (switchThresholdVertical){
-                        SaveManager.clearData();
+                        //SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() + 1);
+                        //SaveManager.setStickNum(SaveManager.getStickNum() + 1); //TESTING
+                        //print("added blue: " + SaveManager.getBlueStickNum());
                     }
                     StartCoroutine(returnToCenter());
                 } //Return to center animation
@@ -320,6 +322,11 @@ public class CameraManagement : MonoBehaviour
         canChange = false;
         yield return new WaitForSeconds(seconds); //O_o
         canChange = true;
+    }
+
+    public void waitForEndOfAnimationCaller(float seconds)
+    {
+        StartCoroutine(waitForEndOfAnimation(seconds));
     }
 
     
