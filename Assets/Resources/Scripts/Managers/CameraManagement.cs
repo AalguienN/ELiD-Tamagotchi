@@ -314,6 +314,14 @@ public class CameraManagement : MonoBehaviour
         {
             DialogueEventStarter.instance.disableCaputxa();
         }
+
+        //DAY 4 TURNING AND CAPUTXA APEARING
+        if(SaveManager.getCurrentDay() == 4 && SaveManager.hasPinochioRun && !getActiveCamera().Equals("CamBonfire")){
+            DialogueEventStarter.instance.enableCaputxa();
+            SaveManager.hasBeenDialoguePlayed = false;
+            SaveManager.canCaputxaBeInteracted = true;
+            SaveManager.hasPinochioRun = false;
+        }
     }
 
 

@@ -12,6 +12,7 @@ TagManager:
   - Bonfire2
   - DialogueManager
   - Caputxa
+  - Pinochio
   layers:
   - Default
   - TransparentFX

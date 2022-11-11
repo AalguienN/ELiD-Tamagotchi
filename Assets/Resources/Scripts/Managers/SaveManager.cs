@@ -27,6 +27,7 @@ public class SaveManager : MonoBehaviour {
     public static int canOnlyTurn = 0;
     public static bool canCaputxaBeInteracted = false;
     public static bool hasBeenDialoguePlayed = false;
+    public static bool hasPinochioRun = false;
 
     #endregion
 
@@ -54,6 +55,7 @@ public class SaveManager : MonoBehaviour {
         mgMinutes = ES3.Load("mgMinutes", mgMinutes);
         mgHits = ES3.Load("mgHits", mgHits);
         mgSticks = ES3.Load("mgSticks", mgSticks);
+        hasPinochioRun = ES3.Load("hasPinoccionRun", hasPinochioRun);
 
 
         currentDay = WeeklyCalendar.GetCurrentDay(System.DateTime.Now) - startingDay + 1;
@@ -81,7 +83,7 @@ public class SaveManager : MonoBehaviour {
     private void Start()
     {
         //Make sure caputxa only appears in different day
-        if (lastConexion.Day != System.DateTime.Now.Day || aux_startedGame)
+        if (lastConexion.Day != System.DateTime.Now.Day && getCurrentDay() != 4 || aux_startedGame)
         {
             DialogueEventStarter.instance.enableCaputxa();
             hasBeenDialoguePlayed = false;
@@ -160,6 +162,7 @@ public class SaveManager : MonoBehaviour {
         ES3.Save("hasTurnedLeft", hasTurnedLeft);
         ES3.Save("hasTurnedRight", hasTurnedRight);
         ES3.Save("canOnlyTurn", canOnlyTurn);
+        ES3.Save("hasPinochioRun", hasPinochioRun);
     }
     #endregion
 

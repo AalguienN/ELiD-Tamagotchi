@@ -13,11 +13,25 @@ public class DialogueEventStarter : MonoBehaviour
     }
 
     public string[] conversations = new string[7];
-    public Transform encapuchado, player;
     public Button continueBtn;
     public GameObject caputxa;
+    public GameObject pinochio;
+    Animator caputxaAnim, pinochioAnim;
 
+    private void Start()
+    {
+        pinochioAnim = pinochio.GetComponentInChildren<Animator>();
+        caputxaAnim = caputxa.GetComponentInChildren<Animator>();
 
+        if(SaveManager.getCurrentDay() == 4)
+        {
+            enablePinochio();
+        }
+        else
+        {
+            disablePinochio();
+        }
+    }
     private void Update()
     {
         if (Input.touchCount == 0) { return; }
@@ -33,10 +47,16 @@ public class DialogueEventStarter : MonoBehaviour
                 {
                     startCurrentDayDialogue();
                 }
+                else if (hit.collider.gameObject.CompareTag("Pinochio") && SaveManager.getCurrentDay() == 4)
+                {
+                    //corre pinochio corre
+                    runPinochio();
+                }
             }
         }
     }
 
+   
 
     public void startCurrentDayDialogue()
     {
@@ -74,11 +94,45 @@ public class DialogueEventStarter : MonoBehaviour
         return caputxa.activeSelf;
     }
 
+    public void enablePinochio() {
+        pinochio.SetActive(true);
+    }
+
+    public void disablePinochio()
+    {
+        pinochio.SetActive(false);
+    }
+
     public void lockCamera(float seconds)
     {
         StartCoroutine(AnimationManager.cameraLockAnimation(seconds));
     }
 
+    public void runPinochio()
+    {
+        //Play sound 
+        pinochioAnim.Play("Running_Pin");
+        StartCoroutine(pinochioFinished());
+        StartCoroutine(pinochioMovement());
+    }
+    public IEnumerator pinochioFinished()
+    {
+        yield return new WaitForSeconds(5);
+        SaveManager.hasPinochioRun = true;
+        SaveManager.saveAll();
+        disablePinochio();
+    }
+    public IEnumerator pinochioMovement()
+    {
+        float x = 0;
+        float seconds = 5;
+        while(x < seconds)
+        {
+            pinochio.transform.position += new Vector3(0, 0, -10 * Time.deltaTime);
+            x += Time.deltaTime / seconds;
+            yield return null;
+        }
+    }
 
     public void lockCameraToCenter()
     {
@@ -120,11 +174,6 @@ public class DialogueEventStarter : MonoBehaviour
     public void unlockCamera()
     {
         SaveManager.setCanOnlyTurn(2); //Unlocks
-    }
-
-    public void enableBlueWood()
-    {
-        
     }
 
 
