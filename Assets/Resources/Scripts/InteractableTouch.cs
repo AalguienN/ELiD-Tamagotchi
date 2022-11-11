@@ -35,7 +35,7 @@ public class InteractableTouch : MonoBehaviour
     public bool busy = false;
     public bool tried = false;
     public bool visible = true;
-    public bool isBlue = false;
+    public bool isBlue = false; //Is the current stick in hand blue?
     bool isActive;
 
     public ParticleSystem stickyParticles;
@@ -279,6 +279,7 @@ public class InteractableTouch : MonoBehaviour
         }
         SaveManager.setStickNum(--stickNum);
         SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() - 1); //Soy Pau, he añadido el azul
+        SaveManager.setBlueWood(true);
         GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.blueStick);
     }
     #endregion
