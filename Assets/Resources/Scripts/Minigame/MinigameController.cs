@@ -134,7 +134,7 @@ public class MinigameController : MonoBehaviour
         precisionNeedle.transform.rotation = Quaternion.Euler(0f,0f,0f);
         int s = SaveManager.getStickNum();
         int bs = SaveManager.getBlueStickNum();
-        if(sticks>=12/* && SaveManager.getCurrentDay() >= 3*/) //Si haces casi full perfect
+        if(sticks>=12 && SaveManager.getCurrentDay() >= 3) //Si haces casi full perfect
         {
             SaveManager.setBlueStickNum(bs+1);
             SaveManager.setStickNum(s+1);
