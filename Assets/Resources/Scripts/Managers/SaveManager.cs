@@ -42,7 +42,7 @@ public class SaveManager : MonoBehaviour {
         startedGame = ES3.Load("startedGame", false);
         events = ES3.Load("eventHandler", new List<CalendarEvent>());
         days = ES3.Load("dayHandler", new List<Day>());
-        startingDay = ES3.Load("startingDay", 0);
+        startingDay = ES3.Load("startingDay", WeeklyCalendar.GetCurrentDay(System.DateTime.Now));
         hasBurntFirstStick = ES3.Load("hasBurntFirstStick", false);
         hasTurnedLeft = ES3.Load("hasTurnedLeft", false);
         hasTurnedRight = ES3.Load("hasTurnedRight", false);
@@ -91,6 +91,9 @@ public class SaveManager : MonoBehaviour {
             hasBeenDialoguePlayed = true;
             DialogueEventStarter.instance.disableCaputxa();
         }
+
+
+        print(hasBeenDialoguePlayed);
     }
 
     private void OnApplicationPause(bool pause)
@@ -102,8 +105,9 @@ public class SaveManager : MonoBehaviour {
     private void OnApplicationQuit()
     {
         saveAll();
-        if (hasBeenDialoguePlayed)
+        if (!hasBeenDialoguePlayed)
         {
+            print(getCurrentDay());
             switch (getCurrentDay())
             {
                 case 1:
