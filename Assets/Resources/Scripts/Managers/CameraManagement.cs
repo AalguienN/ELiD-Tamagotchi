@@ -282,8 +282,7 @@ public class CameraManagement : MonoBehaviour
                 }
                 else {
                     if (switchThresholdVertical){
-                        DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
-                        dataDir.Delete(true);
+                        SaveManager.clearData();
                     }
                     StartCoroutine(returnToCenter());
                 } //Return to center animation

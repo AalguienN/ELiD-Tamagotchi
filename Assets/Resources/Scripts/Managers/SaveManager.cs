@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -106,7 +107,7 @@ public class SaveManager : MonoBehaviour {
             switch (getCurrentDay())
             {
                 case 1:
-                    setCanOnlyTurn(1);
+                    clearData();
                     break;
 
                 case 2:
@@ -242,6 +243,12 @@ public class SaveManager : MonoBehaviour {
     {
         blueWood = bW;
         ES3.Save("blueWood", bW);
+    }
+
+    public static void clearData()
+    {
+        DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
+        dataDir.Delete(true);
     }
     #endregion
 
