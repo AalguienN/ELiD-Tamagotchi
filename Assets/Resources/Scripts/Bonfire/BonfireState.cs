@@ -64,8 +64,9 @@ public class BonfireState : MonoBehaviour
         fuelList = new List<Fuel>();
         
         //this.transform.GetComponentInChildren<ParticleSystem>().Stop(); 
-        lit(-tiempoFuera, SaveManager.getFireState());
         StartCoroutine(bonfireTick());
+
+        lit(-tiempoFuera, SaveManager.getFireState());
 
         Debug.Log("El juego ha estado cerrado " + Mathf.Abs(tiempoFuera) + " segundos");
         if(SaveManager.getMinigameMinutes()!= 0)
@@ -80,6 +81,21 @@ public class BonfireState : MonoBehaviour
         if (turnOn) { lit(); turnOn = false; }
         if (turnOff) { extinguish(); turnOff = false;  }
 
+        if(hp != 0) 
+        {
+            this.transform.GetComponentInChildren<ParticleSystem>().Play(); 
+            state = BonfireState.states.encendida; 
+            GetComponentInChildren<Light>().GetComponent<Intensity>().encender();
+            VisualBonfire.SetTargetLight(1);
+        }
+        else 
+        {
+            this.transform.GetComponentInChildren<ParticleSystem>().Stop(); 
+            state = BonfireState.states.apagada; 
+            GetComponentInChildren<Light>().GetComponent<Intensity>().apagar();
+            VisualBonfire.SetTargetLight(0);
+        }
+        
     }
     #endregion
 
@@ -106,31 +122,17 @@ public class BonfireState : MonoBehaviour
     //lits up the bonfire
     public void lit() { 
         hp = maxHp;  
-        this.transform.GetComponentInChildren<ParticleSystem>().Play(); 
-        state = BonfireState.states.encendida; 
-        GetComponentInChildren<Light>().GetComponent<Intensity>().encender();
-        VisualBonfire.SetTargetLight(1);
     }
     public void lit(int modifier) { 
-        hp = maxHp + modifier; 
-        this.transform.GetComponentInChildren<ParticleSystem>().Play(); 
-        state = BonfireState.states.encendida;
-        VisualBonfire.SetTargetLight(1);
+        hp = maxHp + modifier;
     }
     public void lit(int modifier, int ini) { 
-        hp = ini + modifier; 
-        this.transform.GetComponentInChildren<ParticleSystem>().Play(); 
-        state = BonfireState.states.encendida; 
-        VisualBonfire.SetTargetLight(1);
+        hp = ini + modifier;
     }
 
     //extinguish the bonfire
     private void extinguish() { 
-        hp = 0; 
-        this.transform.GetComponentInChildren<ParticleSystem>().Stop(); 
-        state = BonfireState.states.apagada; 
-        GetComponentInChildren<Light>().GetComponent<Intensity>().apagar();
-        VisualBonfire.SetTargetLight(0);
+        hp = 0;
     }
 
     public void heal(double n) {

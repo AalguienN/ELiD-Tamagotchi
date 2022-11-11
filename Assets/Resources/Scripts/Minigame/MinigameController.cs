@@ -134,7 +134,7 @@ public class MinigameController : MonoBehaviour
         precisionNeedle.transform.rotation = Quaternion.Euler(0f,0f,0f);
         int s = SaveManager.getStickNum();
         int bs = SaveManager.getBlueStickNum();
-        if(sticks==12) //Si haces casi full perfect
+        if(sticks==12/* && SaveManager.getCurrentDay() >= 3*/) //Si haces casi full perfect
         {
             SaveManager.setBlueStickNum(bs+1);
             SaveManager.setStickNum(s+1);
@@ -171,6 +171,7 @@ public class MinigameController : MonoBehaviour
         axePrefab.transform.localPosition = Vector3.Lerp(axePrefab.transform.localPosition, axeActualPosition, Time.deltaTime*10f*speed);
         axePrefab.transform.localRotation = Quaternion.Lerp(axePrefab.transform.localRotation, Quaternion.Euler(axeActualRotation), Time.deltaTime*10f*speed);
         if(CameraManagement.getActiveCamera()=="CamMinigame") {
+            print("asdasdf");
             //axePrefab.transform.position = axeStartPosition+ axeEndPositionOffset;
             if(!gameRunning) {
                 if(Input.GetMouseButtonDown(0)) {
