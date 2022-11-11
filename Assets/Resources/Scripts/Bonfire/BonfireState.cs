@@ -106,7 +106,7 @@ public class BonfireState : MonoBehaviour
     //lits up the bonfire
     public void lit() { 
         hp = maxHp;  
-        this.transform.GetChild(0).GetChild(1).GetComponent<ParticleSystem>().Play(); 
+        this.transform.GetComponentInChildren<ParticleSystem>().Play(); 
         state = BonfireState.states.encendida; 
         GetComponentInChildren<Light>().GetComponent<Intensity>().encender();
         VisualBonfire.SetTargetLight(1);

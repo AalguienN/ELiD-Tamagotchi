@@ -35,11 +35,11 @@ public class VisualBonfire : MonoBehaviour
             fireParticle02Red.SetActive(false);
             fireParticle03Red.SetActive(false);
 
-            if(isBlue) {
-                if(day > 0 && day > 3) {
+            if(isBlue && day >= 3 && SaveManager.hasBeenDialoguePlayed) {
+                if(day > 0 && day < 3) {
                     fireParticle01Blue.SetActive(true);
                 }
-                else if(day >= 3 && day > 5) {
+                else if(day >= 3 && day < 5) {
                     fireParticle02Blue.SetActive(true);
                 }
                 else {
@@ -47,10 +47,10 @@ public class VisualBonfire : MonoBehaviour
                 }
             }
             else {
-                if(day > 0 && day > 3) {
+                if(day > 0 && day < 3) {
                     fireParticle01Red.SetActive(true);
                 }
-                else if(day >= 3 && day > 5) {
+                else if(day >= 3 && day < 5) {
                     fireParticle02Red.SetActive(true);
                 }
                 else {
