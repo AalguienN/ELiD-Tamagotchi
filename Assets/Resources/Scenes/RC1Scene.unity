@@ -212,6 +212,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bonfire
       objectReference: {fileID: 0}
+    - target: {fileID: 2880177056032639292, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2880177056032639299, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -5653,30 +5657,6 @@ PrefabInstance:
       propertyPath: LluviaParent
       value: 
       objectReference: {fileID: 993859948}
-    - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
-      propertyPath: crossColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
-      propertyPath: crossTexture
-      value: 
-      objectReference: {fileID: 21300000, guid: 23bb017c72f93ca48a64470c23a042ae, type: 3}
-    - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
-      propertyPath: circleColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
-      propertyPath: circleColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
-      propertyPath: circleColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360047512422390705, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
-      propertyPath: circleColor.r
-      value: 0.5660378
-      objectReference: {fileID: 0}
     - target: {fileID: 4360047512422390706, guid: d88722cb74ac4da478b375ead983eaac, type: 3}
       propertyPath: m_Name
       value: MonthlyCalendar

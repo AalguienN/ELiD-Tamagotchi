@@ -35,15 +35,43 @@ public class MinigameController : MonoBehaviour
     private bool gameRunning = false;
     private Vector2 mousePosition;
 
+    public static bool status;
+    public GameObject treeFull;
+    public GameObject treeChop;
+    int savedHits,savedSticks;
+
     void Start() {
         Reward(0);
         axePrefab.transform.localPosition = axeActualPosition = axeStartPosition;
         axeActualRotation = axeStartRotation;
         axePrefab.transform.localRotation = Quaternion.Euler(axeActualRotation);
+        savedHits = SaveManager.getMinigameHits();
+        savedSticks = SaveManager.getMinigameSticks();
+        status = (SaveManager.getMinigameMinutes() <= 0);
+        if(status) 
+        {
+            treeChop.SetActive(false);
+            treeFull.SetActive(true);
+        }
+        else
+        {
+            StartCoroutine(RunTime());
+            treeFull.SetActive(false);
+            treeChop.SetActive(true);
+        }
     }
 
     IEnumerator StartGame()
     {
+        savedSticks = 0;
+        SaveManager.setMinigameSticks(0);
+        savedHits = 0;
+        SaveManager.setMinigameHits(0);
+        
+        treeChop.SetActive(false);
+        treeFull.SetActive(true);
+        treeChop.transform.GetChild(1).transform.localPosition = new Vector3(0, -1.17f, 0);
+        treeChop.transform.GetChild(1).transform.localRotation = Quaternion.Euler(new Vector3(-90, 0, 0));
         sticks = 0;
         speed = 0;
         gameRunning = true;
@@ -84,6 +112,22 @@ public class MinigameController : MonoBehaviour
         int s = SaveManager.getStickNum();
         SaveManager.setStickNum(s+sticks);
         print("Stick number: " + SaveManager.getStickNum());
+        SaveManager.setMinigameMinutes(15);
+        StartCoroutine(RunTime());
+        treeFull.SetActive(false);
+        treeChop.SetActive(true);
+    }
+
+    IEnumerator RunTime() {
+        bool s = true;
+        while(s) {
+            yield return new WaitForSeconds(60);
+            SaveManager.setMinigameMinutes(SaveManager.getMinigameMinutes()-1);
+            if(SaveManager.getMinigameMinutes()==0)
+                s = false;
+        }
+        status = true;
+        StartCoroutine(StartGame());
     }
 
     // Update is called once per frame
@@ -99,7 +143,8 @@ public class MinigameController : MonoBehaviour
                 }
                 if(Input.GetMouseButtonUp(0)) { 
                     if(Vector3.Distance(mousePosition, Input.mousePosition) < 50f)
-                        StartCoroutine(StartGame()); 
+                        if(SaveManager.getMinigameMinutes()==0)
+                            StartCoroutine(StartGame()); 
                 }
                 return;
             }
@@ -121,6 +166,14 @@ public class MinigameController : MonoBehaviour
     }
 
     IEnumerator StopNeedle() {
+        savedHits++;
+        SaveManager.setMinigameHits(savedHits);
+        if(savedHits>5)
+        {
+            StartCoroutine(EndGame(0));
+            modifyRotation = false;
+            yield break;
+        }
         continueSpeed = false;
         speed += (0.5f-Mathf.Abs(precision)/80f)*2f;
         gameTime = Random.Range(0.0f,10.0f);
@@ -168,15 +221,12 @@ public class MinigameController : MonoBehaviour
         else if(precision01 > 0.4f) 
         {
             print("I'll give you another chance");
-            Reward(-1);
+            Reward(0);
         }
         else 
         {
             print("You're out");
-            StartCoroutine(EndGame(0));
-            Reward(-4);
-            modifyRotation = false;
-            yield break;
+            Reward(-1);
         }
         t=0;
         while(axeActualPosition != axeHitPosition) {
@@ -203,6 +253,8 @@ public class MinigameController : MonoBehaviour
     void Reward(int rewardCount) {
         sticks+=rewardCount;
         sticks = Mathf.Max(0,sticks);
-        stickTextTemp.text = "Sticks: " + sticks;
+        savedSticks = sticks;
+        SaveManager.setMinigameSticks(savedSticks);
+        stickTextTemp.text = "Sticks: " + savedSticks + " Hits: " + savedHits;
     }
 }

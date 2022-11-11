@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4360047511685876873}
   - component: {fileID: 4360047511685876878}
   - component: {fileID: 4360047511685876879}
-  - component: {fileID: 4360047511685876872}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4360047511685876872
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4360047511685876874}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4360047512422390706
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +143,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4cef1771fef5c834f8972024f4a0e97d, type: 3}
   - {fileID: 21300000, guid: a5dadc1c7be73c8479c7527b7ee3897c, type: 3}
   circleTexture: {fileID: 21300000, guid: d06d57f2db2631a47b26b682147fd3b7, type: 3}
-  crossTexture: {fileID: 21300000, guid: a5426af6cfb725b4299078364a23257c, type: 3}
+  circleColor: {r: 0.5660378, g: 0, b: 0, a: 1}
+  crossTexture: {fileID: 21300000, guid: 23bb017c72f93ca48a64470c23a042ae, type: 3}
+  crossColor: {r: 0, g: 0, b: 0, a: 1}
   calendarEventPrefab: {fileID: 1943959566244803020, guid: 120dc81f81980cf45aee781afb372f0e, type: 3}
   cam: {fileID: 0}
   cameraDefaultPosition: {x: 0, y: 2.5, z: 0}
