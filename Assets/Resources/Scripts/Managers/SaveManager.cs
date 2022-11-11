@@ -36,7 +36,7 @@ public class SaveManager : MonoBehaviour {
     void Awake()
     {
         //Here load
-        fireState = ES3.Load("lastFireState", fireState);
+        fireState = ES3.Load("lastFireState", 0);
         stickNum = ES3.Load("stickNum", 0);
         blueStickNum = ES3.Load("blueStickNum", 0);
         currentDay = ES3.Load("currentDay", currentDay);
@@ -60,6 +60,7 @@ public class SaveManager : MonoBehaviour {
 
         currentDay = WeeklyCalendar.GetCurrentDay(System.DateTime.Now) - startingDay + 1;
         ES3.Save("currentDay",currentDay);
+
         
         if(!startedGame)
         {

@@ -332,9 +332,16 @@ public class CameraManagement : MonoBehaviour
         canChange = true;
     }
 
-    public void waitForEndOfAnimationCaller(float seconds)
+    public void blockCameraMethod(float seconds)
     {
-        StartCoroutine(waitForEndOfAnimation(seconds));
+        StartCoroutine(blockingCamera(seconds));
+    }
+
+    IEnumerator blockingCamera(float seconds)
+    {
+        blockCamera = true;
+        yield return new WaitForSeconds(seconds); //O_o
+        blockCamera = false;
     }
 
     
