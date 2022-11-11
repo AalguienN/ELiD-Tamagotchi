@@ -34,8 +34,6 @@ public class SaveManager : MonoBehaviour {
     #region Save and Load
     void Awake()
     {
-        
-
         //Here load
         fireState = ES3.Load("lastFireState", fireState);
         stickNum = ES3.Load("stickNum", 0);
