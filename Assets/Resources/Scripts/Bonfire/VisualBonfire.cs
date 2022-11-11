@@ -6,7 +6,6 @@ public class VisualBonfire : MonoBehaviour
 {
     public float targetLight;
     static float _sTargetLight;
-    public bool isBlue;
 
     public GameObject fireParticle01Red;
     public GameObject fireParticle02Red;
@@ -35,7 +34,7 @@ public class VisualBonfire : MonoBehaviour
             fireParticle02Red.SetActive(false);
             fireParticle03Red.SetActive(false);
 
-            if(isBlue && day >= 3 && SaveManager.hasBeenDialoguePlayed) {
+            if(SaveManager.blueWood && day >= 3 && SaveManager.hasBeenDialoguePlayed) {
                 if(day > 0 && day < 3) {
                     fireParticle01Blue.SetActive(true);
                 }
