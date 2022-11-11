@@ -639,8 +639,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "Estas noches cada vez son m\xE1s largas y sigues muy d\xE9bil.\n\nCada
-          vez necesitamos m\xE1s madera."
+        value: "Estas noches cada vez son m\xE1s largas y sigues muy d\xE9bil,\ny
+          yo he de seguir buscando a mis hermanos."
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -695,7 +695,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Coge el hacha y consigue unos buenos troncos.
+        value: "Coge esta hacha y consigue algo de madera para la hoguera, nos vemos
+          ma\xF1ana."
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
