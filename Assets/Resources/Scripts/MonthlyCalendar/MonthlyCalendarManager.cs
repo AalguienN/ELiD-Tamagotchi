@@ -64,44 +64,40 @@ public class MonthlyCalendarManager : MonoBehaviour
         }
 
         transform.GetChild(0).transform.localScale = transform.GetChild(0).transform.localScale*2.5f/6f;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
         //Get the actual time (might be improved in order to avoid cheating)
         DateTime date = DateTime.Now;
         currentDay = date.Day;
         currentMonth = date.Month;
         currentYear = date.Year;
+        savedDay = currentDay; savedMonth = currentMonth; savedYear = currentYear;
 
-        //Compare it to the saved in the last update in case the day changes
-        if(currentDay != savedDay || currentMonth != savedMonth || currentYear != savedYear) {
-            savedDay = currentDay; savedMonth = currentMonth; savedYear = currentYear;
-
-            actualMonth = MonthConstants.GetMonth(currentMonth, currentYear);
-            UpdateCalendarDisplay();
-            switch(GetDayWeather()) {
-                case 0:
-                    break;
-                case 1:
-                    BonfireState.Instance.weather = BonfireState.globalState.despejado;
-                    LluviaParent.SetActive(false);
-                    Rayo.SetActive(false);
-                    break;
-                case 2:
-                    BonfireState.Instance.weather = BonfireState.globalState.lluvia;
-                    LluviaParent.SetActive(true);
-                    Rayo.SetActive(false);
-                    break;
-                case 3:
-                    BonfireState.Instance.weather = BonfireState.globalState.lluvia;
-                    LluviaParent.SetActive(true);
-                    Rayo.SetActive(true);
-                    break;
-            }
+        actualMonth = MonthConstants.GetMonth(currentMonth, currentYear);
+        UpdateCalendarDisplay();
+        switch(GetDayWeather()) {
+            case 0:
+                break;
+            case 1:
+                BonfireState.Instance.weather = BonfireState.globalState.despejado;
+                LluviaParent.SetActive(false);
+                Rayo.SetActive(false);
+                break;
+            case 2:
+                BonfireState.Instance.weather = BonfireState.globalState.lluvia;
+                LluviaParent.SetActive(true);
+                Rayo.SetActive(false);
+                break;
+            case 3:
+                BonfireState.Instance.weather = BonfireState.globalState.lluvia;
+                LluviaParent.SetActive(true);
+                Rayo.SetActive(true);
+                break;
         }
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
         // //TEMP
         // if(Input.GetKeyDown(KeyCode.E))
         //     AddCalendarEvent(new CalendarEvent(UnityEngine.Random.Range(1,9999).ToString(), UnityEngine.Random.Range(1,9999).ToString(), 2022, 10, UnityEngine.Random.Range(1,31)));

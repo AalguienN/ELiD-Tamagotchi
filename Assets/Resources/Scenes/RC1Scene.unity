@@ -9724,6 +9724,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 883e4a7eea02bf742ac91e0d686e97ba, type: 3}
   m_PrefabInstance: {fileID: 1980919058}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1283513787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3702834466551244324, guid: 6a9adcc204d59bd4ab66d6176dcc4475, type: 3}
+  m_PrefabInstance: {fileID: 3702834466398975755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1283513791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283513787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 417ff889bb903374f8eadf41c49ddf04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bpm: 1
 --- !u!1001 &1300221863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13094,6 +13112,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio Source
       objectReference: {fileID: 0}
+    - target: {fileID: 3702834466551244345, guid: 6a9adcc204d59bd4ab66d6176dcc4475, type: 3}
+      propertyPath: music.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702834466551244345, guid: 6a9adcc204d59bd4ab66d6176dcc4475, type: 3}
+      propertyPath: music.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f3d5fe6a5f3ca5419f0ba9cd4152fcc, type: 3}
     - target: {fileID: 3702834466551244347, guid: 6a9adcc204d59bd4ab66d6176dcc4475, type: 3}
       propertyPath: m_RootOrder
       value: 3
