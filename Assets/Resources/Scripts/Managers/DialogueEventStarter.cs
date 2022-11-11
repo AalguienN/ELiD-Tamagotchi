@@ -150,15 +150,27 @@ public class DialogueEventStarter : MonoBehaviour
         (DialogueManager.dialogueUI as StandardDialogueUI).OnContinue();
     }
 
-    public void giveFirstStick()
+    IEnumerator waitForFirstBlueBurn()
     {
-        
+        while (!SaveManager.hasBurntFirstBlueStick)
+        {
+            yield return null;
+        }
+        (DialogueManager.dialogueUI as StandardDialogueUI).OnContinue();
+
     }
+
     public void firstBurn()
     {
-        print("firstBurn");
         SaveManager.setStickNum(SaveManager.getStickNum() + 1);
         StartCoroutine(waitForFirstBurn());
+    }
+    
+    public void firstBlueBurn()
+    {
+        SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() + 1);
+        SaveManager.setStickNum(SaveManager.getStickNum() + 1);
+        StartCoroutine(waitForFirstBlueBurn());
     }
 
 }

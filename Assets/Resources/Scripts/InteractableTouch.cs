@@ -272,6 +272,11 @@ public class InteractableTouch : MonoBehaviour
     //Im blue
     public void ConsumeBlue()
     {
+        if (!SaveManager.hasBurntFirstBlueStick)
+        {
+            SaveManager.hasBurntFirstBlueStick = true;
+            SaveManager.saveAll();
+        }
         SaveManager.setStickNum(--stickNum);
         SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() - 1); //Soy Pau, he añadido el azul
         GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.blueStick);
