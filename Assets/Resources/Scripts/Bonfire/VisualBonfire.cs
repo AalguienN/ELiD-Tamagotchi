@@ -25,7 +25,6 @@ public class VisualBonfire : MonoBehaviour
         }
         int day = SaveManager.getCurrentDay();
         if(day != savedDay) {
-            savedDay = day;
             
             fireParticle01Blue.SetActive(false);
             fireParticle02Blue.SetActive(false);
@@ -34,26 +33,35 @@ public class VisualBonfire : MonoBehaviour
             fireParticle02Red.SetActive(false);
             fireParticle03Red.SetActive(false);
 
+            if(targetLight==0) return;
+            savedDay = day;
+
             if(SaveManager.blueWood && day >= 3 && SaveManager.hasBeenDialoguePlayed) {
                 if(day > 0 && day < 3) {
                     fireParticle01Blue.SetActive(true);
+                    fireParticle01Blue.GetComponent<ParticleSystem>().Play();
                 }
                 else if(day >= 3 && day < 5) {
                     fireParticle02Blue.SetActive(true);
+                    fireParticle02Blue.GetComponent<ParticleSystem>().Play();
                 }
                 else {
                     fireParticle03Blue.SetActive(true);
+                    fireParticle03Blue.GetComponent<ParticleSystem>().Play();
                 }
             }
             else {
                 if(day > 0 && day < 3) {
                     fireParticle01Red.SetActive(true);
+                    fireParticle01Red.GetComponent<ParticleSystem>().Play();
                 }
                 else if(day >= 3 && day < 5) {
                     fireParticle02Red.SetActive(true);
+                    fireParticle02Red.GetComponent<ParticleSystem>().Play();
                 }
                 else {
                     fireParticle03Red.SetActive(true);
+                    fireParticle03Red.GetComponent<ParticleSystem>().Play();
                 }
             }
         }

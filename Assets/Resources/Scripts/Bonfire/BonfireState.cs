@@ -83,14 +83,14 @@ public class BonfireState : MonoBehaviour
 
         if(hp != 0) 
         {
-            this.transform.GetComponentInChildren<ParticleSystem>().Play(); 
+            //this.transform.GetComponentInChildren<ParticleSystem>().Play(); 
             state = BonfireState.states.encendida; 
             GetComponentInChildren<Light>().GetComponent<Intensity>().encender();
             VisualBonfire.SetTargetLight(1);
         }
         else 
         {
-            this.transform.GetComponentInChildren<ParticleSystem>().Stop(); 
+            //this.transform.GetComponentInChildren<ParticleSystem>().Stop(); 
             state = BonfireState.states.apagada; 
             GetComponentInChildren<Light>().GetComponent<Intensity>().apagar();
             VisualBonfire.SetTargetLight(0);
