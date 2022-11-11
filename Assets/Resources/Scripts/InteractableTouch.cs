@@ -134,8 +134,7 @@ public class InteractableTouch : MonoBehaviour
                     Consume();
                 }
                 else {
-                
-                ConsumeBlue();
+                    ConsumeBlue();
                 }
                 if (stickNum <= 0)
                 {

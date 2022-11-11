@@ -33,10 +33,11 @@ public class VisualBonfire : MonoBehaviour
             fireParticle02Red.SetActive(false);
             fireParticle03Red.SetActive(false);
 
-            if(targetLight==0 || !SaveManager.hasBurntFirstStick) return;
+            if(targetLight==0) return;
+            //if(!SaveManager.hasBurntFirstStick) return;
             savedDay = day;
 
-            if(SaveManager.blueWood && day >= 3) {
+            if(SaveManager.getBlueWood() && day >= 3) {
                 if(day > 0 && day < 3) {
                     fireParticle01Blue.SetActive(true);
                     fireParticle01Blue.GetComponent<ParticleSystem>().Play();

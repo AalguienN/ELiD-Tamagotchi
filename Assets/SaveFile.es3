@@ -1,0 +1,114 @@
+{
+	"hasPinochioRun" : {
+		"__type" : "bool",
+		"value" : false
+	},
+	"canOnlyTurn" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"hasTurnedRight" : {
+		"__type" : "bool",
+		"value" : false
+	},
+	"hasTurnedLeft" : {
+		"__type" : "bool",
+		"value" : false
+	},
+	"hasBurntFirstBlueStick" : {
+		"__type" : "bool",
+		"value" : false
+	},
+	"hasBurntFirstStick" : {
+		"__type" : "bool",
+		"value" : true
+	},
+	"startedGame" : {
+		"__type" : "bool",
+		"value" : true
+	},
+	"dayHandler" : {
+		"__type" : "System.Collections.Generic.List`1[[Day, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			{
+				"id" : 19307,
+				"weather" : 1
+			},{
+				"id" : 19307,
+				"weather" : 1
+			},{
+				"id" : 19308,
+				"weather" : 1
+			},{
+				"id" : 19308,
+				"weather" : 1
+			},{
+				"id" : 19309,
+				"weather" : 2
+			},{
+				"id" : 19309,
+				"weather" : 2
+			},{
+				"id" : 19310,
+				"weather" : 1
+			},{
+				"id" : 19310,
+				"weather" : 1
+			},{
+				"id" : 19311,
+				"weather" : 3
+			},{
+				"id" : 19311,
+				"weather" : 3
+			},{
+				"id" : 19312,
+				"weather" : 1
+			},{
+				"id" : 19312,
+				"weather" : 1
+			},{
+				"id" : 19313,
+				"weather" : 1
+			},{
+				"id" : 19313,
+				"weather" : 1
+			}
+		]
+	},
+	"eventHandler" : {
+		"__type" : "System.Collections.Generic.List`1[[CalendarEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			
+		]
+	},
+	"lastConexion" : {
+		"__type" : "System.DateTime,mscorlib",
+		"value" : {
+			"ticks" : 638038014140559093
+		}
+	},
+	"lastFireState" : {
+		"__type" : "int",
+		"value" : -85392
+	},
+	"blueStickNum" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"stickNum" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"minigameSavedSticks" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"currentDay" : {
+		"__type" : "int",
+		"value" : 1
+	},
+	"startingDay" : {
+		"__type" : "int",
+		"value" : 19307
+	}
+}

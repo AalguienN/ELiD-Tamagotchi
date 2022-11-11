@@ -62,11 +62,11 @@ public class BonfireState : MonoBehaviour
 
         Debug.Log(SaveManager.getFireState());
         fuelList = new List<Fuel>();
-
-        lit(SaveManager.getFireState()-tiempoFuera);
         
         //this.transform.GetComponentInChildren<ParticleSystem>().Stop(); 
         StartCoroutine(bonfireTick());
+
+        lit(SaveManager.getFireState()-tiempoFuera);
 
         Debug.Log("El juego ha estado cerrado " + Mathf.Abs(tiempoFuera) + " segundos");
         if(SaveManager.getMinigameMinutes()!= 0)

@@ -263,6 +263,16 @@ public class SaveManager : MonoBehaviour {
         ES3.Save("blueWood", bW);
     }
 
+    public static bool getBlueWood()
+    {
+        bool bW = false; 
+        try {
+            ES3.Load("blueWood", bW);
+        }
+        catch(Exception e) { }
+        return bW;
+    }
+
     public static void clearData()
     {
         DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);

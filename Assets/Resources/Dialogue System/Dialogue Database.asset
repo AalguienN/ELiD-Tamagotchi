@@ -1139,7 +1139,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SendMessage(enableContinue, , Dialogue Manager);
+        value: 'SendMessage(enableContinue, , Dialogue Manager);
+
+          SendMessage(lockCameraToCenter,
+          , Dialogue Manager);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 2
@@ -1416,7 +1419,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SendMessage(endOfDialogue, ,Dialogue Manager);
+        value: 'SendMessage(endOfDialogue, ,Dialogue Manager);
+
+          SendMessage(unlockCamera,
+          , Dialogue Manager);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 2
@@ -1439,8 +1445,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.61000043
+    canvasScrollPosition: {x: 0, y: 306.47675}
+    canvasZoom: 0.97000015
   - id: 3
     fields:
     - title: Title
@@ -2149,7 +2155,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 157.95447}
+    canvasScrollPosition: {x: 0, y: 51.136353}
     canvasZoom: 0.8800001
   - id: 4
     fields:
