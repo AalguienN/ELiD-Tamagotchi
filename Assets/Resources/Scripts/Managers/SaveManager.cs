@@ -6,7 +6,7 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour {
     #region Variables
     [Header("Variables to be saved")]
-    [HideInInspector] private static int fireState, stickNum, currentDay, startingDay, mgMinutes, mgHits, mgSticks;
+    [HideInInspector] private static int fireState, stickNum, currentDay, startingDay, mgMinutes, mgHits,mgSticks;
     [HideInInspector] private static bool startedGame;
     private bool aux_startedGame = false;
     DateTime lastConexion;
@@ -46,11 +46,10 @@ public class SaveManager : MonoBehaviour {
         hasTurnedLeft = ES3.Load("hasTurnedLeft", false);
         hasTurnedRight = ES3.Load("hasTurnedRight", false);
         canOnlyTurn = ES3.Load("canOnlyTurn", 0);
-        mgMinutes = ES3.Load("minigameMinutes", 0);
-        mgHits = ES3.Load("minigameSavedHits", 0);
-        mgSticks = ES3.Load("minigameSavedSticks", 0);
-
-        print("Has turned left is: " + hasTurnedLeft);
+        blueWood = ES3.Load("blueWood", false);
+        mgMinutes = ES3.Load("mgMinutes", mgMinutes);
+        mgHits = ES3.Load("mgHits", mgHits);
+        mgSticks = ES3.Load("mgSticks", mgSticks);
 
 
         currentDay = WeeklyCalendar.GetCurrentDay(System.DateTime.Now) - startingDay + 1;
@@ -133,6 +132,8 @@ public class SaveManager : MonoBehaviour {
         }
     }
 
+
+
     private void OnApplicationFocus(bool focus)
     {
         if(!focus)
@@ -151,9 +152,6 @@ public class SaveManager : MonoBehaviour {
         ES3.Save("hasTurnedLeft", hasTurnedLeft);
         ES3.Save("hasTurnedRight", hasTurnedRight);
         ES3.Save("canOnlyTurn", canOnlyTurn);
-        ES3.Save("minigameMinutes", mgMinutes);
-        ES3.Save("minigameSavedHits", mgHits);
-        ES3.Save("minigameSavedSticks", mgSticks);
     }
     #endregion
 
@@ -163,6 +161,7 @@ public class SaveManager : MonoBehaviour {
     {
         return ES3.Load("lastFireState", fireState);
     }
+
     public static int getMinigameMinutes()
     {
         return ES3.Load("minigameMinutes", mgMinutes);
@@ -221,10 +220,6 @@ public class SaveManager : MonoBehaviour {
     {
         startingDay = WeeklyCalendar.GetCurrentDay(System.DateTime.Now);
         ES3.Save("startingDay", startingDay);
-    }
-
-    public static int getStartingDay() {
-        return ES3.Load("startingDay",startingDay);
     }
 
     public static int getSecondsSinceLastConexion()
