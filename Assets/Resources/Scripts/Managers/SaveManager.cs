@@ -52,9 +52,9 @@ public class SaveManager : MonoBehaviour {
         hasTurnedRight = ES3.Load("hasTurnedRight", false);
         canOnlyTurn = ES3.Load("canOnlyTurn", 0);
         blueWood = ES3.Load("blueWood", false);
-        mgMinutes = ES3.Load("mgMinutes", mgMinutes);
-        mgHits = ES3.Load("mgHits", mgHits);
-        mgSticks = ES3.Load("mgSticks", mgSticks);
+        mgMinutes = ES3.Load("mgMinutes", 0);
+        mgHits = ES3.Load("mgHits", 0);
+        mgSticks = ES3.Load("mgSticks", 0);
         hasPinochioRun = ES3.Load("hasPinoccionRun", hasPinochioRun);
 
 
