@@ -41,7 +41,7 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         //PlaySound(1);
-        PlayMusic("ktfb main theme demo 2 late no melody (Low Q)");
+        //PlayMusic("ktfb main theme demo 2 late no melody (Low Q)");
         //PlayLoop("FireBurning");
         //PlayLoop("Rain (Needs editing)");
         //PlaySound("FireBurning");
@@ -162,6 +162,10 @@ public class SoundManager : MonoBehaviour
             clip = "Sound/Ambience/" + name;
         else if ((UnityEngine.AudioClip)Resources.Load("Sound/Music/" + name))
             clip = "Sound/Music/" + name;
+        else if ((UnityEngine.AudioClip)Resources.Load("Sound/Forest/" + name))
+            clip = "Sound/Forest/" + name;
+        else if ((UnityEngine.AudioClip)Resources.Load("Sound/Dark forest/" + name))
+            clip = "Sound/Dark forest/" + name;
         else 
             throw new System.Exception("No encontrado el audio" + name);
         
