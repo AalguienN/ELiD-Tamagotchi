@@ -270,7 +270,9 @@ public class SaveManager : MonoBehaviour {
         DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
         FileInfo[] files = dataDir.GetFiles();
         foreach (FileInfo file in files) {
-            file.Destroy();
+            try{
+                file.Delete();
+            } catch(Exception e){}
         }
     }
     #endregion
