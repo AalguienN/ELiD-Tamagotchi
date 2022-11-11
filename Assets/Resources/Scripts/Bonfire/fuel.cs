@@ -7,9 +7,9 @@ using UnityEngine;
 public class Fuel
 {
     /** Clase del tipo de combustible */
-    public const double STICK_HEAL = 10;
+    public const double STICK_HEAL = 1800;
     public const bool STICK_WATERSIELD = false;
-    public const double BLUESTICK_HEAL = 20;
+    public const double BLUESTICK_HEAL = 3600;
     public const bool BLUESTICK_WATERSIELD = true;
 
     //Tipos de combustible
@@ -30,7 +30,7 @@ public class Fuel
     public bool waterSield = false;
 
     //tiempo que se mantiene activa la acci�n
-    private double duration;
+    public double duration;
     #endregion
 
     public Fuel() {
@@ -48,11 +48,11 @@ public class Fuel
         switch (this.type)
         {
             case types.stick:
-                this.heal = STICK_HEAL;
+                this.heal = this.duration = STICK_HEAL;
                 waterSield = STICK_WATERSIELD;
                 break;
             case types.blueStick:
-                this.heal = BLUESTICK_HEAL;
+                this.heal = this.duration = BLUESTICK_HEAL;
                 waterSield = BLUESTICK_WATERSIELD;
                 break;
         }

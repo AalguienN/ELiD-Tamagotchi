@@ -285,6 +285,7 @@ public class InteractableTouch : MonoBehaviour
         SaveManager.setStickNum(--stickNum);
         SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() - 1); //Soy Pau, he a�adido el azul
         SaveManager.setBlueWood(true);
+        print("Consumido un palo azul");
         GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.blueStick);
     }
     #endregion

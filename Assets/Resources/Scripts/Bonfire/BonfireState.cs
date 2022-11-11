@@ -18,6 +18,7 @@ public class BonfireState : MonoBehaviour
     public double maxHp = 1000;
     public states state;
     public globalState weather = globalState.despejado; //Provisional
+    public static bool isBlue;
 
     [Header("Loss Factor")]
     public double standardHpLossFactor = 1;
@@ -59,6 +60,7 @@ public class BonfireState : MonoBehaviour
         turnOn = false; turnOff = false;
 
         int tiempoFuera = SaveManager.getSecondsSinceLastConexion();
+        fuelList = SaveManager.fuelList;
 
         Debug.Log(SaveManager.getFireState());
         fuelList = new List<Fuel>();
@@ -67,6 +69,18 @@ public class BonfireState : MonoBehaviour
         StartCoroutine(bonfireTick());
 
         lit(SaveManager.getFireState()-tiempoFuera);
+        if(fuelList.Count != 0) {
+            isBlue = true;
+            Fuel f = fuelList[fuelList.Count-1];
+            f.duration -= tiempoFuera;
+            if(f.duration < 0) {
+                fuelList.Remove(f);
+            }
+        }
+        else
+        {
+            isBlue = false;
+        }
 
         Debug.Log("El juego ha estado cerrado " + Mathf.Abs(tiempoFuera) + " segundos");
         if(SaveManager.getMinigameMinutes()!= 0)
@@ -80,6 +94,19 @@ public class BonfireState : MonoBehaviour
         //For testing remove later
         if (turnOn) { lit(); turnOn = false; }
         if (turnOff) { extinguish(); turnOff = false;  }
+
+        if(fuelList.Count != 0) {
+            isBlue = true;
+            Fuel f = fuelList[fuelList.Count-1];
+            f.duration -= Time.deltaTime;
+            if(f.duration < 0) {
+                fuelList.Remove(f);
+            }
+        }
+        else
+        {
+            isBlue = false;
+        }
 
         if(hp > 0) 
         {
@@ -95,7 +122,6 @@ public class BonfireState : MonoBehaviour
             GetComponentInChildren<Light>().GetComponent<Intensity>().apagar();
             VisualBonfire.SetTargetLight(0);
         }
-        
     }
     #endregion
 
@@ -138,10 +164,14 @@ public class BonfireState : MonoBehaviour
         else lit();
     }
     public void addFuel(Fuel.types fuel) {
-        fuelList.Add(new Fuel(fuel));
         Fuel f = new Fuel(fuel);
         f.init();
         heal(f.heal);
+        if(fuel == Fuel.types.blueStick) 
+        {
+            fuelList.Add(f);
+            SaveManager.fuelList = fuelList;
+        }
     }
 
 
