@@ -26,6 +26,7 @@ public class cameraAnimationHandler : MonoBehaviour
         currentState = IDLE_ANIMATION;
     }
 
+
     public void ReturnToIDLE()
     {
         ChangeAnimation(IDLE_ANIMATION);

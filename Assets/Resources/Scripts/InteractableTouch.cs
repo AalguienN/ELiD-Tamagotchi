@@ -163,11 +163,6 @@ public class InteractableTouch : MonoBehaviour
                     hold = true;
                     CameraManagement.blockCamera = true;
                 }
-                else if (hit.collider.gameObject.CompareTag("Caputxa") && SaveManager.canCaputxaBeeInteracted) //starts current day dialogue
-                {
-                    print("caputxa");
-                    DialogueEventStarter.instance.startCurrentDayDialogue();
-                }
             }
             // if (mousePos.x > (pixelPointer.x - grabR) && mousePos.x < (pixelPointer.x + grabR) 
             //     && mousePos.y > (pixelPointer.y - grabR) && mousePos.y < (pixelPointer.y + grabR))

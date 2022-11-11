@@ -227,7 +227,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'SendMessage(disableCaputxaInteraction, , Dialogue Manager);
 
-          SendMessage(lockCameraToRight,
+          SendMessage(lockCameraToCenter,
           , Dialogue Manager);'
         type: 0
         typeString: CustomFieldType_Text
@@ -699,7 +699,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: 'SendMessage(lockCameraToRight, , Dialogue Manager);
+
+          SendMessage(endOfDialogue,
+          ,Dialogue Manager);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 1
@@ -723,7 +726,7 @@ MonoBehaviour:
         height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.8500006
+    canvasZoom: 0.7600007
   - id: 2
     fields:
     - title: Title
@@ -852,7 +855,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: 'SendMessage(disableCaputxaInteraction, , Dialogue Manager);
+
+          SendMessage(lockCameraToCenter,
+          , Dialogue Manager);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 2
@@ -1070,11 +1076,14 @@ MonoBehaviour:
         typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: "Me he tomado la molestia de anotar mis predicciones sobre el tiempo
-          en el calendario que has colgado en ese \xE1rbol."
+          y colg\xE1rtelo en ese \xE1rbol."
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: 'SendMessage(lockCameraToLeft, , Dialogue Manager);
+
+          SendMessage(disableContinue,
+          , Dialogue Manager);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 2
@@ -1129,7 +1138,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(enableContinue, , Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 2
@@ -1406,7 +1415,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(endOfDialogue, ,Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 2
@@ -1430,7 +1439,7 @@ MonoBehaviour:
         height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.70000035
+    canvasZoom: 0.61000043
   - id: 3
     fields:
     - title: Title
@@ -1559,7 +1568,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(disableCaputxaInteraction, , Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 3
@@ -2114,7 +2123,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(endOfDialogue, ,Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 3
@@ -2137,8 +2146,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 15.80261, y: 220.91936}
-    canvasZoom: 1.2399998
+    canvasScrollPosition: {x: 0, y: 5.6818085}
+    canvasZoom: 0.8800001
   - id: 4
     fields:
     - title: Title
@@ -2267,7 +2276,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(disableCaputxaInteraction, , Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 4
@@ -2656,7 +2665,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(endOfDialogue, ,Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 4
@@ -2809,7 +2818,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(disableCaputxaInteraction, , Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 5
@@ -3362,7 +3371,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(endOfDialogue, ,Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 5
@@ -3385,8 +3394,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 108.51065}
-    canvasZoom: 0.94000006
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.7900002
   - id: 6
     fields:
     - title: Title
@@ -3515,7 +3524,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(disableCaputxaInteraction, , Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 6
@@ -4235,7 +4244,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(endOfDialogue, ,Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 6
@@ -4258,8 +4267,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 253.6701}
-    canvasZoom: 0.97
+    canvasScrollPosition: {x: 0, y: 218.82344}
+    canvasZoom: 0.85000014
   - id: 7
     fields:
     - title: Title
@@ -4357,7 +4366,7 @@ MonoBehaviour:
         height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 1
+    canvasZoom: 0.97
   syncInfo:
     syncActors: 0
     syncItems: 0

@@ -20,12 +20,11 @@ public class SaveManager : MonoBehaviour {
     public static bool hasBurntFirstStick = false;
     public static bool hasTurnedRight = false;
     public static bool hasTurnedLeft = false;
-    public static bool miniGameActive = false;
     public static bool blueWood = false;
     public static bool isCaputxaActive = false;
     public static int canOnlyTurn = 0;
-    //public static bool isCaputxaDisabled = true;
-    public static bool canCaputxaBeeInteracted = false;
+    public static bool canCaputxaBeInteracted = false;
+    public static bool hasBeenDialoguePlayed = false;
 
     #endregion
 
@@ -47,8 +46,12 @@ public class SaveManager : MonoBehaviour {
         hasTurnedLeft = ES3.Load("hasTurnedLeft", false);
         hasTurnedRight = ES3.Load("hasTurnedRight", false);
         canOnlyTurn = ES3.Load("canOnlyTurn", 0);
+        blueWood = ES3.Load("blueWood", false);
 
-        currentDay = startingDay - WeeklyCalendar.GetCurrentDay(System.DateTime.Now);
+        print("Has turned left is: " + hasTurnedLeft);
+
+
+        currentDay = WeeklyCalendar.GetCurrentDay(System.DateTime.Now) - startingDay + 1;
         ES3.Save("currentDay",currentDay);
         
         if(!startedGame)
@@ -76,12 +79,14 @@ public class SaveManager : MonoBehaviour {
         if (lastConexion.Day != System.DateTime.Now.Day || aux_startedGame)
         {
             DialogueEventStarter.instance.enableCaputxa();
-            canCaputxaBeeInteracted = true;
+            hasBeenDialoguePlayed = false;
+            canCaputxaBeInteracted = true;
             aux_startedGame = false;
         }
         else
         {
-            canCaputxaBeeInteracted = false;
+            canCaputxaBeInteracted = false;
+            hasBeenDialoguePlayed = true;
             DialogueEventStarter.instance.disableCaputxa();
         }
     }
@@ -95,6 +100,35 @@ public class SaveManager : MonoBehaviour {
     private void OnApplicationQuit()
     {
         saveAll();
+        if (hasBeenDialoguePlayed)
+        {
+            switch (getCurrentDay())
+            {
+                case 1:
+                    setCanOnlyTurn(1);
+                    break;
+
+                case 2:
+                    setCanOnlyTurn(2);
+                    break;
+
+                case 3:
+                    break;
+
+                case 4:
+                    break;
+
+                case 5:
+                    break;
+
+                case 6:
+
+                    break;
+
+                case 7:
+                    break;
+            }
+        }
     }
 
     private void OnApplicationFocus(bool focus)
@@ -112,8 +146,8 @@ public class SaveManager : MonoBehaviour {
         ES3.Save("dayHandler", days);
         ES3.Save("startedGame", startedGame);
         ES3.Save("hasBurntFirstStick", hasBurntFirstStick);
-        ES3.Save("hasTurnedLeft", true);
-        ES3.Save("hasTurnedRight", true);
+        ES3.Save("hasTurnedLeft", hasTurnedLeft);
+        ES3.Save("hasTurnedRight", hasTurnedRight);
         ES3.Save("canOnlyTurn", canOnlyTurn);
     }
     #endregion
@@ -150,6 +184,7 @@ public class SaveManager : MonoBehaviour {
     public static void setStartingDay()
     {
         startingDay = WeeklyCalendar.GetCurrentDay(System.DateTime.Now);
+        ES3.Save("startingDay", startingDay);
     }
 
     public static int getSecondsSinceLastConexion()
@@ -166,6 +201,12 @@ public class SaveManager : MonoBehaviour {
     {
         ES3.Save("canOnlyTurn", num);
         canOnlyTurn = num; //from -1 to 2
+    }
+
+    public static void setBlueWood(bool bW)
+    {
+        blueWood = bW;
+        ES3.Save("blueWood", bW);
     }
     #endregion
 

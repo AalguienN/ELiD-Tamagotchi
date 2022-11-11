@@ -18,19 +18,46 @@ public class DialogueEventStarter : MonoBehaviour
     public GameObject caputxa;
 
 
+    private void Update()
+    {
+        if (Input.touchCount == 0) { return; }
+        Touch fingertouch = Input.GetTouch(0);
+        if (fingertouch.phase == TouchPhase.Began)
+        {
+            print("worked1");
+            Vector3 mousePos = fingertouch.position;
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            if (Physics.Raycast(ray, out hit, 100.0f))
+            {
+                if (hit.collider.gameObject.CompareTag("Caputxa") && SaveManager.canCaputxaBeInteracted)
+                {
+                    startCurrentDayDialogue();
+                }
+            }
+        }
+    }
+
+
     public void startCurrentDayDialogue()
     {
+        print(SaveManager.getCurrentDay());
         startConversation(SaveManager.getCurrentDay());
+    }
+
+    public void endOfDialogue()
+    {
+        SaveManager.hasBeenDialoguePlayed = true;
     }
     
     public void disableCaputxaInteraction()
     {
-        SaveManager.canCaputxaBeeInteracted = false;
+        SaveManager.canCaputxaBeInteracted = false;
     }
 
     public void enableCaputxaInteraction()
     {
-        SaveManager.canCaputxaBeeInteracted = true;
+        SaveManager.canCaputxaBeInteracted = true;
     }
 
     public void enableCaputxa()
@@ -43,13 +70,21 @@ public class DialogueEventStarter : MonoBehaviour
         caputxa.SetActive(false);
     }
 
+    public bool isCaputxaEnabled()
+    {
+        return caputxa.activeSelf;
+    }
+
     public void lockCamera(float seconds)
     {
         StartCoroutine(AnimationManager.cameraLockAnimation(seconds));
     }
 
 
-
+    public void lockCameraToCenter()
+    {
+        SaveManager.setCanOnlyTurn(0); //Just center
+    }
     public void lockCameraToLeft()
     {
         print("lockCameraToLeft");
@@ -59,6 +94,7 @@ public class DialogueEventStarter : MonoBehaviour
     IEnumerator lockCameraToLeft_()
     {
         yield return new WaitForSeconds(5);
+        print("Ienumerator");
         if (!SaveManager.hasTurnedLeft)
         {
             cameraAnimationHandler.instance.ChangeAnimation(cameraAnimationHandler.LEFT_ARROW);
@@ -85,6 +121,11 @@ public class DialogueEventStarter : MonoBehaviour
     public void unlockCamera()
     {
         SaveManager.setCanOnlyTurn(2); //Unlocks
+    }
+
+    public void enableBlueWood()
+    {
+        
     }
 
 

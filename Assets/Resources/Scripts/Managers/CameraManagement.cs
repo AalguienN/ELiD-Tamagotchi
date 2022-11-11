@@ -74,13 +74,13 @@ public class CameraManagement : MonoBehaviour
         if (getActiveCamera().Equals("CamMinigame") && !SaveManager.hasTurnedRight)
         {
             SaveManager.hasTurnedRight = true;
-            DialogueEventStarter.instance.disableCaputxa();
             SaveManager.saveAll();
         }
         if (getActiveCamera().Equals("CamCalendar") && !SaveManager.hasTurnedLeft)
         {
             SaveManager.hasTurnedLeft = true;
             SaveManager.saveAll();
+            DialogueEventStarter.instance.enableContinue();
         }
 
     }
@@ -134,7 +134,7 @@ public class CameraManagement : MonoBehaviour
                 return;
             }
         }
-        if (SaveManager.getCanOnlyTurn() == -1)
+        else if (SaveManager.getCanOnlyTurn() == -1)
         {
             if (dir == -1 && getActiveCamera().Equals("CamCalendar") || dir == 1 && getActiveCamera().Equals("CamBonfire"))
             {
@@ -142,7 +142,11 @@ public class CameraManagement : MonoBehaviour
                 return;
             }
         }
-        if (dir == 0) { return; } //Camera is locked, no turning
+        else if(SaveManager.getCanOnlyTurn() == 0)
+        {
+            returnToCenter();
+            return;
+        }
         int[] newPriority = new int[vcams.Length];
         bool isDirRight = dir > 0 ? true : false;
         int changeLength = isDirRight ? vcams.Length - 1 : 0;
@@ -304,6 +308,10 @@ public class CameraManagement : MonoBehaviour
             timeToReturn += (Time.deltaTime / returnAnimationTime); //I had to do math to get this shit to calculate how many frames is x seconds
             yield return null; //Wait one frame
             if(Input.touchCount != 0) { break; }
+        }
+        if (!getActiveCamera().Equals("CamBonfire") && DialogueEventStarter.instance.isCaputxaEnabled() && SaveManager.hasBeenDialoguePlayed)
+        {
+            DialogueEventStarter.instance.disableCaputxa();
         }
     }
 
