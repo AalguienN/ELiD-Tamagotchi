@@ -39,6 +39,10 @@ public class InteractableTouch : MonoBehaviour
     bool isActive;
 
     public ParticleSystem stickyParticles;
+    public GameObject stickyObject;
+
+    public Material normalMat;
+    public Material blueMat;
 
     #endregion
 
@@ -213,10 +217,12 @@ public class InteractableTouch : MonoBehaviour
         if (isBlue)
         {
             stickyParticles.Play();
+            stickyObject.GetComponent<MeshRenderer>().material = blueMat;
         }
         else
         {
             stickyParticles.Stop();
+            stickyObject.GetComponent<MeshRenderer>().material = normalMat;
         }
     }
     public IEnumerator ReturnStick()
@@ -266,7 +272,7 @@ public class InteractableTouch : MonoBehaviour
         }
         SaveManager.setStickNum(--stickNum);
         Debug.Log(stickNum + " palos restantes");
-        //Modificado por Adrián
+        //Modificado por Adriï¿½n
         GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.stick);
     }
     //Im blue
@@ -278,7 +284,7 @@ public class InteractableTouch : MonoBehaviour
             SaveManager.saveAll();
         }
         SaveManager.setStickNum(--stickNum);
-        SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() - 1); //Soy Pau, he añadido el azul
+        SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() - 1); //Soy Pau, he aï¿½adido el azul
         SaveManager.setBlueWood(true);
         GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.blueStick);
     }

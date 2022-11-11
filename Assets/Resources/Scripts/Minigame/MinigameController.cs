@@ -133,8 +133,19 @@ public class MinigameController : MonoBehaviour
         precision = 0;
         precisionNeedle.transform.rotation = Quaternion.Euler(0f,0f,0f);
         int s = SaveManager.getStickNum();
-        SaveManager.setStickNum(s+sticks);
+        int bs = SaveManager.getBlueStickNum();
+        if(sticks==12) //Si haces casi full perfect
+        {
+            SaveManager.setBlueStickNum(bs+1);
+            SaveManager.setStickNum(s+1);
+        }
+        else 
+        {
+            SaveManager.setStickNum(s+sticks);
+        }
+
         print("Stick number: " + SaveManager.getStickNum());
+        
         SaveManager.setMinigameMinutes(15);
         StartCoroutine(RunTime());
         treeFull.SetActive(false);
@@ -224,7 +235,7 @@ public class MinigameController : MonoBehaviour
             //Play sound
             ScreenShake.instance.StartShake(0.1f,5f);
             SoundManager.instance.PlaySound("WoodChopOption (5)");
-            Reward(3, true);
+            Reward(3);
         }
         else if(precision01 > 0.7f) 
         {
@@ -281,8 +292,7 @@ public class MinigameController : MonoBehaviour
         
     }
 
-    void Reward(int rewardCount, bool getBlue = false) {
-        if(getBlue)
+    void Reward(int rewardCount) {
         sticks+=rewardCount;
         sticks = Mathf.Max(0,sticks);
         SaveManager.setMinigameSticks(sticks);
