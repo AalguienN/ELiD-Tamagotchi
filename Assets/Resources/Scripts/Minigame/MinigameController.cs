@@ -224,7 +224,7 @@ public class MinigameController : MonoBehaviour
             //Play sound
             ScreenShake.instance.StartShake(0.1f,5f);
             SoundManager.instance.PlaySound("WoodChopOption (5)");
-            Reward(3);
+            Reward(3, true);
         }
         else if(precision01 > 0.7f) 
         {
@@ -281,7 +281,8 @@ public class MinigameController : MonoBehaviour
         
     }
 
-    void Reward(int rewardCount) {
+    void Reward(int rewardCount, bool getBlue = false) {
+        if(getBlue)
         sticks+=rewardCount;
         sticks = Mathf.Max(0,sticks);
         SaveManager.setMinigameSticks(sticks);
