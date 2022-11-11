@@ -38,18 +38,21 @@ public class MinigameController : MonoBehaviour
     public static bool status;
     public GameObject treeFull;
     public GameObject treeChop;
-    int savedHits,savedSticks;
+    int savedHits;
+
+    public GameObject particleInstancer;
 
     void Start() {
-        Reward(0);
         axePrefab.transform.localPosition = axeActualPosition = axeStartPosition;
         axeActualRotation = axeStartRotation;
         axePrefab.transform.localRotation = Quaternion.Euler(axeActualRotation);
         savedHits = SaveManager.getMinigameHits();
-        savedSticks = SaveManager.getMinigameSticks();
+        sticks = SaveManager.getMinigameSticks();
         status = (SaveManager.getMinigameMinutes() <= 0);
+        Reward(0);
         if(status) 
         {
+            if(sticks != 0) StartCoroutine(StartGameAtHalf());
             treeChop.SetActive(false);
             treeFull.SetActive(true);
         }
@@ -63,7 +66,7 @@ public class MinigameController : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        savedSticks = 0;
+        sticks = 0;
         SaveManager.setMinigameSticks(0);
         savedHits = 0;
         SaveManager.setMinigameHits(0);
@@ -72,7 +75,27 @@ public class MinigameController : MonoBehaviour
         treeFull.SetActive(true);
         treeChop.transform.GetChild(1).transform.localPosition = new Vector3(0, -1.17f, 0);
         treeChop.transform.GetChild(1).transform.localRotation = Quaternion.Euler(new Vector3(-90, 0, 0));
-        sticks = 0;
+        speed = 0;
+        gameRunning = true;
+        Reward(0);
+        float t = 0;
+        modifyRotation = true;
+        while(t<=1) {
+            t += Time.deltaTime/2f;
+            axeActualPosition = Vector3.Lerp(axeStartPosition,axeActualPosition,t);
+            axeActualRotation = Vector3.Lerp(axeStartRotation,axeActualRotation,t);
+            yield return new WaitForEndOfFrame();
+        }
+        modifyRotation = false;
+        continueSpeed = true;
+        gameTime = Random.Range(0.0f,10.0f);
+    }
+
+    IEnumerator StartGameAtHalf() {
+        treeChop.SetActive(false);
+        treeFull.SetActive(true);
+        treeChop.transform.GetChild(1).transform.localPosition = new Vector3(0, -1.17f, 0);
+        treeChop.transform.GetChild(1).transform.localRotation = Quaternion.Euler(new Vector3(-90, 0, 0));
         speed = 0;
         gameRunning = true;
         Reward(0);
@@ -116,6 +139,7 @@ public class MinigameController : MonoBehaviour
         StartCoroutine(RunTime());
         treeFull.SetActive(false);
         treeChop.SetActive(true);
+        SoundManager.instance.PlaySound("TreeFall");
     }
 
     IEnumerator RunTime() {
@@ -168,12 +192,6 @@ public class MinigameController : MonoBehaviour
     IEnumerator StopNeedle() {
         savedHits++;
         SaveManager.setMinigameHits(savedHits);
-        if(savedHits>5)
-        {
-            StartCoroutine(EndGame(0));
-            modifyRotation = false;
-            yield break;
-        }
         continueSpeed = false;
         speed += (0.5f-Mathf.Abs(precision)/80f)*2f;
         gameTime = Random.Range(0.0f,10.0f);
@@ -199,28 +217,34 @@ public class MinigameController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         axeActualPosition = axeHitPosition;
-
-        yield return new WaitForSeconds(0.5f);
-
+        
         if(precision01 > 0.9f)
         {
             print("Perfect");
             //Play sound
+            ScreenShake.instance.StartShake(0.1f,5f);
+            SoundManager.instance.PlaySound("WoodChopOption (5)");
             Reward(3);
         }
         else if(precision01 > 0.7f) 
         {
             print("Almost");
+            ScreenShake.instance.StartShake(0.1f,3f);
+            SoundManager.instance.PlaySound("WoodChopOption (4)");
             Reward(2);
         }
         else if(precision01 > 0.5f) 
         {
             print("I'll accept it");
+            ScreenShake.instance.StartShake(0.1f,1f);
+            SoundManager.instance.PlaySound("WoodChopOption (3)");
             Reward(1);
         }
         else if(precision01 > 0.4f) 
         {
             print("I'll give you another chance");
+            ScreenShake.instance.StartShake(0.1f,0.5f);
+            SoundManager.instance.PlaySound("WoodChopOption (2)");
             Reward(0);
         }
         else 
@@ -228,6 +252,8 @@ public class MinigameController : MonoBehaviour
             print("You're out");
             Reward(-1);
         }
+
+        yield return new WaitForSeconds(0.5f);
         t=0;
         while(axeActualPosition != axeHitPosition) {
             t += Time.deltaTime/4;
@@ -245,16 +271,20 @@ public class MinigameController : MonoBehaviour
         }
         axeActualPosition = lastKnownPos;
         modifyRotation = false;
-
+        if(savedHits>=5)
+        {
+            StartCoroutine(EndGame(0));
+            yield break;
+        }
         yield return new WaitForSeconds(1f);
         continueSpeed = true;
+        
     }
 
     void Reward(int rewardCount) {
         sticks+=rewardCount;
         sticks = Mathf.Max(0,sticks);
-        savedSticks = sticks;
-        SaveManager.setMinigameSticks(savedSticks);
-        stickTextTemp.text = "Sticks: " + savedSticks + " Hits: " + savedHits;
+        SaveManager.setMinigameSticks(sticks);
+        stickTextTemp.text = "Sticks: " + sticks + " Hits: " + savedHits;
     }
 }
