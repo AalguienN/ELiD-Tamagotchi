@@ -270,7 +270,8 @@ public class SaveManager : MonoBehaviour {
         DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
         FileInfo[] files = dataDir.GetFiles();
         foreach (FileInfo file in files) {
-            file.Delete();
+            ES3File es3file = new ES3File(file.ToString());
+            es3file.Clear();
         }
     }
     #endregion
