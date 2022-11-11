@@ -24,8 +24,6 @@ public class BonfireState : MonoBehaviour
     public double standardHpLossFactor = 1;
     public double rainingHpLossFactor = 1;
     
-    public List<Fuel> fuelList;
-
     [Header("Testing: remove later \n USAD ESTO COMO BOTONES \n PARA ENCENDER Y APAGAR LA HOGUERA")]
 
     public bool turnOn;
@@ -60,21 +58,19 @@ public class BonfireState : MonoBehaviour
         turnOn = false; turnOff = false;
 
         int tiempoFuera = SaveManager.getSecondsSinceLastConexion();
-        fuelList = SaveManager.fuelList;
 
         Debug.Log(SaveManager.getFireState());
-        fuelList = new List<Fuel>();
         
         //this.transform.GetComponentInChildren<ParticleSystem>().Stop(); 
         StartCoroutine(bonfireTick());
 
         lit(SaveManager.getFireState()-tiempoFuera);
-        if(fuelList.Count != 0) {
+        if(SaveManager.fuelList.Count != 0) {
             isBlue = true;
-            Fuel f = fuelList[fuelList.Count-1];
+            Fuel f = SaveManager.fuelList[SaveManager.fuelList.Count-1];
             f.duration -= tiempoFuera;
             if(f.duration < 0) {
-                fuelList.Remove(f);
+                SaveManager.fuelList.Remove(f);
             }
         }
         else
@@ -95,18 +91,19 @@ public class BonfireState : MonoBehaviour
         if (turnOn) { lit(); turnOn = false; }
         if (turnOff) { extinguish(); turnOff = false;  }
 
-        if(fuelList.Count != 0) {
+        if(SaveManager.fuelList.Count != 0) {
             isBlue = true;
-            Fuel f = fuelList[fuelList.Count-1];
+            Fuel f = SaveManager.fuelList[SaveManager.fuelList.Count-1];
             f.duration -= Time.deltaTime;
             if(f.duration < 0) {
-                fuelList.Remove(f);
+                SaveManager.fuelList.Remove(f);
             }
         }
         else
         {
             isBlue = false;
         }
+        print("Is blue? "+ isBlue);
 
         if(hp > 0) 
         {
@@ -169,8 +166,7 @@ public class BonfireState : MonoBehaviour
         heal(f.heal);
         if(fuel == Fuel.types.blueStick) 
         {
-            fuelList.Add(f);
-            SaveManager.fuelList = fuelList;
+            SaveManager.fuelList.Add(f);
         }
     }
 
