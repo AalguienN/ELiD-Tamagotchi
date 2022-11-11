@@ -27,7 +27,9 @@ public class MonthlyCalendarManager : MonoBehaviour
     public GameObject calendarDayPrefab;
     public Sprite[] weatherIcons = new Sprite[3];
     public Sprite circleTexture;
+    public Color circleColor;
     public Sprite crossTexture;
+    public Color crossColor;
     private List<GameObject> daysInCalendarDisplay = new List<GameObject>();
     public GameObject calendarEventPrefab;
     private List<GameObject> eventObjects = new List<GameObject>();
@@ -56,6 +58,7 @@ public class MonthlyCalendarManager : MonoBehaviour
             daysInCalendarDisplay.Add(gO);
             gO.transform.rotation = transform.rotation;
             gO.transform.GetChild(1).transform.rotation = Quaternion.Euler(0,150, UnityEngine.Random.Range(-25f,25f));
+            gO.transform.GetChild(3).transform.rotation = Quaternion.Euler(0,150, UnityEngine.Random.Range(-25f,25f));
             gO.transform.SetParent(dayContainer);
             gO.transform.localPosition = new Vector3((-0.3928572f+0.1309524f*(i%7)),0.25f-0.125f*(i/7),0);
         }
@@ -99,9 +102,9 @@ public class MonthlyCalendarManager : MonoBehaviour
             }
         }
 
-        //TEMP
-        if(Input.GetKeyDown(KeyCode.E))
-            AddCalendarEvent(new CalendarEvent(UnityEngine.Random.Range(1,9999).ToString(), UnityEngine.Random.Range(1,9999).ToString(), 2022, 10, UnityEngine.Random.Range(1,31)));
+        // //TEMP
+        // if(Input.GetKeyDown(KeyCode.E))
+        //     AddCalendarEvent(new CalendarEvent(UnityEngine.Random.Range(1,9999).ToString(), UnityEngine.Random.Range(1,9999).ToString(), 2022, 10, UnityEngine.Random.Range(1,31)));
 
 
         //Click on one day to see its events
@@ -182,7 +185,7 @@ public class MonthlyCalendarManager : MonoBehaviour
                 int globalDay = WeeklyCalendar.GetCurrentDay(epochToday);
                 int dW = (int)SaveManager.getDay(globalDay.ToString()).weather;
 
-                ChangeTileVisuals(gO, crossTexture, previousYearInt, previousMonthInt, previousMonthDay, dW);
+                ChangeTileVisuals(gO, crossTexture, crossColor, previousYearInt, previousMonthInt, previousMonthDay, dW);
             }
             else if(i>actualMonth.Days+firstDayInWeek-1) { // If it is a day from the next month
                 int localYear = (currentMonth==12) ? currentYear+1 : currentYear;
@@ -193,19 +196,20 @@ public class MonthlyCalendarManager : MonoBehaviour
                 int globalDay = WeeklyCalendar.GetCurrentDay(epochToday);
                 int dW = (int)SaveManager.getDay(globalDay.ToString()).weather;
                 
-                ChangeTileVisuals(gO, null, localYear, localMonth, localDay, dW);
+                ChangeTileVisuals(gO, null, Color.white, localYear, localMonth, localDay, dW);
             }
             else { // If it is a day from the current month
                 System.DateTime epochToday = new System.DateTime(currentYear, currentMonth, (i-firstDayInWeek+1), 0, 0, 0, System.DateTimeKind.Utc);
                 int globalDay = WeeklyCalendar.GetCurrentDay(epochToday);
                 int dW = (int)SaveManager.getDay(globalDay.ToString()).weather;
 
-                ChangeTileVisuals(gO, (currentDay == (i-firstDayInWeek+1)) ? circleTexture : ((currentDay > (i-firstDayInWeek+1)) ? crossTexture : null), currentYear, currentMonth, (i-firstDayInWeek+1), dW);
+                ChangeTileVisuals(gO, (currentDay == (i-firstDayInWeek+1)) ? circleTexture : ((currentDay > (i-firstDayInWeek+1)) ? crossTexture : null),
+                    (currentDay == (i-firstDayInWeek+1)) ? circleColor : ((currentDay > (i-firstDayInWeek+1)) ? crossColor : Color.white), currentYear, currentMonth, (i-firstDayInWeek+1), dW);
             }
         }
     }
 
-    void ChangeTileVisuals(GameObject gO, Sprite dayTexture, int year, int month, int day, int climateIntIcon) {
+    void ChangeTileVisuals(GameObject gO, Sprite dayTexture, Color dayColor, int year, int month, int day, int climateIntIcon) {
         List<CalendarEvent> cE = GetCalendarEvent(year,month,day);
         if(cE != null) {
             foreach(CalendarEvent e in cE) {
@@ -220,6 +224,7 @@ public class MonthlyCalendarManager : MonoBehaviour
             }
         }
         gO.transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().sprite = dayTexture;
+        gO.transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().color = dayColor;
         gO.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = gO.name = day.ToString();
         gO.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().sprite = weatherIcons[climateIntIcon]; 
     }

@@ -66,6 +66,11 @@ public class BonfireState : MonoBehaviour
         StartCoroutine(bonfireTick());
 
         Debug.Log("El juego ha estado cerrado " + Mathf.Abs(tiempoFuera) + " segundos");
+        if(SaveManager.getMinigameMinutes()!= 0)
+        {
+            SaveManager.setMinigameMinutes(SaveManager.getMinigameMinutes()-(int)(Mathf.Abs(tiempoFuera)/60f));
+            print("Minigame minutes: " + SaveManager.getMinigameMinutes());
+        }
     }
     private void Update()
     {
@@ -81,8 +86,6 @@ public class BonfireState : MonoBehaviour
     private IEnumerator bonfireTick() {
         while (true)
         {
-            
-            yield return new WaitForSeconds(tickRate);
             if (hp > 0 && state == states.encendida)
                 hp -= (standardHpLossFactor + rainingHpLossFactor * (int)weather);
                        
@@ -91,6 +94,7 @@ public class BonfireState : MonoBehaviour
             //Actualizar en el momento que hp = 0
             if (hp <= 0 && state == states.encendida) 
                 extinguish();
+            yield return new WaitForSeconds(tickRate);
         }
 
     }
