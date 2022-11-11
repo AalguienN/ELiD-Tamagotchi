@@ -62,6 +62,8 @@ public class BonfireState : MonoBehaviour
 
         Debug.Log(SaveManager.getFireState());
         fuelList = new List<Fuel>();
+        
+        this.transform.GetComponentInChildren<ParticleSystem>().Stop(); 
         lit(-tiempoFuera, SaveManager.getFireState());
         StartCoroutine(bonfireTick());
 

@@ -252,7 +252,10 @@ public class SaveManager : MonoBehaviour {
     public static void clearData()
     {
         DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
-        dataDir.Delete(true);
+        FileInfo[] files = dataDir.GetFiles();
+        foreach (FileInfo file in files) {
+            file.Delete();
+        }
     }
     #endregion
 
