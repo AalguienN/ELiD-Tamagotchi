@@ -36,6 +36,7 @@ public class BonfireState : MonoBehaviour
     #region enums
     //Estado de la hoguera
     public enum states { 
+        nada,
         encendida,
         apagada
     }
@@ -100,19 +101,20 @@ public class BonfireState : MonoBehaviour
         }
         print("Is blue? "+ isBlue);
 
-        if(hp > 0 && state == states.apagada) 
+        if(hp > 0 && state != states.encendida) 
         {
             //this.transform.GetComponentInChildren<ParticleSystem>().Play(); 
             state = BonfireState.states.encendida; 
             GetComponentInChildren<Light>().GetComponent<Intensity>().encender();
             VisualBonfire.Instance.ChangeBonfire();
         }
-        else 
+        else if(hp <= 0 && state != states.apagada)
         {
             //this.transform.GetComponentInChildren<ParticleSystem>().Stop(); 
             state = BonfireState.states.apagada;
             GetComponentInChildren<Light>().GetComponent<Intensity>().apagar();
             VisualBonfire.Instance.ChangeBonfire();
+            //TODO: trigger endgame
         }
     }
     #endregion
