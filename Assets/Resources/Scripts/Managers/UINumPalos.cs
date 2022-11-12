@@ -25,11 +25,11 @@ public class UINumPalos : MonoBehaviour
         
         if(s == 0)
         {
-            t = Mathf.Lerp(t, 1, Time.deltaTime);
+            t = Mathf.Lerp(t, 0, Time.deltaTime);
         }   
         else
         {
-            t = Mathf.Lerp(t, 0, Time.deltaTime);
+            t = Mathf.Lerp(t, 1, Time.deltaTime);
         }
 
         child.GetComponent<Image>().color = new Color(1,1,1,t);
