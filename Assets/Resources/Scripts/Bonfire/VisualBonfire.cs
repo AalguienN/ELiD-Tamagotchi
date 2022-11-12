@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class VisualBonfire : MonoBehaviour
 {
-    public float targetLight;
-    static float _sTargetLight = -1;
+    public static VisualBonfire Instance { get; private set; }
+
     static bool _sIsBlue;
 
     public GameObject fireParticle01Red;
@@ -15,15 +15,15 @@ public class VisualBonfire : MonoBehaviour
     public GameObject fireParticle02Blue;
     public GameObject fireParticle03Blue;
 
+    #region Awake
+    void Awake() {
+        Instance = this; 
+    }
+    #endregion
+
     // Update is called once per frame
     void Update()
-    { 
-        if(targetLight != _sTargetLight)
-        {
-            targetLight = _sTargetLight;
-
-            ChangeBonfire();
-        }
+    {
 
         if(_sIsBlue != BonfireState.isBlue) {
             _sIsBlue = BonfireState.isBlue;
@@ -32,7 +32,7 @@ public class VisualBonfire : MonoBehaviour
         }
     }
 
-    void ChangeBonfire() {
+    public void ChangeBonfire() {
         int day = SaveManager.getCurrentDay();
             
         fireParticle01Blue.GetComponent<ParticleSystem>().Stop();
@@ -42,7 +42,7 @@ public class VisualBonfire : MonoBehaviour
         fireParticle02Red.GetComponent<ParticleSystem>().Stop();
         fireParticle03Red.GetComponent<ParticleSystem>().Stop();
 
-        if(targetLight==0) return;
+        if(BonfireState.Instance.state==BonfireState.states.apagada) return;
         //if(!SaveManager.hasBurntFirstStick) return;
 
         if(BonfireState.isBlue && day >= 3) {
@@ -67,9 +67,5 @@ public class VisualBonfire : MonoBehaviour
                 fireParticle03Red.GetComponent<ParticleSystem>().Play();
             }
         }
-    }
-
-    public static void SetTargetLight(float target) {
-        _sTargetLight = target;
     }
 }

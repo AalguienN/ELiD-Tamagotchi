@@ -100,19 +100,19 @@ public class BonfireState : MonoBehaviour
         }
         print("Is blue? "+ isBlue);
 
-        if(hp > 0) 
+        if(hp > 0 && state == states.apagada) 
         {
             //this.transform.GetComponentInChildren<ParticleSystem>().Play(); 
             state = BonfireState.states.encendida; 
             GetComponentInChildren<Light>().GetComponent<Intensity>().encender();
-            VisualBonfire.SetTargetLight(1);
+            VisualBonfire.Instance.ChangeBonfire();
         }
         else 
         {
             //this.transform.GetComponentInChildren<ParticleSystem>().Stop(); 
-            state = BonfireState.states.apagada; 
+            state = BonfireState.states.apagada;
             GetComponentInChildren<Light>().GetComponent<Intensity>().apagar();
-            VisualBonfire.SetTargetLight(0);
+            VisualBonfire.Instance.ChangeBonfire();
         }
     }
     #endregion

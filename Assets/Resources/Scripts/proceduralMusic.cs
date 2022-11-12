@@ -35,6 +35,7 @@ public class proceduralMusic : MonoBehaviour
     }
 
     public IEnumerator PlayForestL(float beat) {
+        yield return new WaitForSeconds(5.0f);
         int count = 0;
         float t = ((AudioClip)Resources.Load(sm.getPath("BellMelody_96BPM"))).length - 12*4*(60 / 79);
         while (true) {
