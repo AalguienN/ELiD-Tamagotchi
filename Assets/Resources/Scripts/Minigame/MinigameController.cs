@@ -46,6 +46,10 @@ public class MinigameController : MonoBehaviour
         axePrefab.transform.localPosition = axeActualPosition = axeStartPosition;
         axeActualRotation = axeStartRotation;
         axePrefab.transform.localRotation = Quaternion.Euler(axeActualRotation);
+
+        SaveManager.setMinigameMinutes(SaveManager.getMinigameMinutes()-SaveManager.getSecondsSinceLastConexion()/60);
+        print("Minigame minutes: " + SaveManager.getMinigameMinutes());
+
         savedHits = SaveManager.getMinigameHits();
         sticks = SaveManager.getMinigameSticks();
         status = (SaveManager.getMinigameMinutes() <= 0);
@@ -73,7 +77,7 @@ public class MinigameController : MonoBehaviour
         
         treeChop.SetActive(false);
         treeFull.SetActive(true);
-        treeChop.transform.GetChild(1).transform.localPosition = new Vector3(0, -1.17f, 0);
+        treeChop.transform.GetChild(1).transform.localPosition = new Vector3(0, 0, 0);
         treeChop.transform.GetChild(1).transform.localRotation = Quaternion.Euler(new Vector3(-90, 0, 0));
         speed = 0;
         gameRunning = true;
@@ -147,6 +151,10 @@ public class MinigameController : MonoBehaviour
         print("Stick number: " + SaveManager.getStickNum());
         
         SaveManager.setMinigameMinutes(15);
+        SaveManager.setMinigameHits(0);
+        SaveManager.setMinigameSticks(0);
+        savedHits = 0;
+        sticks = 0;
         StartCoroutine(RunTime());
         treeFull.SetActive(false);
         treeChop.SetActive(true);
@@ -158,11 +166,20 @@ public class MinigameController : MonoBehaviour
         while(s) {
             yield return new WaitForSeconds(60);
             SaveManager.setMinigameMinutes(SaveManager.getMinigameMinutes()-1);
-            if(SaveManager.getMinigameMinutes()==0)
+            if(SaveManager.getMinigameMinutes()<=0)
                 s = false;
         }
+        while(CameraManagement.getActiveCamera()=="CamMinigame") yield return new WaitForEndOfFrame();
         status = true;
-        StartCoroutine(StartGame());
+        sticks = 0;
+        SaveManager.setMinigameSticks(0);
+        savedHits = 0;
+        SaveManager.setMinigameHits(0);
+        
+        treeChop.SetActive(false);
+        treeFull.SetActive(true);
+        treeChop.transform.GetChild(1).transform.localPosition = new Vector3(0, 0, 0);
+        treeChop.transform.GetChild(1).transform.localRotation = Quaternion.Euler(new Vector3(-90, 0, 0));
     }
 
     // Update is called once per frame
@@ -179,7 +196,7 @@ public class MinigameController : MonoBehaviour
                 }
                 if(Input.GetMouseButtonUp(0)) { 
                     if(Vector3.Distance(mousePosition, Input.mousePosition) < 50f)
-                        if(SaveManager.getMinigameMinutes()==0)
+                        if(SaveManager.getMinigameMinutes()<=0)
                             StartCoroutine(StartGame()); 
                 }
                 return;

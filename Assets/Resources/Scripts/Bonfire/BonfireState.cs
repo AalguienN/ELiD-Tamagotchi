@@ -79,11 +79,6 @@ public class BonfireState : MonoBehaviour
         }
 
         Debug.Log("El juego ha estado cerrado " + Mathf.Abs(tiempoFuera) + " segundos");
-        if(SaveManager.getMinigameMinutes()!= 0)
-        {
-            SaveManager.setMinigameMinutes(SaveManager.getMinigameMinutes()-(int)(Mathf.Abs(tiempoFuera)/60f));
-            print("Minigame minutes: " + SaveManager.getMinigameMinutes());
-        }
     }
     private void Update()
     {
