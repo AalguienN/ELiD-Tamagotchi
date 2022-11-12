@@ -188,7 +188,6 @@ public class MinigameController : MonoBehaviour
         axePrefab.transform.localPosition = Vector3.Lerp(axePrefab.transform.localPosition, axeActualPosition, Time.deltaTime*10f*speed);
         axePrefab.transform.localRotation = Quaternion.Lerp(axePrefab.transform.localRotation, Quaternion.Euler(axeActualRotation), Time.deltaTime*10f*speed);
         if(CameraManagement.getActiveCamera()=="CamMinigame") {
-            print("asdasdf");
             //axePrefab.transform.position = axeStartPosition+ axeEndPositionOffset;
             if(!gameRunning) {
                 if(Input.GetMouseButtonDown(0)) {
@@ -212,8 +211,12 @@ public class MinigameController : MonoBehaviour
                 axeActualRotation = Vector3.Lerp(axeMinRotation,axeMaxRotation,1f - Mathf.Abs(precision/80f));
             }
 
-            if(Input.GetMouseButtonUp(0)) {
-                StartCoroutine(StopNeedle());
+            if(Input.GetMouseButtonDown(0)) {
+                mousePosition = Input.mousePosition;
+            }
+            if(Input.GetMouseButtonUp(0)) { 
+                if(Vector3.Distance(mousePosition, Input.mousePosition) < 50f)
+                    StartCoroutine(StopNeedle());
             }
         }
     }
