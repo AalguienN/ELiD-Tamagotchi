@@ -352,7 +352,7 @@ MonoBehaviour:
       - title: Response Menu Sequence
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       conversationID: 1
       isRoot: 0
       isGroup: 0
@@ -639,8 +639,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "Estas noches cada vez son m\xE1s largas y sigues muy d\xE9bil.\n\nCada
-          vez necesitamos m\xE1s madera."
+        value: "Estas noches cada vez son m\xE1s largas y sigues muy d\xE9bil,\ny
+          yo he de seguir buscando a mis hermanos."
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -695,7 +695,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Coge el hacha y consigue unos buenos troncos.
+        value: "Coge esta hacha y consigue algo de madera para la hoguera, nos vemos
+          ma\xF1ana."
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -725,7 +726,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 0, y: 90.666336}
     canvasZoom: 0.7600007
   - id: 2
     fields:
@@ -1860,62 +1861,6 @@ MonoBehaviour:
       - originConversationID: 3
         originDialogueID: 6
         destinationConversationID: 3
-        destinationDialogueID: 7
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 30
-        y: 320
-        width: 160
-        height: 30
-    - id: 7
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Description
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Actor
-        value: 2
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Dialogue Text
-        value: "Te he dejado un toc\xF3n especial al lado del hacha. Haz algo de
-          le\xF1a."
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      conversationID: 3
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 3
-        originDialogueID: 7
-        destinationConversationID: 3
         destinationDialogueID: 8
         isConnector: 0
         priority: 2
@@ -1926,8 +1871,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 30
-        y: 370
+        x: 31.136368
+        y: 320
         width: 160
         height: 30
     - id: 8
@@ -1957,7 +1902,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: 'SendMessage(firstBurn,  , Dialogue Manager);
+
+          SendMessage(disableContinue,
+          , Dialogue Manager);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 3
@@ -1981,8 +1929,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 30.869568
-        y: 419.13043
+        x: 29.73323
+        y: 369.1304
         width: 160
         height: 30
     - id: 9
@@ -2082,7 +2030,7 @@ MonoBehaviour:
       - originConversationID: 3
         originDialogueID: 10
         destinationConversationID: 3
-        destinationDialogueID: 11
+        destinationDialogueID: 12
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -2141,12 +2089,67 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 241
-        y: 519
+        x: 238.72723
+        y: 580.3635
+        width: 160
+        height: 30
+    - id: 12
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: Jeje...
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 3
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 3
+        originDialogueID: 12
+        destinationConversationID: 3
+        destinationDialogueID: 11
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 237.9545
+        y: 524.54535
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 5.6818085}
+    canvasScrollPosition: {x: 0, y: 157.95447}
     canvasZoom: 0.8800001
   - id: 4
     fields:

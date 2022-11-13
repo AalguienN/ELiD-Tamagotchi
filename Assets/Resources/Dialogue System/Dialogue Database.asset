@@ -352,7 +352,7 @@ MonoBehaviour:
       - title: Response Menu Sequence
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       conversationID: 1
       isRoot: 0
       isGroup: 0
@@ -726,7 +726,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 0, y: 90.666336}
     canvasZoom: 0.7600007
   - id: 2
     fields:
@@ -1902,7 +1902,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 'SendMessage(firstBurn,  , Dialogue Manager);
+        value: 'SendMessage(firstBlueBurn,  , Dialogue Manager);
 
           SendMessage(disableContinue,
           , Dialogue Manager);'

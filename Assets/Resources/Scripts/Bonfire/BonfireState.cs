@@ -62,11 +62,11 @@ public class BonfireState : MonoBehaviour
 
         Debug.Log(SaveManager.getFireState());
         fuelList = new List<Fuel>();
+
+        lit(SaveManager.getFireState()-tiempoFuera);
         
         //this.transform.GetComponentInChildren<ParticleSystem>().Stop(); 
         StartCoroutine(bonfireTick());
-
-        lit(-tiempoFuera, SaveManager.getFireState());
 
         Debug.Log("El juego ha estado cerrado " + Mathf.Abs(tiempoFuera) + " segundos");
         if(SaveManager.getMinigameMinutes()!= 0)
@@ -81,7 +81,7 @@ public class BonfireState : MonoBehaviour
         if (turnOn) { lit(); turnOn = false; }
         if (turnOff) { extinguish(); turnOff = false;  }
 
-        if(hp != 0) 
+        if(hp > 0) 
         {
             //this.transform.GetComponentInChildren<ParticleSystem>().Play(); 
             state = BonfireState.states.encendida; 
@@ -124,10 +124,7 @@ public class BonfireState : MonoBehaviour
         hp = maxHp;  
     }
     public void lit(int modifier) { 
-        hp = maxHp + modifier;
-    }
-    public void lit(int modifier, int ini) { 
-        hp = ini + modifier;
+        hp = modifier;
     }
 
     //extinguish the bonfire
