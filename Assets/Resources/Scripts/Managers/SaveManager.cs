@@ -42,7 +42,6 @@ public class SaveManager : MonoBehaviour {
         fireState = ES3.Load("lastFireState", 0);
         stickNum = ES3.Load("stickNum", 0);
         blueStickNum = ES3.Load("blueStickNum", 0);
-        currentDay = ES3.Load("currentDay", currentDay);
         lastConexion = ES3.Load("lastConexion", DateTime.Now);
         lastConexionDay = ES3.Load("lastConexionDay", getCurrentDay());
         startedGame = ES3.Load("startedGame", false);
@@ -63,8 +62,8 @@ public class SaveManager : MonoBehaviour {
         hasPinochioRun = ES3.Load("hasPinoccionRun", hasPinochioRun);
 
 
-        currentDay = WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay).Hours/24 + 1;
-        print("Day: " + WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay).Hours/24 + 1);
+        currentDay = WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay) + 1;
+        print("Hours: " + WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay));
         ES3.Save("currentDay",currentDay);
 
         
@@ -161,7 +160,8 @@ public class SaveManager : MonoBehaviour {
         ES3.Save("blueStickNum", blueStickNum);
         ES3.Save("lastFireState", (int) GameObject.FindWithTag("Bonfire2").GetComponent<BonfireState>().hp);
         ES3.Save("lastConexion", DateTime.Now);
-        ES3.Save("lastConexionDay", getCurrentDay());
+        if(ES3.Load("lastConexionDay", 0)!=getCurrentDay())
+            ES3.Save("lastConexionDay", getCurrentDay());
         ES3.Save("eventHandler", events);
         ES3.Save("dayHandler", days);
         ES3.Save("fuelList", fuelList);
