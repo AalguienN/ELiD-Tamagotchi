@@ -42,7 +42,7 @@ public class MonthlyCalendarManager : MonoBehaviour
     public float selectedTileOffset;
     private Vector3 cameraDesiredPosition;
     private GameObject selectedObject;
-    private bool blockManualZoom;
+    private bool blockManualZoom = false;
     
     [Header("Other variables")]
     private Vector2 mousePosition;
@@ -108,34 +108,35 @@ public class MonthlyCalendarManager : MonoBehaviour
         // //TEMP
         // if(Input.GetKeyDown(KeyCode.E))
         //     AddCalendarEvent(new CalendarEvent(UnityEngine.Random.Range(1,9999).ToString(), UnityEngine.Random.Range(1,9999).ToString(), 2022, 10, UnityEngine.Random.Range(1,31)));
-        if(Input.GetKeyDown(KeyCode.K))
-            ZoomIn();
 
         //Click on one day to see its events
-        if(CameraManagement.getActiveCamera()=="CamCalendar") {
-            if(Input.GetMouseButtonDown(0)) {
-                mousePosition = Input.mousePosition;
-            }
-            if (Input.GetMouseButtonUp(0) && !blockManualZoom){
-                if(Vector3.Distance(mousePosition, Input.mousePosition) < 100f) {
-                    if(selectedObject) { selectedObject = null; cameraDesiredPosition = cameraDefaultPosition; return; }
-                    RaycastHit hit; 
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
-                    if ( Physics.Raycast (ray,out hit,500.0f)) {
-                        if(hit.collider.gameObject.CompareTag("CalendarTag")) {
-                            cameraDesiredPosition = hit.collider.gameObject.transform.position + hit.normal*selectedTileOffset;
-                            selectedObject = hit.collider.gameObject;
-                        }
-                        else if(hit.collider.gameObject.GetComponent<InteractableResource>()) {
-                            
+        if(!blockManualZoom)
+        {
+            if(CameraManagement.getActiveCamera()=="CamCalendar") {
+                if(Input.GetMouseButtonDown(0)) {
+                    mousePosition = Input.mousePosition;
+                }
+                if (Input.GetMouseButtonUp(0)){
+                    if(Vector3.Distance(mousePosition, Input.mousePosition) < 100f) {
+                        if(selectedObject) { selectedObject = null; cameraDesiredPosition = cameraDefaultPosition; return; }
+                        RaycastHit hit; 
+                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
+                        if ( Physics.Raycast (ray,out hit,500.0f)) {
+                            if(hit.collider.gameObject.CompareTag("CalendarTag")) {
+                                cameraDesiredPosition = hit.collider.gameObject.transform.position + hit.normal*selectedTileOffset;
+                                selectedObject = hit.collider.gameObject;
+                            }
+                            else if(hit.collider.gameObject.GetComponent<InteractableResource>()) {
+                                
+                            }
                         }
                     }
                 }
             }
-        }
-        else
-        {
-            cameraDesiredPosition = cameraDefaultPosition;
+            else
+            {
+                cameraDesiredPosition = cameraDefaultPosition;
+            }
         }
 
 
@@ -144,7 +145,7 @@ public class MonthlyCalendarManager : MonoBehaviour
     }
 
     public void ZoomOut() {
-        cameraDefaultPosition = cameraDefaultPosition;
+        cameraDesiredPosition = cameraDefaultPosition;
         selectedObject = null;
     }
 

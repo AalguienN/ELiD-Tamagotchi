@@ -267,4 +267,25 @@ public class DialogueEventStarter : MonoBehaviour
         }
         (DialogueManager.dialogueUI as StandardDialogueUI).OnContinue();
     }
+    
+    public void zoomCameraSequence() {
+        StartCoroutine(zoomCameraSequenceCoroutine());
+    }
+    public IEnumerator zoomCameraSequenceCoroutine() {
+        MonthlyCalendarManager.Instance.BlockManualZoom(true);
+        MonthlyCalendarManager.Instance.ZoomIn();
+        float t = 0;
+        while (t <= 5f)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
+        MonthlyCalendarManager.Instance.ZoomOut();
+        (DialogueManager.dialogueUI as StandardDialogueUI).OnContinue();
+    }
+
+    public void unlockCameraZoom()
+    {
+        MonthlyCalendarManager.Instance.BlockManualZoom(false);
+    }
 }
