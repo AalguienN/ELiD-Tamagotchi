@@ -30,7 +30,7 @@ public class proceduralMusic : MonoBehaviour
                 break;
         }
 
-        StartCoroutine(PlayForestL(60/bpm));   
+        StartCoroutine(PlayForestL(60/bpm));
 
     }
 

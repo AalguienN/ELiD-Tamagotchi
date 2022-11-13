@@ -6,6 +6,8 @@ using TMPro;
 
 public class MonthlyCalendarManager : MonoBehaviour
 {
+    public static MonthlyCalendarManager Instance;
+
     #region variables
     private int savedDay = -1;
     private int savedMonth = -1; 
@@ -40,10 +42,15 @@ public class MonthlyCalendarManager : MonoBehaviour
     public float selectedTileOffset;
     private Vector3 cameraDesiredPosition;
     private GameObject selectedObject;
+    private bool blockManualZoom;
     
     [Header("Other variables")]
     private Vector2 mousePosition;
     #endregion
+
+    void Awake() {
+        Instance = this;
+    }
 
     #region Methods
     // Start is called before the first frame update
@@ -108,7 +115,7 @@ public class MonthlyCalendarManager : MonoBehaviour
             if(Input.GetMouseButtonDown(0)) {
                 mousePosition = Input.mousePosition;
             }
-            if (Input.GetMouseButtonUp(0)){
+            if (Input.GetMouseButtonUp(0) && !blockManualZoom){
                 if(Vector3.Distance(mousePosition, Input.mousePosition) < 100f) {
                     if(selectedObject) { selectedObject = null; cameraDesiredPosition = cameraDefaultPosition; return; }
                     RaycastHit hit; 
@@ -133,6 +140,21 @@ public class MonthlyCalendarManager : MonoBehaviour
 
         //TO BE CHANGED
         cam.transform.position = Vector3.Lerp(cam.transform.position, cameraDesiredPosition, Time.deltaTime*2);
+    }
+
+    public void ZoomOut() {
+        cameraDefaultPosition = cameraDefaultPosition;
+        selectedObject = null;
+    }
+
+    public void ZoomIn(int dayToZoom)
+    {
+        cameraDesiredPosition = daysInCalendarDisplay[dayToZoom].transform.position + -Camera.main.transform.forward*selectedTileOffset;
+        selectedObject = daysInCalendarDisplay[dayToZoom];
+    }
+
+    public void BlockManualZoom(bool block) {
+        blockManualZoom = block;
     }
 
     public List<CalendarEvent> GetCalendarEvent(int year, int month, int day) {
