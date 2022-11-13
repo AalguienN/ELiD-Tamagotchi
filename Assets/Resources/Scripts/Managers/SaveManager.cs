@@ -15,6 +15,7 @@ public class SaveManager : MonoBehaviour {
 
     public static List<CalendarEvent> events = new List<CalendarEvent>();
     public static List<Day> days = new List<Day>();
+    public static List<Fuel> fuelList = new List<Fuel>();
     #endregion
 
     #region DialogueVariables
@@ -43,6 +44,7 @@ public class SaveManager : MonoBehaviour {
         startedGame = ES3.Load("startedGame", false);
         events = ES3.Load("eventHandler", new List<CalendarEvent>());
         days = ES3.Load("dayHandler", new List<Day>());
+        fuelList = ES3.Load("fuelList", new List<Fuel>());
         startingDay = ES3.Load("startingDay", WeeklyCalendar.GetCurrentDay(System.DateTime.Now));
         hasBurntFirstStick = ES3.Load("hasBurntFirstStick", false);
         hasBurntFirstBlueStick = ES3.Load("hasBurntFirstBlueStick", false);
@@ -154,6 +156,7 @@ public class SaveManager : MonoBehaviour {
         ES3.Save("lastConexion", DateTime.Now);
         ES3.Save("eventHandler", events);
         ES3.Save("dayHandler", days);
+        ES3.Save("fuelList", fuelList);
         ES3.Save("startedGame", startedGame);
         ES3.Save("hasBurntFirstStick", hasBurntFirstStick);
         ES3.Save("hasBurntFirstBlueStick", hasBurntFirstBlueStick);

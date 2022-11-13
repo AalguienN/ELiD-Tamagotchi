@@ -210,7 +210,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1222663792003506280, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
       propertyPath: maxHp
-      value: 30000
+      value: 90000
       objectReference: {fileID: 0}
     - target: {fileID: 2149364326499811193, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
       propertyPath: playOnAwake

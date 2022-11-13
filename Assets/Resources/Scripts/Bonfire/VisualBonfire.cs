@@ -14,18 +14,14 @@ public class VisualBonfire : MonoBehaviour
     public GameObject fireParticle02Blue;
     public GameObject fireParticle03Blue;
 
-    int savedDay = -1;
-
     // Update is called once per frame
     void Update()
-    {
+    { 
         if(targetLight != _sTargetLight)
         {
             targetLight = _sTargetLight;
-        }
-        int day = SaveManager.getCurrentDay();
-        if(day != savedDay) {
             
+            int day = SaveManager.getCurrentDay();
             fireParticle01Blue.SetActive(false);
             fireParticle02Blue.SetActive(false);
             fireParticle03Blue.SetActive(false);
@@ -35,9 +31,8 @@ public class VisualBonfire : MonoBehaviour
 
             if(targetLight==0) return;
             //if(!SaveManager.hasBurntFirstStick) return;
-            savedDay = day;
 
-            if(SaveManager.getBlueWood() && day >= 3) {
+            if(BonfireState.isBlue && day >= 3) {
                 if(day > 0 && day < 3) {
                     fireParticle01Blue.SetActive(true);
                     fireParticle01Blue.GetComponent<ParticleSystem>().Play();
