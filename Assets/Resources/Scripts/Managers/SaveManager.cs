@@ -43,6 +43,7 @@ public class SaveManager : MonoBehaviour {
         blueStickNum = ES3.Load("blueStickNum", 0);
         currentDay = ES3.Load("currentDay", currentDay);
         lastConexion = ES3.Load("lastConexion", DateTime.Now);
+        lastConexionDay = ES3.Load("lastConexionDay", getCurrentDay());
         startedGame = ES3.Load("startedGame", false);
         events = ES3.Load("eventHandler", new List<CalendarEvent>());
         days = ES3.Load("dayHandler", new List<Day>());
@@ -88,7 +89,7 @@ public class SaveManager : MonoBehaviour {
     private void Start()
     {
         //Make sure caputxa only appears in different day
-        if (lastConexion.Day != System.DateTime.Now.Day && getCurrentDay() != 4 || aux_startedGame)
+        if (lastConexionDay != getCurrentDay() && getCurrentDay() != 4 || aux_startedGame)
         {
             DialogueEventStarter.instance.enableCaputxa();
             hasBeenDialoguePlayed = false;
@@ -159,6 +160,7 @@ public class SaveManager : MonoBehaviour {
         ES3.Save("blueStickNum", blueStickNum);
         ES3.Save("lastFireState", (int) GameObject.FindWithTag("Bonfire2").GetComponent<BonfireState>().hp);
         ES3.Save("lastConexion", DateTime.Now);
+        ES3.Save("lastConexionDay", getCurrentDay());
         ES3.Save("eventHandler", events);
         ES3.Save("dayHandler", days);
         ES3.Save("fuelList", fuelList);
