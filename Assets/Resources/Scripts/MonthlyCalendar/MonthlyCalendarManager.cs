@@ -215,7 +215,7 @@ public class MonthlyCalendarManager : MonoBehaviour
                 int previousMonthDay = MonthConstants.GetMonth(previousMonthInt, previousYearInt).Days - (firstDayInWeek-1) + i;
                 
                 System.DateTime epochToday = new System.DateTime(previousYearInt, previousMonthInt, previousMonthDay, 0, 0, 0, System.DateTimeKind.Utc);
-                int globalDay = WeeklyCalendar.GetCurrentDay(epochToday);
+                int globalDay = WeeklyCalendar.GetWorldDay(epochToday);
                 int dW = (int)SaveManager.getDay(globalDay.ToString()).weather;
 
                 ChangeTileVisuals(gO, crossTexture, crossColor, previousYearInt, previousMonthInt, previousMonthDay, dW);
@@ -226,14 +226,14 @@ public class MonthlyCalendarManager : MonoBehaviour
                 int localDay = (i-actualMonth.Days-(firstDayInWeek-1));
 
                 System.DateTime epochToday = new System.DateTime(localYear, localMonth, localDay, 0, 0, 0, System.DateTimeKind.Utc);
-                int globalDay = WeeklyCalendar.GetCurrentDay(epochToday);
+                int globalDay = WeeklyCalendar.GetWorldDay(epochToday);
                 int dW = (int)SaveManager.getDay(globalDay.ToString()).weather;
                 
                 ChangeTileVisuals(gO, null, Color.white, localYear, localMonth, localDay, dW);
             }
             else { // If it is a day from the current month
                 System.DateTime epochToday = new System.DateTime(currentYear, currentMonth, (i-firstDayInWeek+1), 0, 0, 0, System.DateTimeKind.Utc);
-                int globalDay = WeeklyCalendar.GetCurrentDay(epochToday);
+                int globalDay = WeeklyCalendar.GetWorldDay(epochToday);
                 int dW = (int)SaveManager.getDay(globalDay.ToString()).weather;
 
                 ChangeTileVisuals(gO, (currentDay == (i-firstDayInWeek+1)) ? circleTexture : ((currentDay > (i-firstDayInWeek+1)) ? crossTexture : null),
@@ -263,7 +263,7 @@ public class MonthlyCalendarManager : MonoBehaviour
     }
 
     public static int GetDayWeather() {
-        return (int)SaveManager.getDay(WeeklyCalendar.GetCurrentDay(DateTime.Now).ToString()).weather;
+        return (int)SaveManager.getDay(WeeklyCalendar.GetWorldDay(DateTime.Now).ToString()).weather;
     }
     #endregion
 }

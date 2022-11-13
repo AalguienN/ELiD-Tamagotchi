@@ -7,7 +7,8 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour {
     #region Variables
     [Header("Variables to be saved")]
-    [HideInInspector] private static int fireState, stickNum, blueStickNum, currentDay, startingDay, mgMinutes, mgHits,mgSticks;
+    [HideInInspector] private static int fireState, stickNum, blueStickNum, currentDay, mgMinutes, mgHits,mgSticks;
+    [HideInInspector] private static DateTime startingDay;
     [HideInInspector] private static bool startedGame;
     private bool aux_startedGame = false;
     DateTime lastConexion;
@@ -46,7 +47,7 @@ public class SaveManager : MonoBehaviour {
         events = ES3.Load("eventHandler", new List<CalendarEvent>());
         days = ES3.Load("dayHandler", new List<Day>());
         fuelList = ES3.Load("fuelList", new List<Fuel>());
-        startingDay = ES3.Load("startingDay", WeeklyCalendar.GetCurrentDay(System.DateTime.Now));
+        startingDay = ES3.Load("startingDay", System.DateTime.Now);
         hasBurntFirstStick = ES3.Load("hasBurntFirstStick", false);
         hasBurntFirstBlueStick = ES3.Load("hasBurntFirstBlueStick", false);
         hasTurnedLeft = ES3.Load("hasTurnedLeft", false);
@@ -59,7 +60,8 @@ public class SaveManager : MonoBehaviour {
         hasPinochioRun = ES3.Load("hasPinoccionRun", hasPinochioRun);
 
 
-        currentDay = WeeklyCalendar.GetCurrentDay(System.DateTime.Now) - startingDay + 1;
+        currentDay = WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay).Hours/24 + 1;
+        print("Day: " + WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay).Hours/24 + 1);
         ES3.Save("currentDay",currentDay);
 
         
@@ -242,7 +244,7 @@ public class SaveManager : MonoBehaviour {
 
     public static void setStartingDay()
     {
-        startingDay = WeeklyCalendar.GetCurrentDay(System.DateTime.Now);
+        startingDay = System.DateTime.Now;
         ES3.Save("startingDay", startingDay);
     }
 

@@ -88,6 +88,10 @@ public class WeeklyCalendar : MonoBehaviour
         System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
         return (int)(dateTime - epochStart).Days;
     }
+
+    public static System.TimeSpan GetDaysSinceStart(System.DateTime dateTime, System.DateTime startingDay) {
+        return (dateTime - startingDay);
+    }
 }
 
 
