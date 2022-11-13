@@ -166,6 +166,15 @@ public class BonfireState : MonoBehaviour
         }
     }
 
+    //ANADIDOS PARA QUE FUNCIONE EL AUDIO
+    public static states getBonfireState() {
+        return Instance.state;
+    }
+
+    public static double getBonfireHP() {
+        return Instance.hp;
+    }
+
 
     #endregion
 }
