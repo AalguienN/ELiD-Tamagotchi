@@ -89,8 +89,8 @@ public class WeeklyCalendar : MonoBehaviour
         return (int)(dateTime - epochStart).Days;
     }
 
-    public static System.TimeSpan GetDaysSinceStart(System.DateTime dateTime, System.DateTime startingDay) {
-        return (dateTime - startingDay);
+    public static int GetDaysSinceStart(System.DateTime dateTime, System.DateTime startingDay) {
+        return (int)(dateTime - startingDay).TotalSeconds/(3600*24);
     }
 }
 
