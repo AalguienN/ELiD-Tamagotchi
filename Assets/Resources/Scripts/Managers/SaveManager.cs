@@ -12,6 +12,7 @@ public class SaveManager : MonoBehaviour {
     [HideInInspector] private static bool startedGame;
     private bool aux_startedGame = false;
     DateTime lastConexion;
+    int lastConexionDay;
     public static int timeSinceLastConexion;
 
     public static List<CalendarEvent> events = new List<CalendarEvent>();
