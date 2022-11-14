@@ -61,7 +61,8 @@ public class VisualBonfire : MonoBehaviour
                 fireParticleFinale.GetComponent<ParticleSystem>().Play();
                 fireParticle02Blue.GetComponent<ParticleSystem>().Stop();
                 fireParticle03Blue.GetComponent<ParticleSystem>().Stop();
-                GetComponentInChildren<Light>().GetComponent<Intensity>().apagar();
+
+                GetComponentInParent<GameObject>().GetComponentInChildren<Light>().GetComponent<Intensity>().apagar();
             }
         }
         else {

@@ -17,6 +17,8 @@ public class DialogueEventStarter : MonoBehaviour
     public GameObject caputxa;
     public GameObject pinochio, pinochioBurnable;
     public GameObject[] caputxas;
+    public GameObject burntCaputxa;
+    public Material woodTexture;
     Animator caputxaAnim, pinochioAnim;
     
 
@@ -26,7 +28,7 @@ public class DialogueEventStarter : MonoBehaviour
         caputxaAnim = caputxa.GetComponentInChildren<Animator>();
         print(SaveManager.getCurrentDay());
         disableCaputxas();
-        //disable burnt caputxa
+        burntCaputxa.SetActive(false);
         if (SaveManager.getCurrentDay() == 1)
         {
             disableCaputxaInteraction();
@@ -47,8 +49,10 @@ public class DialogueEventStarter : MonoBehaviour
         {
             disableCaputxa();
             disableCaputxas();
-            //Enable caputxa burnt
-            //Change forest texture
+            burntCaputxa.SetActive(true);
+            //Change forest texture ??
+            woodTexture.SetColor("_Color", Color.black);
+            //
             cameraAnimationHandler.instance.ChangeAnimation(cameraAnimationHandler.FINALE_ANIM);
         }
     }
