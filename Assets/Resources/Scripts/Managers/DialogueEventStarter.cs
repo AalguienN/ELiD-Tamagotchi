@@ -152,6 +152,11 @@ public class DialogueEventStarter : MonoBehaviour
         StartCoroutine(AnimationManager.cameraLockAnimation(seconds));
     }
 
+    public void killCaputxa()
+    {
+        caputxa.GetComponentInChildren<Animator>().Play("CaputxaKillAnimation");
+    }
+
     public void runPinochio()
     {
         //Play sound 
@@ -330,6 +335,7 @@ public class DialogueEventStarter : MonoBehaviour
     public void killPlayerCheat()
     {
         cameraAnimationHandler.instance.ChangeAnimation(cameraAnimationHandler.FINALE_ANIM);
+        killCaputxa();
         StartCoroutine(killCheater());
     }
 
