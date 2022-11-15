@@ -38,11 +38,6 @@ public class InteractableTouch : MonoBehaviour
     public bool isBlue = false; //Is the current stick in hand blue?
     bool isActive;
 
-    public ParticleSystem stickyParticles;
-    public GameObject stickyObject;
-
-    public Material normalMat;
-    public Material blueMat;
 
     #endregion
 
@@ -209,19 +204,30 @@ public class InteractableTouch : MonoBehaviour
     }
 
     //back with the moves
-
-    public void changeWoodColor(bool isBlue)
+    public void changeWoodColor(bool isBlue, bool isChild = false)
     {
         //here change color
         if (isBlue)
         {
-            stickyParticles.Play();
-            stickyObject.GetComponent<MeshRenderer>().material = blueMat;
+            if(isChild)
+            {
+                sticky.transform.GetChild(0).gameObject.SetActive(false);
+                sticky.transform.GetChild(1).gameObject.SetActive(true);
+                sticky.transform.GetChild(2).gameObject.SetActive(false);
+            }
+            else
+            {
+                sticky.transform.GetChild(0).gameObject.SetActive(false);
+                sticky.transform.GetChild(1).gameObject.SetActive(false);
+                sticky.transform.GetChild(2).gameObject.SetActive(true);
+            }
+            
         }
         else
         {
-            stickyParticles.Stop();
-            stickyObject.GetComponent<MeshRenderer>().material = normalMat;
+            sticky.transform.GetChild(0).gameObject.SetActive(true);
+            sticky.transform.GetChild(1).gameObject.SetActive(false);
+            sticky.transform.GetChild(2).gameObject.SetActive(false);
         }
     }
     public IEnumerator ReturnStick()
