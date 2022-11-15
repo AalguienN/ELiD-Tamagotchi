@@ -6,22 +6,25 @@ using UnityEngine.SceneManagement;
 
 public class IntroController : MonoBehaviour
 {
-    float introDuration;
+    float introDuration = 1f;
 
     public VideoClip introClip;
 
     // Start is called before the first frame update
     void Start()
     {
-        introDuration = (float)introClip.length + 0.5f;
-        print("Video duration: " + introDuration);
-        GameObject camera = Camera.main.gameObject;
-        var videoPlayer = camera.AddComponent<UnityEngine.Video.VideoPlayer>();
-        videoPlayer.playOnAwake = false;
-        videoPlayer.renderMode = UnityEngine.Video.VideoRenderMode.CameraNearPlane;
-        videoPlayer.targetCameraAlpha = 0.5F;
-        videoPlayer.clip = introClip;
-        videoPlayer.Play();
+        try
+        {
+            introDuration = (float)introClip.length + 0.5f;
+            print("Video duration: " + introDuration);
+            GameObject camera = Camera.main.gameObject;
+            var videoPlayer = camera.AddComponent<UnityEngine.Video.VideoPlayer>();
+            videoPlayer.playOnAwake = false;
+            videoPlayer.renderMode = UnityEngine.Video.VideoRenderMode.CameraNearPlane;
+            videoPlayer.targetCameraAlpha = 0.5F;
+            videoPlayer.clip = introClip;
+            videoPlayer.Play();    
+        } catch(Exception e){}
         StartCoroutine(UnloadScene(introDuration));
     }
 
