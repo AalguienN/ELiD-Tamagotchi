@@ -322,6 +322,10 @@ public class CameraManagement : MonoBehaviour
             SaveManager.canCaputxaBeInteracted = true;
             SaveManager.hasPinochioRun = false;
         }
+        else if(SaveManager.getCurrentDay() == 5 && !getActiveCamera().Equals("CamBonfire") && SaveManager.hasBeenDialoguePlayed)
+        {
+            DialogueEventStarter.instance.disableCaputxas();
+        }
     }
 
 

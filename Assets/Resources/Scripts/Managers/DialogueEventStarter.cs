@@ -16,20 +16,24 @@ public class DialogueEventStarter : MonoBehaviour
     public Button continueBtn;
     public GameObject caputxa;
     public GameObject pinochio;
+    public GameObject[] caputxas;
     Animator caputxaAnim, pinochioAnim;
+    
 
     private void Start()
     {
         pinochioAnim = pinochio.GetComponentInChildren<Animator>();
         caputxaAnim = caputxa.GetComponentInChildren<Animator>();
 
-        if(SaveManager.getCurrentDay() == 4)
+        disableCaputxas();
+        disablePinochio();
+        if (SaveManager.getCurrentDay() == 4)
         {
             enablePinochio();
         }
-        else
+        else if (SaveManager.getCurrentDay() == 5)
         {
-            disablePinochio();
+            enableCaputxas();
         }
     }
     private void Update()
@@ -87,6 +91,22 @@ public class DialogueEventStarter : MonoBehaviour
     public void disableCaputxa()
     {
         caputxa.SetActive(false);
+    }
+
+    public void enableCaputxas()
+    {
+        foreach(GameObject cap in caputxas)
+        {
+            cap.SetActive(true);
+        }
+    }
+
+    public void disableCaputxas()
+    {
+        foreach (GameObject cap in caputxas)
+        {
+            cap.SetActive(false);
+        }
     }
 
     public bool isCaputxaEnabled()
