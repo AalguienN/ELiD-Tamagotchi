@@ -71,11 +71,6 @@ public class SaveManager : MonoBehaviour {
         finaleAnimationHasEnded = ES3.Load("finaleAnimationHasEnded", false);
 
 
-        currentDay = WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay) + 1;
-        print("Hours: " + WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay));
-        ES3.Save("currentDay", currentDay);
-
-
         if (!startedGame)
         {
             ES3.Save("startedGame", true);
@@ -93,6 +88,15 @@ public class SaveManager : MonoBehaviour {
 
         int difference = currentEpochTime - (int)(lastConexion - epochStart).TotalSeconds;
         timeSinceLastConexion = difference; //Check if works idk
+
+        currentDay = WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay) + 1;
+        print("Hours: " + WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay));
+        if(difference < 0)
+        {
+            print("Viaje en el tiempo");
+            currentDay = 0;
+        }
+        ES3.Save("currentDay", currentDay);
     }
 
     private void Start()
@@ -159,6 +163,9 @@ public class SaveManager : MonoBehaviour {
         {
             switch (getCurrentDay())
             {
+                case 0:
+                    clearData();
+                    break;
                 case 1:
                     clearData();
                     break;

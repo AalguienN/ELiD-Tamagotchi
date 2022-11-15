@@ -30,6 +30,11 @@ public class DialogueEventStarter : MonoBehaviour
         caputxaAnim = caputxa.GetComponentInChildren<Animator>();
         disableCaputxas();
         burntCaputxa.SetActive(false);
+        if (SaveManager.getCurrentDay() == 0)
+        {
+            startCurrentDayDialogue();
+            enableCaputxa();
+        }
         if (SaveManager.getCurrentDay() == 1)
         {
             disableCaputxaInteraction();
@@ -227,7 +232,7 @@ public class DialogueEventStarter : MonoBehaviour
 
     public void startConversation(int day)
     {
-        DialogueManager.StartConversation(conversations[day - 1]);
+        DialogueManager.StartConversation(conversations[day]);
     }
 
     IEnumerator waitForFirstBurn() {
@@ -320,5 +325,19 @@ public class DialogueEventStarter : MonoBehaviour
             forceLaugh = false;
         }
         SoundManager.instance.PlaySound(s);
+    }
+
+    public void killPlayerCheat()
+    {
+        cameraAnimationHandler.instance.ChangeAnimation(cameraAnimationHandler.FINALE_ANIM);
+        StartCoroutine(killCheater());
+    }
+
+    public IEnumerator killCheater()
+    {
+        yield return new WaitForSeconds(5f);
+        SaveManager.hasBeenDialoguePlayed = false;
+        SaveManager.hasBeenCaputxaInteracted = true;
+        Application.Quit();
     }
 }

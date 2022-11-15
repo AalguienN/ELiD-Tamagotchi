@@ -1279,6 +1279,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 386168962}
     m_Modifications:
+    - target: {fileID: 5677677286008430752, guid: 2d5a90614639e794cb181b213dd73581, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9106220330176073957, guid: 2d5a90614639e794cb181b213dd73581, type: 3}
       propertyPath: m_Name
       value: MinigameController
@@ -5796,6 +5800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conversations:
+  - CheatDetected
   - Day 1
   - Day 2
   - Day 3
@@ -5814,6 +5819,7 @@ MonoBehaviour:
   - {fileID: 1287421047}
   burntCaputxa: {fileID: 737663047}
   woodTexture: {fileID: 2100000, guid: 95d5c17be454d82458de2a2225cb4f13, type: 2}
+  forceLaugh: 0
 --- !u!1001 &1312363984
 PrefabInstance:
   m_ObjectHideFlags: 0
