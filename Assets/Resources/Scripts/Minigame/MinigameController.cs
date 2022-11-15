@@ -84,7 +84,7 @@ public class MinigameController : MonoBehaviour
         float t = 0;
         modifyRotation = true;
         while(t<=1) {
-            t += Time.deltaTime/2f;
+            t += Time.fixedDeltaTime/2f;
             axeActualPosition = Vector3.Lerp(axeStartPosition,axeActualPosition,t);
             axeActualRotation = Vector3.Lerp(axeStartRotation,axeActualRotation,t);
             yield return new WaitForEndOfFrame();
@@ -105,7 +105,7 @@ public class MinigameController : MonoBehaviour
         float t = 0;
         modifyRotation = true;
         while(t<=1) {
-            t += Time.deltaTime/2f;
+            t += Time.fixedDeltaTime/2f;
             axeActualPosition = Vector3.Lerp(axeStartPosition,axeActualPosition,t);
             axeActualRotation = Vector3.Lerp(axeStartRotation,axeActualRotation,t);
             yield return new WaitForEndOfFrame();
@@ -183,8 +183,8 @@ public class MinigameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        axePrefab.transform.localPosition = Vector3.Lerp(axePrefab.transform.localPosition, axeActualPosition, Time.deltaTime*10f*speed);
-        axePrefab.transform.localRotation = Quaternion.Lerp(axePrefab.transform.localRotation, Quaternion.Euler(axeActualRotation), Time.deltaTime*10f*speed);
+        axePrefab.transform.localPosition = Vector3.Lerp(axePrefab.transform.localPosition, axeActualPosition, Time.fixedDeltaTime*10f*speed);
+        axePrefab.transform.localRotation = Quaternion.Lerp(axePrefab.transform.localRotation, Quaternion.Euler(axeActualRotation), Time.fixedDeltaTime*10f*speed);
         if(CameraManagement.getActiveCamera()=="CamMinigame") {
             //axePrefab.transform.position = axeStartPosition+ axeEndPositionOffset;
             if(!gameRunning) {
@@ -200,8 +200,8 @@ public class MinigameController : MonoBehaviour
             }
             if(!continueSpeed)
                 return;
-            gameTime += Time.deltaTime;
-            speed = Mathf.Clamp(speed+Time.deltaTime*Time.deltaTime*speed, 1f, 15f);
+            gameTime += Time.fixedDeltaTime;
+            speed = Mathf.Clamp(speed+Time.fixedDeltaTime*Time.fixedDeltaTime*speed, 1f, 15f);
             precision = Mathf.Sin(gameTime*speed)*80f;
             precisionNeedle.transform.rotation = Quaternion.Euler(0f,0f,precision);
             if(!modifyRotation){
@@ -233,7 +233,7 @@ public class MinigameController : MonoBehaviour
         Vector3 lastKnownPos = axeActualPosition;
         Vector3 lastKnownRot = axeActualRotation;
         while(axeActualPosition != axeHitPosition) {
-            t += Time.deltaTime*3;
+            t += Time.fixedDeltaTime*3;
             axeActualPosition = new Vector3(
                                                 Mathf.Lerp(lastKnownPos.x,axeHitPosition.x,t),
                                                 Mathf.Lerp(lastKnownPos.y,axeHitPosition.y,t),
@@ -286,7 +286,7 @@ public class MinigameController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         t=0;
         while(axeActualPosition != axeHitPosition) {
-            t += Time.deltaTime/4;
+            t += Time.fixedDeltaTime/4;
             axeActualPosition = new Vector3(
                                                 Mathf.Lerp(axeHitPosition.x,lastKnownPos.x,t),
                                                 Mathf.Lerp(axeHitPosition.y,lastKnownPos.y,t),

@@ -163,9 +163,6 @@ public class SaveManager : MonoBehaviour {
         {
             switch (getCurrentDay())
             {
-                case 0:
-                    clearData();
-                    break;
                 case 1:
                     clearData();
                     break;
