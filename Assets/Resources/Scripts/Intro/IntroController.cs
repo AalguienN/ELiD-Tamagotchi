@@ -9,13 +9,15 @@ public class IntroController : MonoBehaviour
     float introDuration = 1f;
 
     public VideoClip introClip;
+    AsyncOperation scene;
 
     // Start is called before the first frame update
     void Start()
     {
         try
         {
-            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+            scene = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+            scene.allowSceneActivation = false;
             introDuration = (float)introClip.length + 0.5f;
             print("Video duration: " + introDuration);
             GameObject camera = Camera.main.gameObject;
@@ -32,7 +34,9 @@ public class IntroController : MonoBehaviour
     IEnumerator UnloadScene(float introD)
     {
         yield return new WaitForSeconds(introD);
-        SceneManager.UnloadSceneAsync(0);
+        scene.allowSceneActivation = true;
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
+        SceneManager.UnloadScene(0);
     }
 
     // Update is called once per frame
