@@ -41,6 +41,11 @@ public class SaveManager : MonoBehaviour {
     #region Save and Load
     void Awake()
     {
+        DoOnAwake();
+    }
+
+    void DoOnAwake()
+    {
         //Here load
         fireState = ES3.Load("lastFireState", 0);
         stickNum = ES3.Load("stickNum", 0) < 0 ? 0 : ES3.Load("stickNum", 0);
@@ -92,6 +97,11 @@ public class SaveManager : MonoBehaviour {
 
     private void Start()
     {
+        DoOnStart();
+    }
+
+    private void DoOnStart()
+    {
         ////////////////////////////////////////////////////
         //Make sure caputxa only appears in different day
         if (lastConexionDay < getCurrentDay() || aux_startedGame)
@@ -136,6 +146,11 @@ public class SaveManager : MonoBehaviour {
     {
         if (!focus)
             onExit();
+        else
+        {
+            DoOnAwake();
+            DoOnStart();
+        }
     }
 
     public void onExit()
