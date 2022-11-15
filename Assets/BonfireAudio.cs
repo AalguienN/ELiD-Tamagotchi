@@ -10,9 +10,14 @@ public class BonfireAudio : MonoBehaviour
 {
     
     public double hp;
-    public float effectiveHP;
+    [HideInInspector]public float effectiveHP;
     public states state;
-    public float effectiveState;
+    [HideInInspector]public float effectiveState;
+    public int currentDay;
+    [HideInInspector]public float effectiveCurrentDay;
+    public bool lastBlueStick;
+    [HideInInspector]public float effectiveLastBlueStick;
+
     
     //Estado de la hoguera
     public enum states { 
@@ -33,19 +38,28 @@ public class BonfireAudio : MonoBehaviour
             // Obtener la vida y el estado de la hoguera
 
         hp = BonfireState.getBonfireHP();
-
         effectiveHP = (float)hp;
 
         state = (states)BonfireState.getBonfireState();
-
         effectiveState = state != states.encendida ? 0 : 1;
+
+        currentDay = SaveManager.getCurrentDay();
+        effectiveCurrentDay = (float)currentDay;
+
+        lastBlueStick = SaveManager.hasBurntLastBlueStick;
+        effectiveLastBlueStick = lastBlueStick != true ? 0 : 1;
+
 
         // Llamar al emitter de FMOD
 
         var emitter = GetComponent<FMODUnity.StudioEventEmitter>();
 
         emitter.SetParameter("bonfireHP", effectiveHP);
-        emitter.SetParameter("Bonfire State", effectiveState);                                                     
+        emitter.SetParameter("Bonfire State", effectiveState); 
+        emitter.SetParameter("Current Day", effectiveCurrentDay);
+        emitter.SetParameter("LastBlueStickBurn", effectiveLastBlueStick);
+
+
 
     }
 }

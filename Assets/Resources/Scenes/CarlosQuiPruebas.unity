@@ -5749,13 +5749,15 @@ MonoBehaviour:
   continueBtn: {fileID: 793916427}
   caputxa: {fileID: 776539560}
   pinochio: {fileID: 970712436}
-  pinochioBurnable: {fileID: 0}
   caputxas:
   - {fileID: 1842696028}
   - {fileID: 1109777601}
   - {fileID: 680170192}
   - {fileID: 1292826140}
   - {fileID: 1287421047}
+  burntCaputxa: {fileID: 0}
+  woodTexture: {fileID: 0}
+  forceLaugh: 0
 --- !u!1001 &1312363984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7428,6 +7430,10 @@ MonoBehaviour:
     Value: 1
   - Name: bonfireHP
     Value: 5642
+  - Name: Current Day
+    Value: 1
+  - Name: LastBlueStickBurn
+    Value: 0
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
@@ -7447,6 +7453,10 @@ MonoBehaviour:
   effectiveHP: 0
   state: 0
   effectiveState: 0
+  currentDay: 0
+  effectiveCurrentDay: 0
+  lastBlueStick: 0
+  effectiveLastBlueStick: 0
 --- !u!4 &1816064485 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1fec4e74313cbdb4896052158916cdaa, type: 3}

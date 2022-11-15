@@ -30,13 +30,13 @@ MonoBehaviour:
     serializationDepthLimit: 64
     assemblyNames:
     - Assembly-CSharp-firstpass
+    - FMODUnity
     - Assembly-CSharp
     - Cinemachine
-    - FMODUnity
     - FMODUnityResonance
     - PsdPlugin
-    - PPv2URPConverters
     - FMODUnityEditor
+    - PPv2URPConverters
     - FMODUnityResonanceEditor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0

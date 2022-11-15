@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 605597425}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -262,6 +262,11 @@ PrefabInstance:
       objectReference: {fileID: 1168773979}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+--- !u!1 &64368419 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2880177056032639292, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+  m_PrefabInstance: {fileID: 64368418}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &72768888
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,7 +685,7 @@ Transform:
   m_Children:
   - {fileID: 672906250}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &238125604
 PrefabInstance:
@@ -2024,15 +2029,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &612756191
-Transform:
+--- !u!224 &612756191
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612756190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.497347, y: -19.882635, z: 11.391002}
+  m_LocalPosition: {x: 0, y: 0, z: 11.391002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2041,8 +2046,13 @@ Transform:
   - {fileID: 882868697}
   - {fileID: 1473370845}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 9.497347, y: -19.882635}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &619690516
 GameObject:
   m_ObjectHideFlags: 0
@@ -4168,6 +4178,52 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2396276078739565025, guid: 3159dab4b9711114fb5ae68ab61b994c, type: 3}
   m_PrefabInstance: {fileID: 427414941}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &993859949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993859948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1967044986
+      Data2: 1150225621
+      Data3: 1900141709
+      Data4: -1986686583
+    Path: event:/Ambient/Rain
+  Event: 
+  PlayEvent: 11
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params:
+  - Name: Weather
+    Value: 0
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &993859950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993859948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5503bdf50f2de864a9f51515b68efb8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rainState: 0
+  currentDay: 0
 --- !u!4 &997940780 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 883e4a7eea02bf742ac91e0d686e97ba, type: 3}
@@ -5546,7 +5602,7 @@ Transform:
   - {fileID: 1946101831}
   - {fileID: 1590741336}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1279029489 stripped
 Transform:
@@ -5906,6 +5962,36 @@ MonoBehaviour:
   burntCaputxa: {fileID: 737663047}
   woodTexture: {fileID: 2100000, guid: 95d5c17be454d82458de2a2225cb4f13, type: 2}
   forceLaugh: 0
+--- !u!114 &1309224593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052682406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Untagged
+  EventReference:
+    Guid:
+      Data1: 749965700
+      Data2: 1220611204
+      Data3: -1210907495
+      Data4: 1518244142
+    Path: event:/Voices/Capucha Voice
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &1312363984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7548,6 +7634,64 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2880177056032639299, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
   m_PrefabInstance: {fileID: 64368418}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1789440910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64368419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3da7c5b34c136946bf2ca37bf5eaed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  effectiveHP: 0
+  state: 0
+  effectiveState: 0
+  currentDay: 0
+  effectiveCurrentDay: 0
+  lastBlueStick: 0
+  effectiveLastBlueStick: 0
+--- !u!114 &1789440911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64368419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 261198264
+      Data2: 1339200576
+      Data3: -50421630
+      Data4: -1277871264
+    Path: event:/Ambient/Bonfire
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params:
+  - Name: Bonfire State
+    Value: 1
+  - Name: bonfireHP
+    Value: 5642
+  - Name: Current Day
+    Value: 1
+  - Name: LastBlueStickBurn
+    Value: 0
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!4 &1816064485 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1fec4e74313cbdb4896052158916cdaa, type: 3}
@@ -8223,6 +8367,7 @@ GameObject:
   - component: {fileID: 1975000079}
   - component: {fileID: 1975000081}
   - component: {fileID: 1975000082}
+  - component: {fileID: 1975000083}
   m_Layer: 5
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8387,6 +8532,36 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1975000083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975000075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 763249519
+      Data2: 1277932157
+      Data3: 1706483630
+      Data4: -661330603
+    Path: event:/Music/Forest
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &1980919058
 PrefabInstance:
   m_ObjectHideFlags: 0
