@@ -15,6 +15,7 @@ public class IntroController : MonoBehaviour
     {
         try
         {
+            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
             introDuration = (float)introClip.length + 0.5f;
             print("Video duration: " + introDuration);
             GameObject camera = Camera.main.gameObject;
@@ -31,7 +32,6 @@ public class IntroController : MonoBehaviour
     IEnumerator UnloadScene(float introD)
     {
         yield return new WaitForSeconds(introD);
-        SceneManager.LoadSceneAsync(1);
         SceneManager.UnloadSceneAsync(0);
     }
 
