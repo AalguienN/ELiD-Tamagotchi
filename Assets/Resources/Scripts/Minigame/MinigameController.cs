@@ -47,12 +47,11 @@ public class MinigameController : MonoBehaviour
         axeActualRotation = axeStartRotation;
         axePrefab.transform.localRotation = Quaternion.Euler(axeActualRotation);
 
-        SaveManager.setMinigameMinutes(SaveManager.getMinigameMinutes()-SaveManager.getSecondsSinceLastConexion()/60);
-        print("Minigame minutes: " + SaveManager.getMinigameMinutes());
+        print("Minigame minutes: " + SaveManager.getMinigameEndingDate());
 
         savedHits = SaveManager.getMinigameHits();
         sticks = SaveManager.getMinigameSticks();
-        status = (SaveManager.getMinigameMinutes() <= 0);
+        status = ((System.DateTime.Now-SaveManager.getMinigameEndingDate()).TotalMinutes >= 15);
         Reward(0);
         if(status) 
         {
@@ -150,7 +149,7 @@ public class MinigameController : MonoBehaviour
 
         print("Stick number: " + SaveManager.getStickNum());
         
-        SaveManager.setMinigameMinutes(15);
+        SaveManager.setMinigameEndingDate(System.DateTime.Now);
         SaveManager.setMinigameHits(0);
         SaveManager.setMinigameSticks(0);
         savedHits = 0;
@@ -164,10 +163,9 @@ public class MinigameController : MonoBehaviour
     IEnumerator RunTime() {
         bool s = true;
         while(s) {
-            yield return new WaitForSeconds(60);
-            SaveManager.setMinigameMinutes(SaveManager.getMinigameMinutes()-1);
-            if(SaveManager.getMinigameMinutes()<=0)
-                s = false;
+            s = !((System.DateTime.Now-SaveManager.getMinigameEndingDate()).TotalMinutes >= 15);
+            
+            yield return new WaitForEndOfFrame();
         }
         while(CameraManagement.getActiveCamera()=="CamMinigame") yield return new WaitForEndOfFrame();
         status = true;
@@ -195,7 +193,7 @@ public class MinigameController : MonoBehaviour
                 }
                 if(Input.GetMouseButtonUp(0)) { 
                     if(Vector3.Distance(mousePosition, Input.mousePosition) < 50f)
-                        if(SaveManager.getMinigameMinutes()<=0)
+                        if(((System.DateTime.Now-SaveManager.getMinigameEndingDate()).TotalMinutes >= 15))
                             StartCoroutine(StartGame()); 
                 }
                 return;

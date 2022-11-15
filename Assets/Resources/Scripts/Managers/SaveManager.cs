@@ -6,8 +6,8 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour {
     #region Variables
     [Header("Variables to be saved")]
-    [HideInInspector] private static int fireState, stickNum, blueStickNum, currentDay, mgMinutes, mgHits,mgSticks;
-    [HideInInspector] private static DateTime startingDay;
+    [HideInInspector] private static int fireState, stickNum, blueStickNum, currentDay, mgHits,mgSticks;
+    [HideInInspector] private static DateTime startingDay, minigameEndingDate;
     [HideInInspector] private static bool startedGame;
     private bool aux_startedGame = false;
     DateTime lastConexion;
@@ -52,6 +52,7 @@ public class SaveManager : MonoBehaviour {
         days = ES3.Load("dayHandler", new List<Day>());
         fuelList = ES3.Load("fuelList", new List<Fuel>());
         startingDay = ES3.Load("startingDay", System.DateTime.Now);
+        minigameEndingDate = ES3.Load("minigameEndingDate", new DateTime());
         hasBurntFirstStick = ES3.Load("hasBurntFirstStick", false);
         hasBurntFirstBlueStick = ES3.Load("hasBurntFirstBlueStick", false);
         hasBurntLastBlueStick = ES3.Load("hasBurntLastBlueStick", false);
@@ -59,7 +60,6 @@ public class SaveManager : MonoBehaviour {
         hasTurnedRight = ES3.Load("hasTurnedRight", false);
         canOnlyTurn = ES3.Load("canOnlyTurn", 0);
         blueWood = ES3.Load("blueWood", false);
-        mgMinutes = ES3.Load("mgMinutes", 0);
         mgHits = ES3.Load("mgHits", 0);
         mgSticks = ES3.Load("mgSticks", 0);
         hasPinochioRun = ES3.Load("hasPinochioRun", false);
@@ -195,15 +195,15 @@ public class SaveManager : MonoBehaviour {
         return ES3.Load("lastFireState", fireState);
     }
 
-    public static int getMinigameMinutes()
+    public static DateTime getMinigameEndingDate()
     {
-        return ES3.Load("minigameMinutes", mgMinutes);
+        return minigameEndingDate;
     }
 
-    public static void setMinigameMinutes(int minutes)
+    public static void setMinigameEndingDate(DateTime endingDate)
     {
-        ES3.Save("minigameMinutes", minutes);
-        mgMinutes = minutes;
+        minigameEndingDate = endingDate;
+        ES3.Save("minigameEndingDate", minigameEndingDate);
     }
 
     public static int getMinigameHits()

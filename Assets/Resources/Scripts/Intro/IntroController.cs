@@ -24,7 +24,7 @@ public class IntroController : MonoBehaviour
             videoPlayer.targetCameraAlpha = 0.5F;
             videoPlayer.clip = introClip;
             videoPlayer.Play();    
-        } catch(Exception e){}
+        } catch(System.Exception e){}
         StartCoroutine(UnloadScene(introDuration));
     }
 
