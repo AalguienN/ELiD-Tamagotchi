@@ -32,8 +32,12 @@ MonoBehaviour:
     - Assembly-CSharp-firstpass
     - Assembly-CSharp
     - Cinemachine
+    - FMODUnity
+    - FMODUnityResonance
     - PsdPlugin
     - PPv2URPConverters
+    - FMODUnityEditor
+    - FMODUnityResonanceEditor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
