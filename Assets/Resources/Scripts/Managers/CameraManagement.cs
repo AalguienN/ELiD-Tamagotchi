@@ -338,6 +338,7 @@ public class CameraManagement : MonoBehaviour
 
     public void blockCameraMethod(float seconds)
     {
+        SaveManager.hasBeenCaputxaInteracted = true;
         StartCoroutine(blockingCamera(seconds));
     }
 

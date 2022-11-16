@@ -27,13 +27,14 @@ public class DialogueEventStarter : MonoBehaviour
 
         disableCaputxas();
         disablePinochio();
-        print("Which is the current day: " + SaveManager.getCurrentDay());
+        print(SaveManager.getCurrentDay());
         if(SaveManager.getCurrentDay() == 1)
         {
             disableCaputxaInteraction();
         }
-        if (SaveManager.getCurrentDay() == 4 && !SaveManager.hasBeenDialoguePlayed)
+        if (SaveManager.getCurrentDay() == 4)
         {
+            print("someting");
             enablePinochio();
         }
         else if (SaveManager.getCurrentDay() == 5 && !SaveManager.hasBeenDialoguePlayed)
@@ -60,6 +61,7 @@ public class DialogueEventStarter : MonoBehaviour
                 if (hit.collider.gameObject.CompareTag("Caputxa") && SaveManager.canCaputxaBeInteracted)
                 {
                     startCurrentDayDialogue();
+                    SaveManager.hasBeenCaputxaInteracted = true;
                 }
                 else if (hit.collider.gameObject.CompareTag("Pinochio") && SaveManager.getCurrentDay() == 4)
                 {
@@ -155,7 +157,7 @@ public class DialogueEventStarter : MonoBehaviour
     public IEnumerator pinochioMovement()
     {
         float x = 0;
-        float seconds = 5;
+        float seconds = 3;
         while(x < seconds)
         {
             pinochio.transform.position += new Vector3(0, 0, -10 * Time.deltaTime);

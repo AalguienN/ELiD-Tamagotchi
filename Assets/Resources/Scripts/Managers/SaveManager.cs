@@ -30,6 +30,7 @@ public class SaveManager : MonoBehaviour {
     public static bool isCaputxaActive = false;
     public static int canOnlyTurn = 0;
     public static bool canCaputxaBeInteracted = false;
+    public static bool hasBeenCaputxaInteracted = false;
     public static bool hasBeenDialoguePlayed = false;
     public static bool hasPinochioRun = false;
 
@@ -114,33 +115,17 @@ public class SaveManager : MonoBehaviour {
     private void OnApplicationQuit()
     {
         saveAll();
-        if (!hasBeenDialoguePlayed)
+        if (!hasBeenDialoguePlayed && hasBeenCaputxaInteracted)
         {
-            print(getCurrentDay());
             switch (getCurrentDay())
             {
                 case 1:
                     clearData();
                     break;
 
-                case 2:
-                    setCanOnlyTurn(2);
-                    break;
-
-                case 3:
-                    break;
-
-                case 4:
-                    break;
-
-                case 5:
-                    break;
-
-                case 6:
-
-                    break;
-
-                case 7:
+                default:
+                    print("Repeating day dialogue");
+                    ES3.Save("lastConexionDay", lastConexionDay - 1);
                     break;
             }
         }
