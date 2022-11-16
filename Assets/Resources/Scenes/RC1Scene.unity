@@ -1205,21 +1205,41 @@ PrefabInstance:
       propertyPath: m_Range
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 1158671987943693804, guid: 3159dab4b9711114fb5ae68ab61b994c, type: 3}
+      propertyPath: m_Intensity
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158671987943693804, guid: 3159dab4b9711114fb5ae68ab61b994c, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158671987943693804, guid: 3159dab4b9711114fb5ae68ab61b994c, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1158671987943693805, guid: 3159dab4b9711114fb5ae68ab61b994c, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1158671987943693806, guid: 3159dab4b9711114fb5ae68ab61b994c, type: 3}
       propertyPath: maxtime
-      value: 4
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1158671987943693806, guid: 3159dab4b9711114fb5ae68ab61b994c, type: 3}
       propertyPath: mintime
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1158671987943693807, guid: 3159dab4b9711114fb5ae68ab61b994c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2396276078739565025, guid: 3159dab4b9711114fb5ae68ab61b994c, type: 3}
       propertyPath: m_Name
       value: Lluvia
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396276078739565025, guid: 3159dab4b9711114fb5ae68ab61b994c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6733729663947744894, guid: 3159dab4b9711114fb5ae68ab61b994c, type: 3}
       propertyPath: m_RootOrder
