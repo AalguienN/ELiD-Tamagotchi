@@ -38,7 +38,6 @@ public class InteractableTouch : MonoBehaviour
     public bool isBlue = false; //Is the current stick in hand blue?
     bool isActive;
 
-
     #endregion
 
     #region Start Set-up
@@ -113,6 +112,9 @@ public class InteractableTouch : MonoBehaviour
             
             sticky.SetActive(true);
             StartCoroutine(Recall());
+        }
+        else if (visible && stickNum <= 0){
+            sticky.SetActive(false);
         }
         visible = sticky.activeSelf;
 
@@ -301,11 +303,12 @@ public class InteractableTouch : MonoBehaviour
         if(SaveManager.getStickNum() >= 999) //Muñeco, disfrazado de un numero muy alto (chapuza pero va :D)
         {
             SaveManager.setStickNum(stickNum - 999);
-            SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() - 999); //Soy Pau, he a�adido el azul
+            SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() - 999);
             SaveManager.setBlueWood(true);
             SaveManager.hasBurntLastBlueStick = true;
-            print("Consumido un palo azul");
+            print("Consumido pinochio");
             GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.blueStick);
+            GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().hp = GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().maxHp;
             SaveManager.fuelList[SaveManager.fuelList.Count-1].duration = Mathf.Infinity;
         }
         else

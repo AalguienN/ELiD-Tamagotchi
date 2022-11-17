@@ -1445,7 +1445,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 306.47675}
+    canvasScrollPosition: {x: 0, y: 317.81693}
     canvasZoom: 0.97000015
   - id: 3
     fields:
@@ -2827,7 +2827,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SendMessage(disableCaputxaInteraction, , Dialogue Manager);
+        value: 'SendMessage(disableCaputxaInteraction, , Dialogue Manager);
+
+          SendMessage(lockCameraToCenter,
+          , Dialogue Manager);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 5
@@ -3380,7 +3383,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SendMessage(endOfDialogue, ,Dialogue Manager);
+        value: 'SendMessage(endOfDialogue, ,Dialogue Manager);
+
+          SendMessage(unlockCamera,
+          , Dialogue Manager);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 5
@@ -3403,8 +3409,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 9.895355}
-    canvasZoom: 0.8200002
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.85000014
   - id: 6
     fields:
     - title: Title
@@ -4088,7 +4094,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: 'SendMessage(lastBlueBurn,  , Dialogue Manager);
+
+          SendMessage(disableContinue,
+          , Dialogue Manager);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 6
@@ -4102,7 +4111,7 @@ MonoBehaviour:
       - originConversationID: 6
         originDialogueID: 11
         destinationConversationID: 6
-        destinationDialogueID: 12
+        destinationDialogueID: 15
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -4112,63 +4121,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 30
+        x: 27.647064
         y: 570
-        width: 160
-        height: 30
-    - id: 12
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Description
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Actor
-        value: 2
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Dialogue Text
-        value: SALUDOS AL GRAN L'UNARCH.
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      conversationID: 6
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 6
-        originDialogueID: 12
-        destinationConversationID: 6
-        destinationDialogueID: 13
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 240.30925
-        y: 569.4845
         width: 160
         height: 30
     - id: 13
@@ -4223,7 +4177,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 240.30925
-        y: 619.4845
+        y: 618.265
         width: 160
         height: 30
     - id: 14
@@ -4275,9 +4229,64 @@ MonoBehaviour:
         y: 669.4845
         width: 160
         height: 30
+    - id: 15
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: SALUDOS AL GRAN L'UNARCH.
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: SendMessage(enableContinue, , Dialogue Manager);
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 6
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 6
+        originDialogueID: 15
+        destinationConversationID: 6
+        destinationDialogueID: 13
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 240.4549
+        y: 570.68756
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 218.82344}
-    canvasZoom: 0.85000014
+    canvasScrollPosition: {x: 0, y: 460.71793}
+    canvasZoom: 1.06
   - id: 7
     fields:
     - title: Title

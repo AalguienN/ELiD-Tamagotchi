@@ -9,7 +9,7 @@ public class Fuel
     /** Clase del tipo de combustible */
     public const double STICK_HEAL = 1800;
     public const bool STICK_WATERSIELD = false;
-    public const double BLUESTICK_HEAL = 3600;
+    public const double BLUESTICK_HEAL = 36000;
     public const bool BLUESTICK_WATERSIELD = true;
 
     //Tipos de combustible
