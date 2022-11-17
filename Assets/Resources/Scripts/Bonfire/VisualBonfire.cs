@@ -5,7 +5,7 @@ using UnityEngine;
 public class VisualBonfire : MonoBehaviour
 {
     public float targetLight;
-    static float _sTargetLight;
+    static float _sTargetLight = -1;
     static bool _sIsBlue;
 
     public GameObject fireParticle01Red;
@@ -22,15 +22,12 @@ public class VisualBonfire : MonoBehaviour
         {
             targetLight = _sTargetLight;
 
-            if(targetLight==0) return;
-            //if(!SaveManager.hasBurntFirstStick) return;
-
             ChangeBonfire();
         }
 
         if(_sIsBlue != BonfireState.isBlue) {
             _sIsBlue = BonfireState.isBlue;
-            if(targetLight==0) return;
+            
             ChangeBonfire();
         }
     }
@@ -44,6 +41,9 @@ public class VisualBonfire : MonoBehaviour
         fireParticle01Red.GetComponent<ParticleSystem>().Stop();
         fireParticle02Red.GetComponent<ParticleSystem>().Stop();
         fireParticle03Red.GetComponent<ParticleSystem>().Stop();
+
+        if(targetLight==0) return;
+        //if(!SaveManager.hasBurntFirstStick) return;
 
         if(BonfireState.isBlue && day >= 3) {
             if(day > 0 && day < 3) {

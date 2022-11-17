@@ -18,7 +18,7 @@ public class UINumPalos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int s = SaveManager.getStickNum();
+        int s = (SaveManager.getStickNum() >= 999) ? SaveManager.getStickNum() - 998 : SaveManager.getStickNum();
         if(savedSticks != s) {
             stickText.text = s.ToString();
         }

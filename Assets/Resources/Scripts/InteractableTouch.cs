@@ -55,6 +55,9 @@ public class InteractableTouch : MonoBehaviour
         pixelPointer = new Vector3((float)pixelW * 0.5f, (float)pixelH * 0.15f, 0);
         sticky.transform.position = gameCamera.ScreenToWorldPoint(pointer);
 
+        //Hacer que salga el palo normal
+        changeWoodColor(false);
+
         //Grab distance
         grabR = pixelW * 0.2f;
 
@@ -88,7 +91,14 @@ public class InteractableTouch : MonoBehaviour
         if (SaveManager.getBlueStickNum() > 0 && !isBlue)
         {
             print("is blue");
-            changeWoodColor(true);
+            if(SaveManager.getBlueStickNum() >= 999)
+            {
+                changeWoodColor(true,true);
+            }
+            else
+            {
+                changeWoodColor(true);
+            }
             isBlue = true;
         }
         else if (SaveManager.getBlueStickNum() <= 0 && isBlue)
@@ -288,11 +298,24 @@ public class InteractableTouch : MonoBehaviour
             SaveManager.hasBurntFirstBlueStick = true;
             SaveManager.saveAll();
         }
-        SaveManager.setStickNum(--stickNum);
-        SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() - 1); //Soy Pau, he a�adido el azul
-        SaveManager.setBlueWood(true);
-        print("Consumido un palo azul");
-        GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.blueStick);
+        if(SaveManager.getStickNum() >= 999) //Muñeco, disfrazado de un numero muy alto (chapuza pero va :D)
+        {
+            SaveManager.setStickNum(stickNum - 999);
+            SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() - 999); //Soy Pau, he a�adido el azul
+            SaveManager.setBlueWood(true);
+            SaveManager.hasBurntLastBlueStick = true;
+            print("Consumido un palo azul");
+            GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.blueStick);
+            SaveManager.fuelList[SaveManager.fuelList.Count-1].duration = Mathf.Infinity;
+        }
+        else
+        {
+            SaveManager.setStickNum(--stickNum);
+            SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() - 1); //Soy Pau, he a�adido el azul
+            SaveManager.setBlueWood(true);
+            print("Consumido un palo azul");
+            GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.blueStick);
+        }
     }
     #endregion
 }

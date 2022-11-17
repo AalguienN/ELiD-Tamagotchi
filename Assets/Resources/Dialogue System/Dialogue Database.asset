@@ -4094,7 +4094,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: 'SendMessage(lastBlueBurn,  , Dialogue Manager);
+
+          SendMessage(disableContinue,
+          , Dialogue Manager);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 6
@@ -4118,7 +4121,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 30
+        x: 27.647064
         y: 570
         width: 160
         height: 30
@@ -4149,7 +4152,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(enableContinue, , Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 6

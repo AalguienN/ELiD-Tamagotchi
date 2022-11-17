@@ -242,4 +242,20 @@ public class DialogueEventStarter : MonoBehaviour
         StartCoroutine(waitForFirstBlueBurn());
     }
 
+    public void lastBlueBurn()
+    {
+        SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() + 999);
+        SaveManager.setStickNum(SaveManager.getStickNum() + 999);
+        StartCoroutine(waitForLastBlueBurn());
+    }
+
+    IEnumerator waitForLastBlueBurn()
+    {
+        while (!SaveManager.hasBurntLastBlueStick)
+        {
+            yield return null;
+        }
+        (DialogueManager.dialogueUI as StandardDialogueUI).OnContinue();
+
+    }
 }

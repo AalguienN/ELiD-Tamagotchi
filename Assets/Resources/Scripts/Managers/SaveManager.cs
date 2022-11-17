@@ -21,6 +21,7 @@ public class SaveManager : MonoBehaviour {
     #region DialogueVariables
     public static bool hasBurntFirstStick = false;
     public static bool hasBurntFirstBlueStick = false;
+    public static bool hasBurntLastBlueStick = false;
     public static bool hasTurnedRight = false;
     public static bool hasTurnedLeft = false;
     public static bool blueWood = false;
