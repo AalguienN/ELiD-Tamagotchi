@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class cameraAnimationHandler : MonoBehaviour
@@ -35,6 +33,7 @@ public class cameraAnimationHandler : MonoBehaviour
     public void startFirstConversation()
     {
         DialogueEventStarter.instance.startConversation(1);
+
     }
 
     public void caputxaEnabler(bool isEnabled)

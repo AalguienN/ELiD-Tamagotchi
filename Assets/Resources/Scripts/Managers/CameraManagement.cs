@@ -1,8 +1,6 @@
 using System.Collections;
-using System.IO;
 using UnityEngine;
 using Cinemachine;
-using UnityEngine.Animations;
 
 public class CameraManagement : MonoBehaviour
 {
@@ -317,10 +315,10 @@ public class CameraManagement : MonoBehaviour
 
         //DAY 4 TURNING AND CAPUTXA APEARING
         if(SaveManager.getCurrentDay() == 4 && SaveManager.hasPinochioRun && !getActiveCamera().Equals("CamBonfire")){
+            print("enabling caputxa after pinochio run");
             DialogueEventStarter.instance.enableCaputxa();
-            SaveManager.hasBeenDialoguePlayed = false;
-            SaveManager.canCaputxaBeInteracted = true;
             SaveManager.hasPinochioRun = false;
+            SaveManager.saveAll();
         }
         else if(SaveManager.getCurrentDay() == 5 && !getActiveCamera().Equals("CamBonfire") && SaveManager.hasBeenDialoguePlayed)
         {

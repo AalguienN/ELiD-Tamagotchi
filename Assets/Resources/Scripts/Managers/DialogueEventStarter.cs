@@ -26,16 +26,13 @@ public class DialogueEventStarter : MonoBehaviour
         caputxaAnim = caputxa.GetComponentInChildren<Animator>();
 
         disableCaputxas();
-        disablePinochio();
-        print(SaveManager.getCurrentDay());
-        if(SaveManager.getCurrentDay() == 1)
+        if (SaveManager.getCurrentDay() == 1)
         {
             disableCaputxaInteraction();
         }
-        if (SaveManager.getCurrentDay() == 4)
+        if (SaveManager.getCurrentDay() != 4 || SaveManager.getCurrentDay() == 4 && SaveManager.hasBeenDialoguePlayed)
         {
-            print("someting");
-            enablePinochio();
+            disablePinochio();
         }
         else if (SaveManager.getCurrentDay() == 5 && !SaveManager.hasBeenDialoguePlayed)
         {
@@ -44,7 +41,6 @@ public class DialogueEventStarter : MonoBehaviour
         else if (SaveManager.getCurrentDay() == 6 && !SaveManager.hasBeenDialoguePlayed)
         {
             enableCaputxas();
-            //enablePinochoMuerto
         }
     }
     private void Update()
@@ -127,6 +123,7 @@ public class DialogueEventStarter : MonoBehaviour
     }
 
     public void enablePinochio() {
+        print("enablePinochio");
         pinochio.SetActive(true);
     }
 
@@ -149,7 +146,7 @@ public class DialogueEventStarter : MonoBehaviour
     }
     public IEnumerator pinochioFinished()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1.5f);
         SaveManager.hasPinochioRun = true;
         SaveManager.saveAll();
         disablePinochio();
@@ -157,7 +154,7 @@ public class DialogueEventStarter : MonoBehaviour
     public IEnumerator pinochioMovement()
     {
         float x = 0;
-        float seconds = 3;
+        float seconds = 1.5f;
         while(x < seconds)
         {
             pinochio.transform.position += new Vector3(0, 0, -10 * Time.deltaTime);

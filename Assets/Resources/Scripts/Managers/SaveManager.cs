@@ -1,4 +1,3 @@
-using System.Collections;
 using System.IO;
 using System.Collections.Generic;
 using System;
@@ -60,15 +59,15 @@ public class SaveManager : MonoBehaviour {
         mgMinutes = ES3.Load("mgMinutes", 0);
         mgHits = ES3.Load("mgHits", 0);
         mgSticks = ES3.Load("mgSticks", 0);
-        hasPinochioRun = ES3.Load("hasPinoccionRun", hasPinochioRun);
+        hasPinochioRun = ES3.Load("hasPinochioRun", false);
 
 
         currentDay = WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay) + 1;
         print("Hours: " + WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay));
-        ES3.Save("currentDay",currentDay);
+        ES3.Save("currentDay", currentDay);
 
-        
-        if(!startedGame)
+
+        if (!startedGame)
         {
             ES3.Save("startedGame", true);
             aux_startedGame = true;
@@ -77,22 +76,19 @@ public class SaveManager : MonoBehaviour {
             startedGame = true;
         }
 
-
-
-        //Here calculate seconds since last conexion.
-        DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-        int currentEpochTime = (int)(DateTime.Now - epochStart).TotalSeconds;
-
-        int difference = currentEpochTime - (int)(lastConexion - epochStart).TotalSeconds;
-        timeSinceLastConexion = difference; //Check if works idk
-    }
-
-    private void Start()
-    {
+        ////////////////////////////////////////////////////
         //Make sure caputxa only appears in different day
-        if (lastConexionDay < getCurrentDay() && getCurrentDay() != 4|| aux_startedGame)
+        if (lastConexionDay < getCurrentDay() || aux_startedGame)
         {
-            DialogueEventStarter.instance.enableCaputxa();
+            if (getCurrentDay() == 4)
+            {
+                DialogueEventStarter.instance.disableCaputxa();
+                DialogueEventStarter.instance.enablePinochio();
+            }
+            else
+            {
+                DialogueEventStarter.instance.enableCaputxa();
+            }
             hasBeenDialoguePlayed = false;
             canCaputxaBeInteracted = true;
             aux_startedGame = false;
@@ -103,7 +99,14 @@ public class SaveManager : MonoBehaviour {
             hasBeenDialoguePlayed = true;
             DialogueEventStarter.instance.disableCaputxa();
         }
+        /////////////////////////////////////////////////
 
+        //Here calculate seconds since last conexion.
+        DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        int currentEpochTime = (int)(DateTime.Now - epochStart).TotalSeconds;
+
+        int difference = currentEpochTime - (int)(lastConexion - epochStart).TotalSeconds;
+        timeSinceLastConexion = difference; //Check if works idk
     }
 
     private void OnApplicationPause(bool pause)
@@ -121,6 +124,11 @@ public class SaveManager : MonoBehaviour {
             {
                 case 1:
                     clearData();
+                    break;
+
+                case 4:
+                    ES3.Save("lastConexionDay", lastConexionDay - 1);
+                    ES3.Save("hasPinochioRun", false);
                     break;
 
                 default:
