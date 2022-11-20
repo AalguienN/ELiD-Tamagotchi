@@ -43,10 +43,10 @@ public class SaveManager : MonoBehaviour {
     {
         //Here load
         fireState = ES3.Load("lastFireState", 0);
-        stickNum = ES3.Load("stickNum", 0);
-        blueStickNum = ES3.Load("blueStickNum", 0);
+        stickNum = ES3.Load("stickNum", 0) < 0 ? 0 : ES3.Load("stickNum", 0);
+        blueStickNum = ES3.Load("blueStickNum", 0) < 0 ? 0 : ES3.Load("blueStickNum", 0);
         lastConexion = ES3.Load("lastConexion", DateTime.Now);
-        lastConexionDay = ES3.Load("lastConexionDay", getCurrentDay());
+        lastConexionDay = ES3.Load("lastConexionDay", 0);
         startedGame = ES3.Load("startedGame", false);
         events = ES3.Load("eventHandler", new List<CalendarEvent>());
         days = ES3.Load("dayHandler", new List<Day>());
@@ -80,6 +80,18 @@ public class SaveManager : MonoBehaviour {
             startedGame = true;
         }
 
+        
+
+        //Here calculate seconds since last conexion.
+        DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        int currentEpochTime = (int)(DateTime.Now - epochStart).TotalSeconds;
+
+        int difference = currentEpochTime - (int)(lastConexion - epochStart).TotalSeconds;
+        timeSinceLastConexion = difference; //Check if works idk
+    }
+
+    private void Start()
+    {
         ////////////////////////////////////////////////////
         //Make sure caputxa only appears in different day
         if (lastConexionDay < getCurrentDay() || aux_startedGame)
@@ -104,13 +116,6 @@ public class SaveManager : MonoBehaviour {
             DialogueEventStarter.instance.disableCaputxa();
         }
         /////////////////////////////////////////////////
-
-        //Here calculate seconds since last conexion.
-        DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-        int currentEpochTime = (int)(DateTime.Now - epochStart).TotalSeconds;
-
-        int difference = currentEpochTime - (int)(lastConexion - epochStart).TotalSeconds;
-        timeSinceLastConexion = difference; //Check if works idk
     }
 
     private void OnApplicationPause(bool pause)
@@ -121,7 +126,20 @@ public class SaveManager : MonoBehaviour {
 
     private void OnApplicationQuit()
     {
-        saveAll();
+        onExit();
+    }
+
+
+
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (!focus)
+            onExit();
+    }
+
+    public void onExit()
+    {
         if (!hasBeenDialoguePlayed && hasBeenCaputxaInteracted)
         {
             switch (getCurrentDay())
@@ -131,28 +149,25 @@ public class SaveManager : MonoBehaviour {
                     break;
 
                 case 4:
-                    ES3.Save("lastConexionDay", lastConexionDay - 1);
-                    ES3.Save("hasPinochioRun", false);
+                    //ES3.Save("lastConexionDay", lastConexionDay - 1);
+                    //ES3.Save("hasPinochioRun", false);
                     break;
 
                 default:
-                    print("Repeating day dialogue");
-                    ES3.Save("lastConexionDay", lastConexionDay - 1);
+                    //print("Repeating day dialogue");
+                    //ES3.Save("lastConexionDay", lastConexionDay - 1);
                     break;
             }
         }
-    }
-
-
-
-    private void OnApplicationFocus(bool focus)
-    {
-        if(!focus)
+        else
+        {
             saveAll();
+        }
     }
 
     public static void saveAll()
     {
+        print("Saving All");
         ES3.Save("stickNum", stickNum);
         ES3.Save("blueStickNum", blueStickNum);
         ES3.Save("lastFireState", (int) GameObject.FindWithTag("Bonfire2").GetComponent<BonfireState>().hp);
@@ -262,7 +277,7 @@ public class SaveManager : MonoBehaviour {
 
     public static void setCanOnlyTurn(int num)
     {
-        ES3.Save("canOnlyTurn", num);
+        //ES3.Save("canOnlyTurn", num);
         canOnlyTurn = num; //from -1 to 2
     }
 

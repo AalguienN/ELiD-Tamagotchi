@@ -283,10 +283,9 @@ public class InteractableTouch : MonoBehaviour
         if (!SaveManager.hasBurntFirstStick)
         {
             SaveManager.hasBurntFirstStick = true;
-            SaveManager.saveAll();
+            //SaveManager.saveAll();
         }
         SaveManager.setStickNum(--stickNum);
-        Debug.Log(stickNum + " palos restantes");
         //Modificado por Adri�n
         GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.stick);
     }
@@ -296,7 +295,6 @@ public class InteractableTouch : MonoBehaviour
         if (!SaveManager.hasBurntFirstBlueStick)
         {
             SaveManager.hasBurntFirstBlueStick = true;
-            SaveManager.saveAll();
         }
         if(SaveManager.getStickNum() >= 999) //Muñeco, disfrazado de un numero muy alto (chapuza pero va :D)
         {
@@ -304,7 +302,6 @@ public class InteractableTouch : MonoBehaviour
             SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() - 999);
             SaveManager.setBlueWood(true);
             SaveManager.hasBurntLastBlueStick = true;
-            SaveManager.saveAll();
             GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.blueStick);
             GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().hp = GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().maxHp;
             SaveManager.fuelList[SaveManager.fuelList.Count-1].duration = Mathf.Infinity;
@@ -314,7 +311,6 @@ public class InteractableTouch : MonoBehaviour
             SaveManager.setStickNum(--stickNum);
             SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() - 1); //Soy Pau, he a�adido el azul
             SaveManager.setBlueWood(true);
-            print("Consumido un palo azul");
             GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.blueStick);
         }
     }

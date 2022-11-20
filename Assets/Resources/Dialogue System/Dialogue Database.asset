@@ -1575,7 +1575,7 @@ MonoBehaviour:
         value: 'SendMessage(disableCaputxaInteraction, , Dialogue Manager);
 
           SendMessage(lockCameraToCenter,
-          , DialogueManager);'
+          , Dialogue Manager);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 3
@@ -2158,7 +2158,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 16.715881, y: 51.977028}
+    canvasScrollPosition: {x: 0, y: 0}
     canvasZoom: 0.94000006
   - id: 4
     fields:

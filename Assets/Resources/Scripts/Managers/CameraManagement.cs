@@ -72,12 +72,10 @@ public class CameraManagement : MonoBehaviour
         if (getActiveCamera().Equals("CamMinigame") && !SaveManager.hasTurnedRight)
         {
             SaveManager.hasTurnedRight = true;
-            SaveManager.saveAll();
         }
         if (getActiveCamera().Equals("CamCalendar") && !SaveManager.hasTurnedLeft)
         {
             SaveManager.hasTurnedLeft = true;
-            SaveManager.saveAll();
             DialogueEventStarter.instance.enableContinue();
         }
 
@@ -319,7 +317,7 @@ public class CameraManagement : MonoBehaviour
             print("enabling caputxa after pinochio run");
             DialogueEventStarter.instance.enableCaputxa();
             SaveManager.hasPinochioRun = false;
-            SaveManager.saveAll();
+            //SaveManager.saveAll();
         }
         else if(SaveManager.getCurrentDay() == 5 && !getActiveCamera().Equals("CamBonfire") && SaveManager.hasBeenDialoguePlayed)
         {

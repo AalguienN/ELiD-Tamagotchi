@@ -15,7 +15,7 @@ public class DialogueEventStarter : MonoBehaviour
     public string[] conversations = new string[7];
     public Button continueBtn;
     public GameObject caputxa;
-    public GameObject pinochio, pinochioBurnable;
+    public GameObject pinochio;
     public GameObject[] caputxas;
     public GameObject burntCaputxa;
     public Material woodTexture;
@@ -26,7 +26,6 @@ public class DialogueEventStarter : MonoBehaviour
     {
         pinochioAnim = pinochio.GetComponentInChildren<Animator>();
         caputxaAnim = caputxa.GetComponentInChildren<Animator>();
-        print(SaveManager.getCurrentDay());
         disableCaputxas();
         burntCaputxa.SetActive(false);
         if (SaveManager.getCurrentDay() == 1)
@@ -37,11 +36,7 @@ public class DialogueEventStarter : MonoBehaviour
         {
             disablePinochio();
         }
-        if (SaveManager.getCurrentDay() == 5 && !SaveManager.hasBeenDialoguePlayed)
-        {
-            enableCaputxas();
-        }
-        else if (SaveManager.getCurrentDay() == 6 && !SaveManager.hasBeenDialoguePlayed)
+        if (SaveManager.getCurrentDay() == 5 && !SaveManager.hasBeenDialoguePlayed || SaveManager.getCurrentDay() == 6 && !SaveManager.hasBeenDialoguePlayed)
         {
             enableCaputxas();
         }
@@ -161,7 +156,7 @@ public class DialogueEventStarter : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         SaveManager.hasPinochioRun = true;
-        SaveManager.saveAll();
+        //SaveManager.saveAll();
         disablePinochio();
     }
     public IEnumerator pinochioMovement()
@@ -261,6 +256,7 @@ public class DialogueEventStarter : MonoBehaviour
     {
         SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() + 1);
         SaveManager.setStickNum(SaveManager.getStickNum() + 1);
+        print("Blue: " + SaveManager.getBlueStickNum() + " Normal: " + SaveManager.getStickNum());
         StartCoroutine(waitForFirstBlueBurn());
     }
 
