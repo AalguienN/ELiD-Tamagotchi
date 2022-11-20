@@ -24,8 +24,9 @@ public class DialogueEventStarter : MonoBehaviour
     {
         pinochioAnim = pinochio.GetComponentInChildren<Animator>();
         caputxaAnim = caputxa.GetComponentInChildren<Animator>();
-
+        print(SaveManager.getCurrentDay());
         disableCaputxas();
+        //disable burnt caputxa
         if (SaveManager.getCurrentDay() == 1)
         {
             disableCaputxaInteraction();
@@ -34,13 +35,21 @@ public class DialogueEventStarter : MonoBehaviour
         {
             disablePinochio();
         }
-        else if (SaveManager.getCurrentDay() == 5 && !SaveManager.hasBeenDialoguePlayed)
+        if (SaveManager.getCurrentDay() == 5 && !SaveManager.hasBeenDialoguePlayed)
         {
             enableCaputxas();
         }
         else if (SaveManager.getCurrentDay() == 6 && !SaveManager.hasBeenDialoguePlayed)
         {
             enableCaputxas();
+        }
+        else if (SaveManager.getCurrentDay() == 7)
+        {
+            disableCaputxa();
+            disableCaputxas();
+            //Enable caputxa burnt
+            //Change forest texture
+            cameraAnimationHandler.instance.ChangeAnimation(cameraAnimationHandler.FINALE_ANIM);
         }
     }
     private void Update()

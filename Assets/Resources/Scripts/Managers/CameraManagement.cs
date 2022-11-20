@@ -311,6 +311,7 @@ public class CameraManagement : MonoBehaviour
         if (!getActiveCamera().Equals("CamBonfire") && DialogueEventStarter.instance.isCaputxaEnabled() && SaveManager.hasBeenDialoguePlayed)
         {
             DialogueEventStarter.instance.disableCaputxa();
+            DialogueEventStarter.instance.disableCaputxas();
         }
 
         //DAY 4 TURNING AND CAPUTXA APEARING

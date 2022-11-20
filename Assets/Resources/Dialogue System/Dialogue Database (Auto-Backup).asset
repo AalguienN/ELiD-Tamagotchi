@@ -420,7 +420,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'SendMessage(enableContinue, , Dialogue Manager);
 
-          Delay(5)->Message(finishedDelay);
+          Delay(10)->Message(finishedDelay);
 
           Continue()@Message(finishedDelay);'
         type: 0
@@ -1109,7 +1109,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 35
-        y: 399
+        y: 397.86365
         width: 160
         height: 30
     - id: 6
@@ -1139,10 +1139,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 'SendMessage(enableContinue, , Dialogue Manager);
-
-          SendMessage(lockCameraToCenter,
-          , Dialogue Manager);'
+        value: SendMessage(zoomCameraSequence, , Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 2
@@ -1167,7 +1164,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 35
-        y: 465.48352
+        y: 466.61987
         width: 160
         height: 30
     - id: 7
@@ -1197,7 +1194,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(enableContinue, , Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 2
@@ -1221,7 +1218,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 37.1978
+        x: 39.47052
         y: 537.46155
         width: 160
         height: 30
@@ -1445,8 +1442,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 317.81693}
-    canvasZoom: 0.97000015
+    canvasScrollPosition: {x: 0, y: 320.58722}
+    canvasZoom: 0.88000023
   - id: 3
     fields:
     - title: Title
@@ -1575,7 +1572,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SendMessage(disableCaputxaInteraction, , Dialogue Manager);
+        value: 'SendMessage(disableCaputxaInteraction, , Dialogue Manager);
+
+          SendMessage(lockCameraToCenter,
+          , DialogueManager);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 3
@@ -2077,7 +2077,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SendMessage(endOfDialogue, ,Dialogue Manager);
+        value: 'SendMessage(endOfDialogue, ,Dialogue Manager);
+
+          SendMessage(unlockCamera,
+          , Dialogue Manager);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 3
@@ -3410,7 +3413,7 @@ MonoBehaviour:
         height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.85000014
+    canvasZoom: 0.7900002
   - id: 6
     fields:
     - title: Title

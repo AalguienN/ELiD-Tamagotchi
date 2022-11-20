@@ -33,6 +33,9 @@ public class SaveManager : MonoBehaviour {
     public static bool hasBeenDialoguePlayed = false;
     public static bool hasPinochioRun = false;
 
+
+    public static bool finaleAnimationHasEnded = false;
+
     #endregion
 
     #region Save and Load
@@ -60,6 +63,7 @@ public class SaveManager : MonoBehaviour {
         mgHits = ES3.Load("mgHits", 0);
         mgSticks = ES3.Load("mgSticks", 0);
         hasPinochioRun = ES3.Load("hasPinochioRun", false);
+        finaleAnimationHasEnded = ES3.Load("finaleAnimationHasEnded", false);
 
 
         currentDay = WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay) + 1;
@@ -165,6 +169,7 @@ public class SaveManager : MonoBehaviour {
         ES3.Save("hasTurnedRight", hasTurnedRight);
         ES3.Save("canOnlyTurn", canOnlyTurn);
         ES3.Save("hasPinochioRun", hasPinochioRun);
+        ES3.Save("finaleAnimationHasEnded", finaleAnimationHasEnded);
     }
     #endregion
 

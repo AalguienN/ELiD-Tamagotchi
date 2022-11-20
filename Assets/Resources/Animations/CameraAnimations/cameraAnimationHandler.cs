@@ -12,6 +12,8 @@ public class cameraAnimationHandler : MonoBehaviour
     public const string IDLE_ANIMATION = "IdleAnim";
     public const string RIGHT_ARROW = "RightArrowAnim";
     public const string LEFT_ARROW = "LeftArrowAnim";
+    public const string FINALE_ANIM = "EndingAnimation";
+    public const string FINALE_IDLE = "EndingIdle";
 
     private void Awake()
     {
@@ -58,6 +60,13 @@ public class cameraAnimationHandler : MonoBehaviour
         {
             DialogueEventStarter.instance.disableCaputxaInteraction();
         }
+    }
+
+    public void BlackScreenPlay()
+    {
+        ChangeAnimation(FINALE_IDLE);
+        SaveManager.finaleAnimationHasEnded = true;
+        //Load new scene asynchrounously
     }
 
     public void ChangeAnimation(string newState)
