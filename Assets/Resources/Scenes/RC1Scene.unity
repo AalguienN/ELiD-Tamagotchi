@@ -5806,7 +5806,6 @@ MonoBehaviour:
   continueBtn: {fileID: 793916427}
   caputxa: {fileID: 776539560}
   pinochio: {fileID: 970712436}
-  pinochioBurnable: {fileID: 0}
   caputxas:
   - {fileID: 1842696028}
   - {fileID: 1109777601}
@@ -7804,7 +7803,19 @@ MonoBehaviour:
     sizerText: {fileID: 0}
   onBegin:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1309224589}
+        m_TargetAssemblyTypeName: DialogueEventStarter, Assembly-CSharp
+        m_MethodName: playCaputxaSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onCharacter:
     m_PersistentCalls:
       m_Calls: []

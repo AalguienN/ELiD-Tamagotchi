@@ -533,7 +533,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(ForceLaugh, , Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 1
@@ -970,7 +970,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(ForceLaugh, , Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 2
@@ -1442,8 +1442,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 320.58722}
-    canvasZoom: 0.88000023
+    canvasScrollPosition: {x: 0, y: 133.93523}
+    canvasZoom: 0.76000035
   - id: 3
     fields:
     - title: Title
@@ -2022,7 +2022,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SendMessage(ForceLaugh, , Dialogue Manager);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 3

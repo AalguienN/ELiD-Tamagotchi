@@ -125,8 +125,9 @@ public class SoundManager : MonoBehaviour
     }
 
     //Generic play sound : given an audio name and an audio source
-    private void PlaySound(string audioName, AudioSource audioSource) {
+    private void PlaySound(string audioName, AudioSource audioSource, bool audioPitching = false) {
         string clip = "";
+       
         try
         {
             clip = getPath(audioName);

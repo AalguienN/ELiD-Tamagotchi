@@ -63,7 +63,7 @@ AnimationClip:
         inWeight: {x: 0.086890616, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.11840248, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 6.5
+        time: 5.3333335
         value: {x: 0, y: 0, z: 0}
         inSlope: {x: -0.0016670022, y: 0, z: 0}
         outSlope: {x: -0.0016670022, y: 0, z: 0}
@@ -610,7 +610,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 6.5
+    m_StopTime: 5.3333335
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -675,7 +675,7 @@ AnimationClip:
         inWeight: 0.086890616
         outWeight: 0.11840248
       - serializedVersion: 3
-        time: 6.5
+        time: 5.3333335
         value: 0
         inSlope: -0.0016670022
         outSlope: -0.0016670022
@@ -1264,7 +1264,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 6.5
+  - time: 5.3333335
     functionName: startFirstConversation
     data: 
     objectReferenceParameter: {fileID: 0}

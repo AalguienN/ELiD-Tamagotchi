@@ -20,6 +20,8 @@ public class DialogueEventStarter : MonoBehaviour
     public GameObject burntCaputxa;
     public Material woodTexture;
     Animator caputxaAnim, pinochioAnim;
+
+    public bool forceLaugh = false;
     
 
     private void Start()
@@ -295,5 +297,28 @@ public class DialogueEventStarter : MonoBehaviour
     public void unlockCameraZoom()
     {
         MonthlyCalendarManager.Instance.BlockManualZoom(false);
+    }
+
+
+
+    public void playCaputxaLaugh()
+    {
+        SoundManager.instance.PlaySound("voiceCapuchaLaugh");
+    }
+
+    public void ForceLaugh()
+    {
+        forceLaugh = true;
+    }
+
+    public void playCaputxaSound()
+    {
+        int num = Random.Range(1, 5);
+        string s = "voiceCapucha" + num;
+        if (forceLaugh) { 
+            s = "voiceCapuchaLaugh";
+            forceLaugh = false;
+        }
+        SoundManager.instance.PlaySound(s);
     }
 }
