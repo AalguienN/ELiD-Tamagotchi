@@ -16,7 +16,6 @@ public class IntroController : MonoBehaviour
         try
         {
             introDuration = (float)introClip.length + 0.5f;
-            print("Video duration: " + introDuration);
             GameObject camera = Camera.main.gameObject;
             var videoPlayer = camera.AddComponent<UnityEngine.Video.VideoPlayer>();
             videoPlayer.playOnAwake = false;
@@ -24,14 +23,18 @@ public class IntroController : MonoBehaviour
             videoPlayer.targetCameraAlpha = 0.5F;
             videoPlayer.clip = introClip;
             videoPlayer.Play();    
-        } catch(System.Exception e){}
+        } catch(System.Exception e){
+            Debug.Log("Error ocurred during start animation");
+        }
         StartCoroutine(UnloadScene(introDuration));
     }
 
     IEnumerator UnloadScene(float introD)
     {
         yield return new WaitForSeconds(introD);
-        SceneManager.LoadSceneAsync(1);
+        print("LoadingNewScene");
+        int sceneToLoad = SceneChangeManager.MAIN_SCENE; //Aquí falta el codigo para decidir que escena carga
+        SceneChangeManager.LoadSceneDirectly(sceneToLoad);
     }
 
     // Update is called once per frame

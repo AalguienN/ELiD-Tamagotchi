@@ -75,7 +75,7 @@ public class SaveManager : MonoBehaviour {
         {
             ES3.Save("startedGame", true);
             aux_startedGame = true;
-            cameraAnimationHandler.instance.ChangeAnimation(cameraAnimationHandler.START_ANIMATION);
+            cameraAnimationHandler.instance.ChangeAnimation(cameraAnimationHandler.START_ANIMATION); //Make this wait until load finished
             setStartingDay();
             startedGame = true;
         }
@@ -90,7 +90,6 @@ public class SaveManager : MonoBehaviour {
         timeSinceLastConexion = difference; //Check if works idk
 
         currentDay = WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay) + 1;
-        print("Hours: " + WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay));
         if(difference < 0)
         {
             print("Viaje en el tiempo");
