@@ -40,7 +40,7 @@ public class WeeklyCalendar : MonoBehaviour
         
         if(week.Count == 0) {
             for(int i = 0; i < 7; i++) {
-                Day d = new Day(GetCurrentDay(System.DateTime.Now)+i);
+                Day d = new Day(GetWorldDay(System.DateTime.Now)+i);
 
                 if(i == 2)
                     d.weather = (Day.Tiempo)2;
@@ -55,10 +55,10 @@ public class WeeklyCalendar : MonoBehaviour
         }
 
         for(int i = 0; i < 7; i++) {
-            if(SaveManager.getDay((GetCurrentDay(System.DateTime.Now)+i).ToString()).weather == Day.Tiempo.vacio)
+            if(SaveManager.getDay((GetWorldDay(System.DateTime.Now)+i).ToString()).weather == Day.Tiempo.vacio)
             {
                 int r = UnityEngine.Random.Range(1, 4);
-                Day d = new Day(GetCurrentDay(System.DateTime.Now)+i);
+                Day d = new Day(GetWorldDay(System.DateTime.Now)+i);
                 d.weather = (Day.Tiempo)r; //Rellena con sol o lluvia los dias de la semana restantes
                 week.Add(d);             
                 SaveManager.addDay(d);
@@ -66,7 +66,7 @@ public class WeeklyCalendar : MonoBehaviour
         }
         List<Day> weekTemp = new List<Day>();
         foreach(Day d in week) {
-            if(d.id < GetCurrentDay(System.DateTime.Now))
+            if(d.id < GetWorldDay(System.DateTime.Now))
             {
                 weekTemp.Add(d);
             }
@@ -84,9 +84,13 @@ public class WeeklyCalendar : MonoBehaviour
         return (float)UnityEngine.Random.Range(0.5f, 1.5f);  //Si es estrictamente mayor al climateChangeProbability se machaca el clima de ese d�a
     }
 
-    public static int GetCurrentDay(System.DateTime dateTime) {
+    public static int GetWorldDay(System.DateTime dateTime) {
         System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
         return (int)(dateTime - epochStart).Days;
+    }
+
+    public static System.TimeSpan GetDaysSinceStart(System.DateTime dateTime, System.DateTime startingDay) {
+        return (dateTime - startingDay);
     }
 }
 

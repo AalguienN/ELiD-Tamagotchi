@@ -108,7 +108,8 @@ public class MonthlyCalendarManager : MonoBehaviour
         // //TEMP
         // if(Input.GetKeyDown(KeyCode.E))
         //     AddCalendarEvent(new CalendarEvent(UnityEngine.Random.Range(1,9999).ToString(), UnityEngine.Random.Range(1,9999).ToString(), 2022, 10, UnityEngine.Random.Range(1,31)));
-
+        if(Input.GetKeyDown(KeyCode.K))
+            ZoomIn();
 
         //Click on one day to see its events
         if(CameraManagement.getActiveCamera()=="CamCalendar") {
@@ -147,10 +148,24 @@ public class MonthlyCalendarManager : MonoBehaviour
         selectedObject = null;
     }
 
-    public void ZoomIn(int dayToZoom)
+    public void ZoomIn()
     {
-        cameraDesiredPosition = daysInCalendarDisplay[dayToZoom].transform.position + -Camera.main.transform.forward*selectedTileOffset;
-        selectedObject = daysInCalendarDisplay[dayToZoom];
+        DateTime firstMonthDay = new DateTime(currentYear, currentMonth, 1,0,0,0,0);
+        int firstDayInWeek = (int)(firstMonthDay.DayOfWeek - 1) % 7; //Lunes = 0, Martes = 1 ....
+        //print(firstDayInWeek);
+        int weekOffset = 0;
+        
+        if(firstDayInWeek < 4) weekOffset = -7;
+        int i = (currentDay+1)-weekOffset;
+
+        if(i<firstDayInWeek) { // If it is a day from the previous month
+        }
+        else if(i>actualMonth.Days+firstDayInWeek-1) { // If it is a day from the next month
+        }
+        else { // If it is a day from the current month
+            cameraDesiredPosition = daysInCalendarDisplay[i].transform.position + -Camera.main.transform.forward*selectedTileOffset;
+            selectedObject = daysInCalendarDisplay[i];
+        }
     }
 
     public void BlockManualZoom(bool block) {
@@ -200,7 +215,7 @@ public class MonthlyCalendarManager : MonoBehaviour
                 int previousMonthDay = MonthConstants.GetMonth(previousMonthInt, previousYearInt).Days - (firstDayInWeek-1) + i;
                 
                 System.DateTime epochToday = new System.DateTime(previousYearInt, previousMonthInt, previousMonthDay, 0, 0, 0, System.DateTimeKind.Utc);
-                int globalDay = WeeklyCalendar.GetCurrentDay(epochToday);
+                int globalDay = WeeklyCalendar.GetWorldDay(epochToday);
                 int dW = (int)SaveManager.getDay(globalDay.ToString()).weather;
 
                 ChangeTileVisuals(gO, crossTexture, crossColor, previousYearInt, previousMonthInt, previousMonthDay, dW);
@@ -211,14 +226,14 @@ public class MonthlyCalendarManager : MonoBehaviour
                 int localDay = (i-actualMonth.Days-(firstDayInWeek-1));
 
                 System.DateTime epochToday = new System.DateTime(localYear, localMonth, localDay, 0, 0, 0, System.DateTimeKind.Utc);
-                int globalDay = WeeklyCalendar.GetCurrentDay(epochToday);
+                int globalDay = WeeklyCalendar.GetWorldDay(epochToday);
                 int dW = (int)SaveManager.getDay(globalDay.ToString()).weather;
                 
                 ChangeTileVisuals(gO, null, Color.white, localYear, localMonth, localDay, dW);
             }
             else { // If it is a day from the current month
                 System.DateTime epochToday = new System.DateTime(currentYear, currentMonth, (i-firstDayInWeek+1), 0, 0, 0, System.DateTimeKind.Utc);
-                int globalDay = WeeklyCalendar.GetCurrentDay(epochToday);
+                int globalDay = WeeklyCalendar.GetWorldDay(epochToday);
                 int dW = (int)SaveManager.getDay(globalDay.ToString()).weather;
 
                 ChangeTileVisuals(gO, (currentDay == (i-firstDayInWeek+1)) ? circleTexture : ((currentDay > (i-firstDayInWeek+1)) ? crossTexture : null),
@@ -248,7 +263,7 @@ public class MonthlyCalendarManager : MonoBehaviour
     }
 
     public static int GetDayWeather() {
-        return (int)SaveManager.getDay(WeeklyCalendar.GetCurrentDay(DateTime.Now).ToString()).weather;
+        return (int)SaveManager.getDay(WeeklyCalendar.GetWorldDay(DateTime.Now).ToString()).weather;
     }
     #endregion
 }

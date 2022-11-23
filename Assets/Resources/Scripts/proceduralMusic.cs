@@ -19,7 +19,7 @@ public class proceduralMusic : MonoBehaviour
     void Start()
     {
         sm = GetComponent<SoundManager>();
-        int currentDay = WeeklyCalendar.GetCurrentDay(System.DateTime.Now);
+        int currentDay = SaveManager.getCurrentDay();
         switch (currentDay) {
             case 1:
             case 2:
