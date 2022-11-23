@@ -49,6 +49,7 @@ public class SaveManager : MonoBehaviour {
         startingDay = ES3.Load("startingDay", WeeklyCalendar.GetCurrentDay(System.DateTime.Now));
         hasBurntFirstStick = ES3.Load("hasBurntFirstStick", false);
         hasBurntFirstBlueStick = ES3.Load("hasBurntFirstBlueStick", false);
+        hasBurntLastBlueStick = ES3.Load("hasBurntLastBlueStick", false);
         hasTurnedLeft = ES3.Load("hasTurnedLeft", false);
         hasTurnedRight = ES3.Load("hasTurnedRight", false);
         canOnlyTurn = ES3.Load("canOnlyTurn", 0);
@@ -162,6 +163,7 @@ public class SaveManager : MonoBehaviour {
         ES3.Save("startedGame", startedGame);
         ES3.Save("hasBurntFirstStick", hasBurntFirstStick);
         ES3.Save("hasBurntFirstBlueStick", hasBurntFirstBlueStick);
+        ES3.Save("hasBurntLastBlueStick", hasBurntLastBlueStick);
         ES3.Save("hasTurnedLeft", hasTurnedLeft);
         ES3.Save("hasTurnedRight", hasTurnedRight);
         ES3.Save("canOnlyTurn", canOnlyTurn);

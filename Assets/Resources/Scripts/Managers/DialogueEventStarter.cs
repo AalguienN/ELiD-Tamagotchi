@@ -15,7 +15,7 @@ public class DialogueEventStarter : MonoBehaviour
     public string[] conversations = new string[7];
     public Button continueBtn;
     public GameObject caputxa;
-    public GameObject pinochio;
+    public GameObject pinochio, pinochioBurnable;
     public GameObject[] caputxas;
     Animator caputxaAnim, pinochioAnim;
     
@@ -27,13 +27,23 @@ public class DialogueEventStarter : MonoBehaviour
 
         disableCaputxas();
         disablePinochio();
-        if (SaveManager.getCurrentDay() == 4)
+        print("Which is the current day: " + SaveManager.getCurrentDay());
+        if(SaveManager.getCurrentDay() == 1)
+        {
+            disableCaputxaInteraction();
+        }
+        if (SaveManager.getCurrentDay() == 4 && !SaveManager.hasBeenDialoguePlayed)
         {
             enablePinochio();
         }
-        else if (SaveManager.getCurrentDay() == 5)
+        else if (SaveManager.getCurrentDay() == 5 && !SaveManager.hasBeenDialoguePlayed)
         {
             enableCaputxas();
+        }
+        else if (SaveManager.getCurrentDay() == 6 && !SaveManager.hasBeenDialoguePlayed)
+        {
+            enableCaputxas();
+            //enablePinochoMuerto
         }
     }
     private void Update()
@@ -256,6 +266,5 @@ public class DialogueEventStarter : MonoBehaviour
             yield return null;
         }
         (DialogueManager.dialogueUI as StandardDialogueUI).OnContinue();
-
     }
 }

@@ -99,7 +99,6 @@ public class BonfireState : MonoBehaviour
         {
             isBlue = false;
         }
-        print("Is blue? "+ isBlue);
 
         if(hp > 0 && state != states.encendida) 
         {

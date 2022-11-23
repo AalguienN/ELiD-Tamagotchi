@@ -306,7 +306,7 @@ public class InteractableTouch : MonoBehaviour
             SaveManager.setBlueStickNum(SaveManager.getBlueStickNum() - 999);
             SaveManager.setBlueWood(true);
             SaveManager.hasBurntLastBlueStick = true;
-            print("Consumido pinochio");
+            SaveManager.saveAll();
             GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().addFuel(Fuel.types.blueStick);
             GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().hp = GameObject.FindGameObjectWithTag("Bonfire2").GetComponent<BonfireState>().maxHp;
             SaveManager.fuelList[SaveManager.fuelList.Count-1].duration = Mathf.Infinity;

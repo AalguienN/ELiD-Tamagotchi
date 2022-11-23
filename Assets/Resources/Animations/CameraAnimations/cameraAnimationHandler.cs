@@ -49,7 +49,7 @@ public class cameraAnimationHandler : MonoBehaviour
         }
     }
 
-    public void caputxaInteractionEnabler(bool isEnabled)
+    public void caputxaInteractionEnabler(bool isEnabled = true)
     {
         if (isEnabled)
         {
