@@ -42,6 +42,8 @@ public class MinigameController : MonoBehaviour
 
     public GameObject particleInstancer;
 
+    //FMODUnity.StudioEventEmitter emitter;
+
     void Start() {
         axePrefab.transform.localPosition = axeActualPosition = axeStartPosition;
         axeActualRotation = axeStartRotation;
@@ -65,6 +67,10 @@ public class MinigameController : MonoBehaviour
             treeFull.SetActive(false);
             treeChop.SetActive(true);
         }
+
+        //Sound set-up
+        //var emitter = GetComponent<FMODUnity.StudioEventEmitter>(); //Menciona el emisor de sonido que hay enganchado al mismo objeto
+
     }
 
     IEnumerator StartGame()
@@ -157,7 +163,7 @@ public class MinigameController : MonoBehaviour
         StartCoroutine(RunTime());
         treeFull.SetActive(false);
         treeChop.SetActive(true);
-        SoundManager.instance.PlaySound("TreeFall");
+        SoundManager.instance.PlaySound("TreeFall"); //CARLOS: CAMBIAR - Hay que hacer en FMOD un sonido para esto
     }
 
     IEnumerator RunTime() {
@@ -226,6 +232,9 @@ public class MinigameController : MonoBehaviour
         speed += (0.5f-Mathf.Abs(precision)/80f)*2f;
         gameTime = Random.Range(0.0f,10.0f);
         precision01 = 1f - Mathf.Abs(precision/80f);
+
+        //Sound set-up
+        var emitter = GetComponent<FMODUnity.StudioEventEmitter>(); //Menciona el emisor de sonido que hay enganchado al mismo objeto
         
         while(modifyRotation) yield return new WaitForEndOfFrame();
         modifyRotation = true;
@@ -253,33 +262,39 @@ public class MinigameController : MonoBehaviour
             print("Perfect");
             //Play sound
             ScreenShake.instance.StartShake(0.1f,5f);
-            SoundManager.instance.PlaySound("WoodChopOption (5)");
+            emitter.SetParameter("AxeState", 0);
+            emitter.Play();
             Reward(3);
         }
         else if(precision01 > 0.7f) 
         {
             print("Almost");
             ScreenShake.instance.StartShake(0.1f,3f);
-            SoundManager.instance.PlaySound("WoodChopOption (4)");
+            emitter.SetParameter("AxeState", 0);
+            emitter.Play();
             Reward(2);
         }
         else if(precision01 > 0.5f) 
         {
             print("I'll accept it");
             ScreenShake.instance.StartShake(0.1f,1f);
-            SoundManager.instance.PlaySound("WoodChopOption (3)");
+            emitter.SetParameter("AxeState", 0);
+            emitter.Play();
             Reward(1);
         }
         else if(precision01 > 0.4f) 
         {
             print("I'll give you another chance");
             ScreenShake.instance.StartShake(0.1f,0.5f);
-            SoundManager.instance.PlaySound("WoodChopOption (2)");
+            emitter.SetParameter("AxeState", 0);
+            emitter.Play();
             Reward(0);
         }
         else 
         {
             print("You're out");
+            emitter.SetParameter("AxeState", 0);
+            emitter.Play();
             Reward(-1);
         }
 

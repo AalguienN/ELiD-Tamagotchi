@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 605597425}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -298,6 +298,11 @@ Transform:
   m_Father: {fileID: 612756191}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &104994062 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9106220330176073957, guid: 2d5a90614639e794cb181b213dd73581, type: 3}
+  m_PrefabInstance: {fileID: 434938046}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &105423713 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 883e4a7eea02bf742ac91e0d686e97ba, type: 3}
@@ -1348,6 +1353,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9106220330176073959, guid: 2d5a90614639e794cb181b213dd73581, type: 3}
   m_PrefabInstance: {fileID: 434938046}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &434938049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104994062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1393560791
+      Data2: 1197706653
+      Data3: -619347815
+      Data4: -1233359227
+    Path: event:/SFX/Wood Chop
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &459100829
 GameObject:
   m_ObjectHideFlags: 0
@@ -3622,6 +3657,11 @@ Transform:
   m_Father: {fileID: 612756191}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &926069037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2880177056032639292, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
+  m_PrefabInstance: {fileID: 64368418}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &936713701
 GameObject:
   m_ObjectHideFlags: 3
@@ -3727,6 +3767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 950728164}
   - component: {fileID: 950728165}
+  - component: {fileID: 950728166}
   m_Layer: 0
   m_Name: sticky
   m_TagString: Stick
@@ -3765,6 +3806,36 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &950728166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950728160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -649863745
+      Data2: 1198208405
+      Data3: 1942174887
+      Data4: -131734027
+    Path: event:/SFX/Stick Burn
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &957519169 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1158671987943693800, guid: 3159dab4b9711114fb5ae68ab61b994c, type: 3}
@@ -7517,6 +7588,64 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2880177056032639299, guid: 9d9b8862f17574945bcc2c36b0d5884e, type: 3}
   m_PrefabInstance: {fileID: 64368418}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1789440910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926069037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3da7c5b34c136946bf2ca37bf5eaed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  effectiveHP: 0
+  state: 0
+  effectiveState: 0
+  currentDay: 0
+  effectiveCurrentDay: 0
+  lastBlueStick: 0
+  effectiveLastBlueStick: 0
+--- !u!114 &1789440911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926069037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 261198264
+      Data2: 1339200576
+      Data3: -50421630
+      Data4: -1277871264
+    Path: event:/Ambient/Bonfire
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params:
+  - Name: Bonfire State
+    Value: 1
+  - Name: bonfireHP
+    Value: 90000
+  - Name: Current Day
+    Value: 1
+  - Name: LastBlueStickBurn
+    Value: 0
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!4 &1816064485 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1fec4e74313cbdb4896052158916cdaa, type: 3}
@@ -8188,10 +8317,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1975000078}
   - component: {fileID: 1975000077}
-  - component: {fileID: 1975000076}
   - component: {fileID: 1975000079}
   - component: {fileID: 1975000081}
   - component: {fileID: 1975000082}
+  - component: {fileID: 1975000083}
+  - component: {fileID: 1975000084}
   m_Layer: 5
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8199,14 +8329,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1975000076
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975000075}
-  m_Enabled: 1
 --- !u!20 &1975000077
 Camera:
   m_ObjectHideFlags: 0
@@ -8356,6 +8478,49 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1975000083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975000075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+--- !u!114 &1975000084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975000075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 432099026
+      Data2: 1264684814
+      Data3: -925128807
+      Data4: 1987674103
+    Path: event:/SFX/Stick PickUp
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &1980919058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9103,7 +9268,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 6a9adcc204d59bd4ab66d6176dcc4475, type: 3}
 --- !u!4 &3702834466398975756 stripped
 Transform:

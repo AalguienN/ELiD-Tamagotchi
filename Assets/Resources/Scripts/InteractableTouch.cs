@@ -36,6 +36,8 @@ public class InteractableTouch : MonoBehaviour
     public bool isBlue = false; //Is the current stick in hand blue?
     bool isActive;
 
+    //public var emitterStick;
+
     #endregion
 
     #region Start Set-up
@@ -76,6 +78,10 @@ public class InteractableTouch : MonoBehaviour
 
         visible = sticky.activeSelf;
         initialPos = sticky.transform.position;
+
+        //Sound
+        //var target = GameObject.Find("sticky");
+        //var emitterStick = sticky.GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     #endregion
@@ -83,7 +89,11 @@ public class InteractableTouch : MonoBehaviour
     #region Actual Code
     void Update()
     {
-        
+        //Para el audio
+        var emitterStick = sticky.GetComponent<FMODUnity.StudioEventEmitter>();
+        var emitterCamera = GetComponent<FMODUnity.StudioEventEmitter>();
+
+
         stickNum = SaveManager.getStickNum();
         if (SaveManager.getBlueStickNum() > 0 && !isBlue)
         {
@@ -122,6 +132,7 @@ public class InteractableTouch : MonoBehaviour
         if (Input.touchCount == 0) { return; }
 
         Touch fingertouch = Input.GetTouch(0);
+
         //untouch with the finger
         if (fingertouch.phase == TouchPhase.Ended)
         {
@@ -133,12 +144,19 @@ public class InteractableTouch : MonoBehaviour
             mousePos = fingertouch.position;
             Ray ray = Camera.main.ScreenPointToRay(mousePos);
             RaycastHit hit;
+            //Esto tiene un bug: El sonido del palo quemado solo suena a veces
             if (Physics.Raycast(ray, out hit, 100.0f) && hit.collider.CompareTag("Bonfire")) {
                 Debug.Log("Palo soltado a la hoguera");
                 if (!isBlue) {
+                    emitterStick.SetParameter("stickState",0);
+                    emitterStick.Play();
+                    Debug.Log("Sonido palo quemado normal");
                     Consume();
                 }
                 else {
+                    emitterStick.SetParameter("stickState",1);
+                    emitterStick.Play();
+                    Debug.Log("Sonido palo quemado azul");
                     ConsumeBlue();
                 }
                 if (stickNum <= 0)
@@ -186,6 +204,9 @@ public class InteractableTouch : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(mousePos); 
             if (Physics.Raycast (ray,out hit,100.0f)){
                 if(hit.collider.gameObject.CompareTag("Stick")) {
+                    //emitterStick.SetParameter("stickState",0);
+                    emitterCamera.Play();
+                    Debug.Log("Sonido coger palo");
                     hold = true;
                     CameraManagement.blockCamera = true;
                 }
