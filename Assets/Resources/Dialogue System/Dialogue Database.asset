@@ -231,6 +231,10 @@ MonoBehaviour:
           , Dialogue Manager);'
         type: 0
         typeString: CustomFieldType_Text
+      - title: Response Menu Sequence
+        value: 
+        type: 0
+        typeString: 
       conversationID: 1
       isRoot: 0
       isGroup: 0
@@ -346,7 +350,9 @@ MonoBehaviour:
         value: 'SendMessage(firstBurn,  , Dialogue Manager);
 
           SendMessage(disableContinue,
-          , Dialogue Manager);'
+          , Dialogue Manager);
+
+'
         type: 0
         typeString: CustomFieldType_Text
       - title: Response Menu Sequence
@@ -726,7 +732,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 62.012077, y: 63.488567}
+    canvasScrollPosition: {x: 0, y: 0}
     canvasZoom: 0.7482513
   - id: 2
     fields:
@@ -1442,7 +1448,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 133.93523}
+    canvasScrollPosition: {x: 0, y: 19.225988}
     canvasZoom: 0.76000035
   - id: 3
     fields:
@@ -2158,8 +2164,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.94000006
+    canvasScrollPosition: {x: 0, y: 0.23700714}
+    canvasZoom: 0.8800001
   - id: 4
     fields:
     - title: Title
@@ -2700,7 +2706,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 0, y: 17.02127}
     canvasZoom: 0.94000006
   - id: 5
     fields:
@@ -3412,7 +3418,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 0, y: 224.05057}
     canvasZoom: 0.7900002
   - id: 6
     fields:
@@ -4294,7 +4300,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 6.289919}
+    canvasScrollPosition: {x: 0, y: 159.14697}
     canvasZoom: 0.7000003
   - id: 7
     fields:
@@ -4392,7 +4398,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 1.0309296, y: 0}
     canvasZoom: 0.97
   - id: 9
     fields:

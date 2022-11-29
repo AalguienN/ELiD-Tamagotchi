@@ -22,6 +22,10 @@ public class DialogueEventStarter : MonoBehaviour
     Animator caputxaAnim, pinochioAnim;
 
     public bool forceLaugh = false;
+
+    //Para el sonido
+    public GameObject CaputxaSound;
+    public GameObject PinochoSound;
     
 
     private void Start()
@@ -159,8 +163,11 @@ public class DialogueEventStarter : MonoBehaviour
 
     public void runPinochio()
     {
-        //Play sound 
+        //Play sound
+        var emitterPinocho = PinochoSound.GetComponent<FMODUnity.StudioEventEmitter>();
+
         pinochioAnim.Play("Running_Pin");
+        emitterPinocho.Play();
         StartCoroutine(pinochioFinished());
         StartCoroutine(pinochioMovement());
     }
@@ -311,6 +318,7 @@ public class DialogueEventStarter : MonoBehaviour
 
 
 
+    //Creo que este metodo ya no es necesario, no lo quito pq realmente no hace nada malo
     public void playCaputxaLaugh()
     {
         SoundManager.instance.PlaySound("voiceCapuchaLaugh");
@@ -320,16 +328,18 @@ public class DialogueEventStarter : MonoBehaviour
     {
         forceLaugh = true;
     }
-
+ 
     public void playCaputxaSound()
     {
-        int num = Random.Range(1, 5);
-        string s = "voiceCapucha" + num;
+        
+        var emitterCaputxa = CaputxaSound.GetComponent<FMODUnity.StudioEventEmitter>();
+        emitterCaputxa.SetParameter("Laugh",0);
+
         if (forceLaugh) { 
-            s = "voiceCapuchaLaugh";
+            emitterCaputxa.SetParameter("Laugh",1);
             forceLaugh = false;
         }
-        SoundManager.instance.PlaySound(s);
+        emitterCaputxa.Play();     
     }
 
     public void killPlayerCheat()
