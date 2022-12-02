@@ -5,20 +5,26 @@ using UnityEngine;
 
 public class RayoScrpt : MonoBehaviour
 {
-    public float mintime = 5, maxtime = 60, timedelay;
+    public float mintime, maxtime, timedelay;
     bool isflick = false;
+    public float rainIntensity;
+
     private void Start()
     {
+        rainIntensity = SaveManager.getCurrentDay() == 6 ? 2 : 1;
+        var emitter = GetComponent<FMODUnity.StudioEventEmitter>();
+        emitter.SetParameter("Weather",rainIntensity);
         StartCoroutine(encender());
+
     }
     // Update is called once per frame
     void Update()
     {
+        var emitter = GetComponent<FMODUnity.StudioEventEmitter>();
         if (!isflick)
-        {
-          
-        
+        {       
             StartCoroutine(Flickering());
+            emitter.Play();
         }
     }
     IEnumerator Flickering()
