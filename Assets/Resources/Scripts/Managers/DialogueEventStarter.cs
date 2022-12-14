@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PixelCrushers.DialogueSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogueEventStarter : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class DialogueEventStarter : MonoBehaviour
         {
             startCurrentDayDialogue();
             enableCaputxa();
+            
         }
         if (SaveManager.getCurrentDay() == 1)
         {
@@ -60,8 +62,16 @@ public class DialogueEventStarter : MonoBehaviour
             woodTexture.SetColor("_Color", Color.black);
             //
             cameraAnimationHandler.instance.ChangeAnimation(cameraAnimationHandler.FINALE_ANIM);
+            StartCoroutine(WaitForSceneLoad());
         }
     }
+
+    private IEnumerator WaitForSceneLoad() {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(3);
+        
+    }
+
     private void Update()
     {
         if (Input.touchCount == 0) { return; }

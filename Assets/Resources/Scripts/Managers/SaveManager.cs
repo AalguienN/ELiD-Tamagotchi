@@ -2,6 +2,7 @@ using System.IO;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour {
     #region Variables
@@ -36,6 +37,14 @@ public class SaveManager : MonoBehaviour {
 
     public static bool finaleAnimationHasEnded = false;
 
+    #endregion
+
+    #region DEMO
+    DateTime startDay;
+    public void ForceDayPass()
+    {
+        setCurrentDay(currentDay+1);
+    }
     #endregion
 
     #region Save and Load
@@ -76,6 +85,8 @@ public class SaveManager : MonoBehaviour {
             ES3.Save("startedGame", true);
             aux_startedGame = true;
             cameraAnimationHandler.instance.ChangeAnimation(cameraAnimationHandler.START_ANIMATION); //Make this wait until load finished
+
+            currentDay = WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay) + 1;
             setStartingDay();
             startedGame = true;
         }
@@ -88,8 +99,6 @@ public class SaveManager : MonoBehaviour {
 
         int difference = currentEpochTime - (int)(lastConexion - epochStart).TotalSeconds;
         timeSinceLastConexion = difference; //Check if works idk
-
-        currentDay = WeeklyCalendar.GetDaysSinceStart(System.DateTime.Now, startingDay) + 1;
         if(difference < 0)
         {
             print("Viaje en el tiempo");
@@ -101,6 +110,28 @@ public class SaveManager : MonoBehaviour {
     private void Start()
     {
         DoOnStart();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.F1))
+        {
+            onExit();
+            ForceDayPass();
+            Destroy(GameObject.FindWithTag("DialogueManager"));
+            SceneManager.LoadScene(0);
+        }
+
+        if(Input.GetKey(KeyCode.F2))
+        {
+            print("Killing");
+            BonfireState.Instance.heal(-150);
+        }
+
+        if(Input.GetKey(KeyCode.F3))
+        {
+            BonfireState.Instance.heal(150);
+        }
     }
 
     private void DoOnStart()
