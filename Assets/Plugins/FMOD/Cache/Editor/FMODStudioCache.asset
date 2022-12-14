@@ -1,0 +1,687 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8713277857307737068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Thunder/Weather
+  m_EditorClassIdentifier: 
+  Name: Weather
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 1216032045
+    data2: 2955476563
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Sunny
+  - Rainy
+  - Stormy
+  Exists: 1
+--- !u!114 &-7735806226782501740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambient/Bonfire
+  m_EditorClassIdentifier: 
+  Path: event:/Ambient/Bonfire
+  Guid:
+    Data1: 261198264
+    Data2: 1339200576
+    Data3: -50421630
+    Data4: -1277871264
+  Banks:
+  - {fileID: 2763513620418277360}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 2187588316224629443}
+  - {fileID: 2675945862022918942}
+  - {fileID: 4846192252769888327}
+  - {fileID: -476153202867824680}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 30000
+--- !u!114 &-7326504531384296908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Forest
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Forest
+  Guid:
+    Data1: 763249519
+    Data2: 1277932157
+    Data3: 1706483630
+    Data4: -661330603
+  Banks:
+  - {fileID: 8099194116979736020}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 30000
+--- !u!114 &-6792967000528251071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sound Banks/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638056010621589138
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-6258307852775188519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Wood Chop/AxeState
+  m_EditorClassIdentifier: 
+  Name: AxeState
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3712600580
+    data2: 455606244
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Chop
+  - TreeFall
+  Exists: 1
+--- !u!114 &-5685793317283386372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Stick Burn/stickState
+  m_EditorClassIdentifier: 
+  Name: stickState
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2318505774
+    data2: 857369881
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Burn
+  - BurnBlue
+  Exists: 1
+--- !u!114 &-4865494812613080748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Dark Forest
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Dark Forest
+  Guid:
+    Data1: -889528598
+    Data2: 1151554508
+    Data3: 967205819
+    Data4: -1791479345
+  Banks:
+  - {fileID: 8099194116979736020}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4849994579800554613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voices/Capucha Voice
+  m_EditorClassIdentifier: 
+  Path: event:/Voices/Capucha Voice
+  Guid:
+    Data1: 749965700
+    Data2: 1220611204
+    Data3: -1210907495
+    Data4: 1518244142
+  Banks:
+  - {fileID: 8884465573128754163}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -3394419415077048042}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3718398983018933534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Wood Chop
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Wood Chop
+  Guid:
+    Data1: 1393560791
+    Data2: 1197706653
+    Data3: -619347815
+    Data4: -1233359227
+  Banks:
+  - {fileID: 4269101966435163444}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -6258307852775188519}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3394419415077048042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Capucha Voice/Laugh
+  m_EditorClassIdentifier: 
+  Name: Laugh
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2126019544
+    data2: 481358187
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-2477571466009156463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voices/Pinocho voice
+  m_EditorClassIdentifier: 
+  Path: event:/Voices/Pinocho voice
+  Guid:
+    Data1: -325505123
+    Data2: 1249000859
+    Data3: 1413508263
+    Data4: 97760433
+  Banks:
+  - {fileID: 8884465573128754163}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2875
+--- !u!114 &-2297740192096610813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sound Banks/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638066413507973982
+  FileSizes:
+  - Name: 
+    Value: 1782
+  Exists: 1
+--- !u!114 &-1970826950784365185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambient/Thunder
+  m_EditorClassIdentifier: 
+  Path: event:/Ambient/Thunder
+  Guid:
+    Data1: 832353212
+    Data2: 1314800663
+    Data3: -933637994
+    Data4: -1281349947
+  Banks:
+  - {fileID: 2763513620418277360}
+  - {fileID: 4269101966435163444}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -8713277857307737068}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-476153202867824680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Bonfire/Current Day
+  m_EditorClassIdentifier: 
+  Name: Current Day
+  StudioPath: 
+  Min: 1
+  Max: 7
+  Default: 1
+  ID:
+    data1: 3419258056
+    data2: 2431755992
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -2297740192096610813}
+  - {fileID: 2763513620418277360}
+  - {fileID: -6792967000528251071}
+  - {fileID: 8099194116979736020}
+  - {fileID: 4269101966435163444}
+  - {fileID: 8884465573128754163}
+  EditorEvents:
+  - {fileID: 6041009648116874192}
+  - {fileID: 5497632741472716106}
+  - {fileID: -7735806226782501740}
+  - {fileID: -1970826950784365185}
+  - {fileID: -7326504531384296908}
+  - {fileID: -4865494812613080748}
+  - {fileID: 3019618442255790155}
+  - {fileID: 5972755071448982681}
+  - {fileID: -3718398983018933534}
+  - {fileID: -4849994579800554613}
+  - {fileID: -2477571466009156463}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: -6792967000528251071}
+  StringsBanks:
+  - {fileID: -2297740192096610813}
+  cacheTime: 638066413508139063
+  cacheVersion: 131593
+--- !u!114 &2187588316224629443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Bonfire/LastBlueStickBurn
+  m_EditorClassIdentifier: 
+  Name: LastBlueStickBurn
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2656021794
+    data2: 2596417144
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - No
+  - Yes
+  Exists: 1
+--- !u!114 &2281753664926038634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Rain/Weather
+  m_EditorClassIdentifier: 
+  Name: Weather
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 1216032045
+    data2: 2955476563
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Sunny
+  - Rainy
+  - Stormy
+  Exists: 1
+--- !u!114 &2675945862022918942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Bonfire/Bonfire State
+  m_EditorClassIdentifier: 
+  Name: Bonfire State
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3012708400
+    data2: 161393153
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Apagada
+  - Encendida
+  Exists: 1
+--- !u!114 &2763513620418277360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ambient.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sound Banks/Desktop/Ambient.bank
+  Name: Ambient
+  StudioPath: bank:/Ambient
+  lastModified: 638066413507923613
+  FileSizes: []
+  Exists: 1
+--- !u!114 &3019618442255790155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Stick Burn
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Stick Burn
+  Guid:
+    Data1: -649863745
+    Data2: 1198208405
+    Data3: 1942174887
+    Data4: -131734027
+  Banks:
+  - {fileID: 4269101966435163444}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -5685793317283386372}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4269101966435163444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sound Banks/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 638066413508139063
+  FileSizes: []
+  Exists: 1
+--- !u!114 &4846192252769888327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Bonfire/bonfireHP
+  m_EditorClassIdentifier: 
+  Name: bonfireHP
+  StudioPath: 
+  Min: 0
+  Max: 90000
+  Default: 0
+  ID:
+    data1: 835637907
+    data2: 3851649642
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &5497632741472716106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambient/Nature
+  m_EditorClassIdentifier: 
+  Path: event:/Ambient/Nature
+  Guid:
+    Data1: -115279991
+    Data2: 1137726121
+    Data3: 809398962
+    Data4: 2054633890
+  Banks:
+  - {fileID: 2763513620418277360}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5972755071448982681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Stick PickUp
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Stick PickUp
+  Guid:
+    Data1: 432099026
+    Data2: 1264684814
+    Data3: -925128807
+    Data4: 1987674103
+  Banks:
+  - {fileID: 4269101966435163444}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 750
+--- !u!114 &6041009648116874192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambient/Rain
+  m_EditorClassIdentifier: 
+  Path: event:/Ambient/Rain
+  Guid:
+    Data1: -1967044986
+    Data2: 1150225621
+    Data3: 1900141709
+    Data4: -1986686583
+  Banks:
+  - {fileID: 2763513620418277360}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 2281753664926038634}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8099194116979736020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sound Banks/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 638056010622067853
+  FileSizes: []
+  Exists: 1
+--- !u!114 &8884465573128754163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Voices.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sound Banks/Desktop/Voices.bank
+  Name: Voices
+  StudioPath: bank:/Voices
+  lastModified: 638056010622297229
+  FileSizes: []
+  Exists: 1
