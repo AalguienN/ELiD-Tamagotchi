@@ -116,6 +116,7 @@ public class BonfireState : MonoBehaviour
             VisualBonfire.Instance.ChangeBonfire();
             //TODO: trigger endgame
             if(SaveManager.hasBurntFirstStick) {
+                Destroy(GameObject.FindWithTag("DialogueManager"));
                 SceneManager.LoadScene(2);
             }
         }
