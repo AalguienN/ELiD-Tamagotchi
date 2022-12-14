@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BonfireState : MonoBehaviour
 {
@@ -114,6 +115,9 @@ public class BonfireState : MonoBehaviour
             GetComponentInChildren<Light>().GetComponent<Intensity>().apagar();
             VisualBonfire.Instance.ChangeBonfire();
             //TODO: trigger endgame
+            if(SaveManager.hasBurntFirstStick) {
+                SceneManager.LoadScene(2);
+            }
         }
     }
     #endregion
